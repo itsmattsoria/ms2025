@@ -1,3 +1,8 @@
+---
+import "../assets/styles/global.css";
+import Smiley from '../assets/smiley.svg';
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,18 +10,36 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Matt Soria</title>
+		<!-- Preloads -->
+		<link rel="preload" href="fonts/Degular_Display-Semibold.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="fonts/ISOv0.8-Regular.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="stylesheet" href="fonts/webfonts.css" media="print" onload="this.media='all'; this.onload=null;">
+
+		<link rel="shortcut icon" type="image/ico" href="favicon.png">
+
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<meta name="description" content="Photographer and Web Developer from Chicago. Adventure, Lifestyle, Travel and Editorial Photography. Specializing in Front-end Development.">
+		<meta property="og:title" content="Matt Soria | photography + web development">
+		<meta property="og:url" content="https://www.mattsoria.com/">
 	</head>
 	<body>
-		<slot />
+		<main>
+			<slot />
+		</main>
+		<footer>
+			<Smiley />
+		</footer>
 	</body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+	.smiley {
+		width: 100px;
+		display: block;
+		margin: 2rem auto;
 	}
 </style>
