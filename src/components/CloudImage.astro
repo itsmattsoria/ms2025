@@ -1,0 +1,121 @@
+---
+import axios from "axios";
+
+const respSizes = [300, 600, 900, 1050, 1200, 1500, 2200];
+let cloudiBase = "https://res.cloudinary.com/dblidlnrc/image/upload/";
+let LQIPholder = "f_jpg,q_50,w_600,e_blur:2000/";
+// --- note ending slash and that `q` must have a leading zero
+let xFmPart1 = "f_auto,q_auto:eco,w_";
+let xFmPart2 = ",x_0,z_1/"; // note ending slash
+
+const { url, alt, width, height, zoomable, caption, lightbox, focalPoint,  effects, containerClasses, imgClasses } = Astro.props;
+
+const effectsString = effects ? effects : "";
+const additionalContainerClasses = containerClasses ? containerClasses : "";
+const additionalImgClasses = imgClasses ? imgClasses : "";
+const formattedUrl = url.replace(cloudiBase, '');
+let objectPosition = "center";
+if (focalPoint) {
+ objectPosition = `${focalPoint[0] * 100}% ${focalPoint[1] * 100}%`;
+}
+
+if (effectsString) {
+  LQIPholder = LQIPholder + effectsString + "/";
+}
+
+const Srcset = respSizes
+  .map((size) => {
+    if (size <= width) {
+      return `${cloudiBase + xFmPart1 + size + xFmPart2 + effectsString + formattedUrl } ${size}w`;
+    }
+  })
+  .join(", ");
+
+let divClass, imgClass, nscClass, dataSzes;
+
+divClass = `image-wrapper ${additionalContainerClasses}`;
+dataSzes = `(min-width: 768px) 100vw, 50vw`;
+nscClass = `nsc-image`;
+imgClass = `image animate-fade lazyload ${additionalImgClasses}`;
+
+/*
+================================================================
+Fetch the LQIP from Cloudinary and convert it to a Base64 string
+================================================================
+With immense thanks to "Aankhen" on the Eleventy Discord, 2022-01-22:
+- https://discord.com/channels/741017160297611315/934524410591838249/
+Also, https://stackoverflow.com/questions/41846669/download-an-image-using-axios-and-convert-it-to-base64
+*/
+
+async function getBase64(urlFor64) {
+  const response = await axios.get(urlFor64, {
+    responseType: "arraybuffer",
+  });
+  return Buffer.from(response.data, "binary").toString("base64");
+}
+
+let LQIP_b64 = await getBase64(cloudiBase + LQIPholder + formattedUrl);
+let imgBkgd = `url(data:image/jpeg;base64,${LQIP_b64})`;
+
+/*
+================================================================
+End, LQIP-to-Base64
+================================================================
+*/
+---
+
+<style define:vars={{ imgBkgd, objectPosition }}>
+  .image-wrapper {
+    overflow: hidden;
+    position: relative;
+    background-color: #ffffff;
+    background-image: var(--imgBkgd);
+    background-repeat: no-repeat;
+    background-position: var(--objectPosition);
+    background-size: cover;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade {
+    animation: fadeIn 750ms ease-in-out;
+  }
+
+  .nsc-image,
+  .image {
+    width: 100%;
+    height: auto;
+    max-width: none;
+  }
+</style>
+
+<div class={divClass} data-pagefind-ignore>
+  <noscript data-pagefind-ignore>
+    <img
+      class={nscClass}
+      src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
+      alt={alt}
+      width={width}
+      height={height}
+    />
+  </noscript>
+  <img
+    class={imgClass}
+    data-src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
+    data-srcset={Srcset}
+    alt={alt}
+    width={width}
+    height={height}
+    sizes={dataSzes}
+    data-zoomable={zoomable}
+    data-pagefind-ignore
+    style={'object-position: ' + objectPosition}
+  />
+</div>

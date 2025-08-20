@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import JournalBlocks from '../../components/JournalBlocks.astro';
+import { getEntries } from '../../components/EntriesFetch.astro';
+
+export async function getStaticPaths() {
+  let entriesQuery = `{
+    entries(site: "personal", section: "personalJournal") {
+      id
+      title
+      slug
+      ... on journal_default_Entry {
+        category(status: ["live"]) {
+          title
+          status
+          slug
+        }
+        journalContent {
+          ... on image_Entry {
+            typeHandle
+            image {
+              ... on personal_Asset {
+                alt
+                url
+                title
+                focalPoint
+                width
+                height
+                captionSimple
+              }
+            }
+          }
+          ... on textSection_Entry {
+            typeHandle
+            richText
+            blockId
+            sectionClasses
+          }
+        }
+      }
+    }
+  }`;
+  let entries = await getEntries(entriesQuery);
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }, // Pass the full entry data as props
+  }));
+}
+
+const { entry } = Astro.props;
+
+---
+
+<Layout title={'Matt Soria: ' + entry.title}>
+  <div class="container">
+    <h1>{entry.title}</h1>
+    { entry.journalContent.map((block) => (
+      <JournalBlocks block={block} />
+    ))}
+  </div>
+</Layout>

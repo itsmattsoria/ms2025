@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getEntries } from '../components/EntriesFetch.astro';
+import PostArticle from '../components/PostArticle.astro';
+
+let query = `{
+    entries(site: "personal", section: "personalJournal") {
+      id
+      title
+      slug
+      ... on journal_default_Entry {
+        category(status: ["live"]) {
+          title
+          status
+          slug
+        }
+      }
+    }
+  }`;
+const posts = await getEntries(query);
+
+---
+
+<Layout>
+	<h1>Journal</h1>
+
+  { posts.map((post) => 
+    <PostArticle post={post} />
+  )}
+</Layout>
+
+<style>
+	
+</style>

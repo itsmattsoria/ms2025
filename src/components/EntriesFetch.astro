@@ -1,0 +1,19 @@
+---
+export async function getEntries(query: string) {
+  const baseUrl = import.meta.env.BASEURL;
+  const url = new URL('api', baseUrl);
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: query,
+    }),
+  }).catch((error) => {
+    console.error("Error:", error);
+  });
+  let json = await response.json();
+  return json.data.entries;
+}
+---

@@ -1,0 +1,24 @@
+---
+import Image from '../components/CloudImage.astro';
+
+const { block } = Astro.props;
+---
+
+{ block.typeHandle === 'image' && (
+  <div>
+    { block.image && (
+      <Image
+        url={block.image[0].url}
+        width={block.image[0].width}
+        height={block.image[0].height}
+        focalPoint={block.image[0].focalPoint}
+      />
+    )}
+  </div>
+)}
+
+{ block.typeHandle === 'textSection' && (
+  <div>
+    <div set:html={block.richText}></div>
+  </div>
+)}
