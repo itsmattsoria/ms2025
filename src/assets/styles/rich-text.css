@@ -1,0 +1,48 @@
+.rich-text {
+  p,
+  li,
+  blockquote {
+    text-wrap: pretty;
+    font-size: var(--step-0);
+  }
+
+  a {
+    display: inline;
+    font-weight: 700;
+    position: relative;
+    text-decoration: none;
+    background: linear-gradient(
+      270deg,
+      transparent,
+      transparent 50%,
+      var(--color-gray) 0,
+      var(--color-gray)
+    );
+    background-size: 201%;
+    background-position: 100%;
+    box-shadow: 0 2px 0 0;
+    transition: color 0.15s ease-out, background-position 0.25s ease-out,
+      box-shadow 0.15s ease-out;
+
+    &:hover,
+    &:focus-visible {
+      background-position: 0;
+      box-shadow: 0 2px 0 0 var(--color-highlight);
+    }
+  }
+
+  blockquote {
+    margin-inline: 0;
+    font-weight: 700;
+    padding-block: var(--space-xs);
+    background-color: var(--color-gray);
+    border-radius: var(--border-radius);
+    padding-inline-start: var(--space-xs);
+    border-left: var(--space-xs) solid var(--color-highlight);
+
+    p {
+      margin: 0;
+      font-size: var(--step-1);
+    }
+  }
+}

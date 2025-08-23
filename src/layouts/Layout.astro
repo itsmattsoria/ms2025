@@ -19,11 +19,11 @@ const { title, bodyClass } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<!-- Preloads -->
-		<link rel="preload" href="fonts/Degular_Display-Semibold.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="fonts/ISOv0.8-Regular.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="stylesheet" href="fonts/webfonts.css" media="print" onload="this.media='all'; this.onload=null;">
+		<link rel="preload" href="/fonts/Degular_Display-Semibold.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="/fonts/ISOv0.8-Regular.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="stylesheet" href="/fonts/webfonts.css" media="print" onload="this.media='all'; this.onload=null;">
 
-		<link rel="shortcut icon" type="image/ico" href="favicon.png">
+		<link rel="shortcut icon" type="image/ico" href="/favicon.png">
 
 		<meta name="HandheldFriendly" content="True">
 		<meta name="MobileOptimized" content="320">
@@ -34,10 +34,13 @@ const { title, bodyClass } = Astro.props;
 		<meta property="og:url" content="https://www.mattsoria.com/">
 	</head>
 	<body class={bodyClass}>
-		<main>
+		<header class="site-header">
+			<a href="/" class="site-title">matt soria</a>
+		</header>
+		<main class="site-content">
 			<slot />
 		</main>
-		<footer>
+		<footer class="site-footer">
 			<Smiley />
 		</footer>
 	</body>
@@ -48,9 +51,31 @@ const { title, bodyClass } = Astro.props;
 </script>
 
 <style>
+	body {
+		display: grid;
+		align-items: start;
+		column-gap: var(--space-s);
+		grid-template-rows: 1fr auto;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-areas: 
+			"head main main main"
+			"footer footer footer footer";
+	}
+	.site-header {
+		grid-area: head;
+		position: sticky;
+		inset-block-start: var(--space-s);
+	}
+	.site-content {
+		grid-area: main;
+	}
+	.site-footer {
+		grid-area: footer;
+	}
+
 	.smiley {
-		width: 100px;
 		display: block;
 		margin: 2rem auto;
+		width: var(--space-xl);
 	}
 </style>

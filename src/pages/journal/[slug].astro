@@ -53,7 +53,7 @@ const { entry } = Astro.props;
 
 <Layout title={'Matt Soria: ' + entry.title}>
   <div class="container">
-    <h1>{entry.title}</h1>
+    <h1 class="text-h1">{entry.title}</h1>
     { entry.journalContent.map((block) => (
       <JournalBlocks block={block} />
     ))}

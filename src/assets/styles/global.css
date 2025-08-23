@@ -1,16 +1,27 @@
-:root {
-  --color-text: hsl(48, 31%, 5%);
-  --color-background: hsl(48, 31%, 94%);
-}
+@import './reset.css';
+@import './variables.css';
+@import './typography';
+@import './rich-text.css';
 
 body {
+  margin: 0;
+  padding: var(--space-l);
   color: var(--color-text);
-  font-family: 'ISO', monospace;
+  font-family: var(--font-body);
   background-color: var(--color-background);
 }
 
+.site-title {
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: var(--step-3);
+  font-family: var(--font-display);
+}
+
 .text-headline {
-  font-family: 'Degular Display', sans-serif;
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 2.5rem;
 }
@@ -20,4 +31,18 @@ body {
 }
 .smiley-face {
   fill: var(--color-text);
+}
+
+.container {
+  max-width: 72ch;
+}
+
+figure {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+ul,
+ol {
+  padding: 0.75em;
 }

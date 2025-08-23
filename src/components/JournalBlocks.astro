@@ -5,7 +5,7 @@ const { block } = Astro.props;
 ---
 
 { block.typeHandle === 'image' && (
-  <div>
+  <figure>
     { block.image && (
       <Image
         url={block.image[0].url}
@@ -14,11 +14,11 @@ const { block } = Astro.props;
         focalPoint={block.image[0].focalPoint}
       />
     )}
-  </div>
+  </figure>
 )}
 
 { block.typeHandle === 'textSection' && (
   <div>
-    <div set:html={block.richText}></div>
+    <div set:html={block.richText} class="rich-text"></div>
   </div>
 )}

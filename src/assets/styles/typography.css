@@ -1,0 +1,6 @@
+/* Type Styles */
+
+.text-h1 {
+  font-size: var(--step-3);
+  margin-block: 0 var(--space-m);
+}
