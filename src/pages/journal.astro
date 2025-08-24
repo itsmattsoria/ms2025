@@ -2,33 +2,80 @@
 import Layout from '../layouts/Layout.astro';
 import { getEntries } from '../components/EntriesFetch.astro';
 import PostArticle from '../components/PostArticle.astro';
+import LinkArticle from '../components/LinkArticle.astro';
 
-let query = `{
-    entries(site: "personal", section: "personalJournal") {
-      id
-      title
-      slug
-      ... on journal_default_Entry {
-        category(status: ["live"]) {
-          title
-          status
-          slug
-        }
+let postQuery = `{
+  entries(site: "personal", section: "personalJournal", type: "journal_default") {
+    id
+    title
+    slug
+    postDate
+    ... on journal_default_Entry {
+      category(status: ["live"]) {
+        title
+        status
+        slug
       }
     }
-  }`;
-const posts = await getEntries(query);
+  }
+}`;
+const posts = await getEntries(postQuery);
+
+let linksQuery = `{
+  entries(site: "personal", section: "personalJournal", type:"journal_external") {
+    id
+    title
+    slug
+    postDate
+    ... on journal_external_Entry {
+      externalLink
+      sourceAuthor
+      note
+      category(status: ["live"]) {
+        title
+        status
+        slug
+      }
+    }
+  }
+}`;
+const links = await getEntries(linksQuery);
 
 ---
 
 <Layout>
 	<h1>Journal</h1>
 
-  { posts.map((post) => 
-    <PostArticle post={post} />
-  )}
+  <div class="layout">
+    <div class="post-column">
+      { posts.map((post) =>
+        <PostArticle post={post} />
+      )}
+    </div>
+  
+    <aside class="links-column">
+      { links.map((post) =>
+        <LinkArticle post={post} />
+      )}
+    </aside>
+  </div>
 </Layout>
 
 <style>
-	
+	h1 {
+    margin-block-end: var(--space-l);
+  }
+
+  .layout {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+      "main main"
+      "aside";
+  }
+  .post-column {
+    grid-area: main;
+  }
+  .links-column {
+    grid-area: aside;
+  }
 </style>

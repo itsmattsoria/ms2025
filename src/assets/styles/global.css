@@ -11,6 +11,10 @@ body {
   background-color: var(--color-background);
 }
 
+::selection {
+  background-color: var(--color-gray);
+}
+
 .site-title {
   line-height: 1;
   display: inline-block;

@@ -36,6 +36,11 @@ const { title, bodyClass } = Astro.props;
 	<body class={bodyClass}>
 		<header class="site-header">
 			<a href="/" class="site-title">matt soria</a>
+			<nav class="site-nav">
+				<ul>
+					<li><a href="/journal">/journal</a></li>
+				</ul>
+			</nav>
 		</header>
 		<main class="site-content">
 			<slot />

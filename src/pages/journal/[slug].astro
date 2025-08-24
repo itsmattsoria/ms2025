@@ -9,6 +9,7 @@ export async function getStaticPaths() {
       id
       title
       slug
+      postDate
       ... on journal_default_Entry {
         category(status: ["live"]) {
           title
