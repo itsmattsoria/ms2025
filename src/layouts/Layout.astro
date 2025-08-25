@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { title, bodyClass } = Astro.props;
+const pathname = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -38,7 +39,7 @@ const { title, bodyClass } = Astro.props;
 			<a href="/" class="site-title">matt soria</a>
 			<nav class="site-nav">
 				<ul>
-					<li><a href="/journal">/journal</a></li>
+					<li><a href="/journal" aria-current={pathname === '/journal' ? 'page' : 'false' }>/journal</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -55,22 +56,35 @@ const { title, bodyClass } = Astro.props;
 	import "lazysizes";
 </script>
 
-<style>
+<style scoped>
 	body {
 		display: grid;
 		align-items: start;
+		row-gap: var(--space-l);
 		column-gap: var(--space-s);
-		grid-template-rows: 1fr auto;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-areas: 
+		"head"
+		"main"
+		"footer";
+
+		@media screen and (min-width: 768px) {
 		grid-template-areas: 
 			"head main main main"
 			"footer footer footer footer";
+		}
 	}
 	.site-header {
 		grid-area: head;
 		position: sticky;
 		inset-block-start: var(--space-s);
 	}
+	.site-nav {
+		margin-block-end: 0;
+		a[aria-current="page"] {
+			font-weight: 700;
+		}
+	}
+
 	.site-content {
 		grid-area: main;
 	}

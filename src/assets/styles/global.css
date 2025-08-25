@@ -50,3 +50,7 @@ ul,
 ol {
   padding: 0.75em;
 }
+
+a {
+  text-underline-offset: 0.15em;
+}

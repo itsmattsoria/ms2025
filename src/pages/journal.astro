@@ -40,20 +40,26 @@ let linksQuery = `{
   }
 }`;
 const links = await getEntries(linksQuery);
-
+console.log(posts);
 ---
 
 <Layout>
-	<h1>Journal</h1>
-
   <div class="layout">
     <div class="post-column">
+      <div class="title">
+        <h1>Journal</h1>
+      </div>
+
       { posts.map((post) =>
         <PostArticle post={post} />
       )}
     </div>
   
     <aside class="links-column">
+      <div class="title">
+        <h2>Links</h2>
+      </div>
+
       { links.map((post) =>
         <LinkArticle post={post} />
       )}
@@ -61,16 +67,31 @@ const links = await getEntries(linksQuery);
   </div>
 </Layout>
 
-<style>
-	h1 {
-    margin-block-end: var(--space-l);
+<style scoped>
+	.title {
+    display: flex;
+    align-items: flex-end;
+    height: var(--step-3);
+    margin-block: 0 var(--space-l);
+    h1, h2 {
+      margin: 0;
+      line-height: 1;
+      text-box-trim: trim-both;
+    }
   }
 
   .layout {
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    gap: var(--space-m);
     grid-template-areas: 
-      "main main"
+      "main"
       "aside";
+
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas: 
+        "main main aside";
+    }
   }
   .post-column {
     grid-area: main;
