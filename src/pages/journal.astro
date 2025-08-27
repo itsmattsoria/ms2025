@@ -40,7 +40,6 @@ let linksQuery = `{
   }
 }`;
 const links = await getEntries(linksQuery);
-console.log(posts);
 ---
 
 <Layout>
@@ -50,9 +49,13 @@ console.log(posts);
         <h1>Journal</h1>
       </div>
 
-      { posts.map((post) =>
-        <PostArticle post={post} />
-      )}
+      <ol class="posts-list" role="list">
+        { posts.map((post) =>
+          <li>
+            <PostArticle post={post} />
+          </li>
+        )}
+      </ol>
     </div>
   
     <aside class="links-column">
@@ -60,9 +63,13 @@ console.log(posts);
         <h2>Links</h2>
       </div>
 
-      { links.map((post) =>
-        <LinkArticle post={post} />
-      )}
+      <ol class="links-list" role="list">
+        { links.map((post) =>
+          <li>
+            <LinkArticle post={post} />
+          </li>
+        )}
+      </ol>
     </aside>
   </div>
 </Layout>
@@ -98,5 +105,14 @@ console.log(posts);
   }
   .links-column {
     grid-area: aside;
+  }
+
+  .posts-list,
+  .links-list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    list-style-type: none;
+    row-gap: var(--space-s);
   }
 </style>

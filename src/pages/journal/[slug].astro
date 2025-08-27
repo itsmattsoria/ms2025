@@ -5,7 +5,7 @@ import { getEntries } from '../../components/EntriesFetch.astro';
 
 export async function getStaticPaths() {
   let entriesQuery = `{
-    entries(site: "personal", section: "personalJournal") {
+    entries(site: "personal", section: "personalJournal", type: "journal_default") {
       id
       title
       slug
@@ -34,6 +34,12 @@ export async function getStaticPaths() {
           ... on textSection_Entry {
             typeHandle
             richText
+            blockId
+            sectionClasses
+          }
+          ... on embed_Entry {
+            typeHandle
+            embed
             blockId
             sectionClasses
           }

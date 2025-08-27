@@ -52,5 +52,47 @@ ol {
 }
 
 a {
+  color: inherit;
   text-underline-offset: 0.15em;
+}
+
+*:focus-visible {
+  outline-offset: 0.3em;
+}
+
+.pill {
+  line-height: 1;
+  border-radius: 1rem;
+  text-decoration: none;
+  text-box-trim: trim-both;
+  color: var(--color-text);
+  font-size: var(--step--2);
+  background-color: var(--color-gray);
+  padding: var(--space-3xs) var(--space-2xs);
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-background);
+    background-color: var(--color-highlight);
+  }
+}
+
+/* Article Styles */
+article {
+  padding-block: var(--space-2xs);
+  border-top: var(--color-gray) 1px solid;
+}
+.article-meta {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: baseline;
+}
+.article-link {
+  text-decoration-color: transparent;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration-color: var(--color-highlight);
+  }
 }

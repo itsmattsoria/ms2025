@@ -22,3 +22,9 @@ const { block } = Astro.props;
     <div set:html={block.richText} class="rich-text"></div>
   </div>
 )}
+
+{ block.typeHandle === 'embed' && (
+  <div>
+    <div set:html={block.embed}></div>
+  </div>
+)}
