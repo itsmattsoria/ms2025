@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Image from '../../components/CloudImage.astro';
 import JournalBlocks from '../../components/JournalBlocks.astro';
 import { getEntries } from '../../components/EntriesFetch.astro';
 
@@ -11,6 +12,17 @@ export async function getStaticPaths() {
       slug
       postDate
       ... on journal_default_Entry {
+        image {
+          ... on personal_Asset {
+            alt
+            url
+            title
+            focalPoint
+            width
+            height
+            captionSimple
+          }
+        }
         category(status: ["live"]) {
           title
           status
@@ -74,6 +86,17 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
     </div>
 
     <div class="entry-content">
+      {entry.image[0] && (
+        <figure class="entry-image">
+          <Image
+            url={entry.image[0].url}
+            width={entry.image[0].width}
+            height={entry.image[0].height}
+            focalPoint={entry.image[0].focalPoint}
+          />
+        </figure>
+      )}
+
       { entry.journalContent.map((block) => (
         <JournalBlocks block={block} />
       ))}
@@ -84,6 +107,11 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 <style scoped>
   .article-meta {
     margin-block-start: var(--space-2xs);
+  }
+
+  .entry-image {
+    position: relative;
+    border-radius: var(--border-radius);
   }
   .entry-content {
     margin-block-start: var(--space-l);

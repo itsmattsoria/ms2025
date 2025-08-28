@@ -16,6 +16,17 @@ let postQuery = `{
         status
         slug
       }
+      image {
+        ... on personal_Asset {
+          alt
+          url
+          title
+          focalPoint
+          width
+          height
+          captionSimple
+        }
+      }
     }
   }
 }`;

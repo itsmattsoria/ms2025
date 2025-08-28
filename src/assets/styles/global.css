@@ -85,7 +85,7 @@ article {
   padding-block-start: var(--space-2xs);
   border-top: var(--color-gray) 1px solid;
 
-  * + * {
+  > * + * {
     margin-block-start: var(--space-3xs);
   }
 }

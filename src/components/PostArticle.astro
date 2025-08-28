@@ -1,4 +1,6 @@
 ---
+import Image from '../components/CloudImage.astro';
+
 const { post } = Astro.props;
 const dateObject = new Date(post.postDate);
 const formattedDate = dateObject.toLocaleDateString('en-US', {
@@ -10,6 +12,16 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 
 <article>
   <h2><a href={ 'journal/' + post.slug} class="article-link">{post.title}</a></h2>
+  {post.image[0] && (
+    <figure>
+      <Image
+        url={post.image[0].url}
+        width={post.image[0].width}
+        height={post.image[0].height}
+        focalPoint={post.image[0].focalPoint}
+      />
+    </figure>
+  )}
   <div class="article-meta">
     <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
     {post.category.length > 0 && (
@@ -22,6 +34,15 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
   article {
     h2 {
       font-size: var(--step-1);
+    }
+
+    figure {
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 3 / 1;
+      margin-block-end: var(--space-2xs);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--color-highlight);
     }
   }
 </style>
