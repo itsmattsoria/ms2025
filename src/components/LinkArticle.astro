@@ -2,30 +2,33 @@
 const { post } = Astro.props;
 const dateObject = new Date(post.postDate);
 const formattedDate = dateObject.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
 });
 ---
 
 <article>
+  <h2><a href={ post.externalLink } class="article-link">{post.title}</a></h2>
+  {post.sourceAuthor && (
+    <div class="text-meta">By { post.sourceAuthor }</div>
+  )}
   <div class="article-meta">
     <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
     {post.category.length > 0 && (
       <a href={ 'journal/category/' + post.category[0].slug } class="pill">{post.category[0].title}</a>
     )}
   </div>
-  <h2><a href={ post.externalLink } class="article-link">{post.title}</a></h2>
-  {post.sourceAuthor && (
-    <div class="text-label">By { post.sourceAuthor }</div>
-  )}
 </article>
 
 <style scoped>
   article {
     h2 {
       font-size: var(--step-0);
-      margin-block-start: var(--space-2xs);
+    }
+
+    .text-meta {
+      margin-block-start: var(--space-xs);
     }
   }
 </style>

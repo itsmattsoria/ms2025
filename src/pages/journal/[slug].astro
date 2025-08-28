@@ -55,13 +55,37 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const dateObject = new Date(entry.postDate);
+const formattedDate = dateObject.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
 ---
 
 <Layout title={'Matt Soria: ' + entry.title}>
   <div class="container">
     <h1 class="text-h1">{entry.title}</h1>
-    { entry.journalContent.map((block) => (
-      <JournalBlocks block={block} />
-    ))}
+    <div class="article-meta">
+      <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
+      {entry.category.length > 0 && (
+        <a href={ 'journal/category/' + entry.category[0].slug } class="pill">{entry.category[0].title}</a>
+      )}
+    </div>
+
+    <div class="entry-content">
+      { entry.journalContent.map((block) => (
+        <JournalBlocks block={block} />
+      ))}
+    </div>
   </div>
 </Layout>
+
+<style scoped>
+  .article-meta {
+    margin-block-start: var(--space-2xs);
+  }
+  .entry-content {
+    margin-block-start: var(--space-l);
+  }
+</style>

@@ -1,4 +1,5 @@
 @import './reset.css';
+@import './utilities.css';
 @import './variables.css';
 @import './typography';
 @import './rich-text.css';
@@ -63,6 +64,7 @@ a {
 .pill {
   line-height: 1;
   border-radius: 1rem;
+  display: inline-block;
   text-decoration: none;
   text-box-trim: trim-both;
   color: var(--color-text);
@@ -80,13 +82,21 @@ a {
 
 /* Article Styles */
 article {
-  padding-block: var(--space-2xs);
+  padding-block-start: var(--space-2xs);
   border-top: var(--color-gray) 1px solid;
+
+  * + * {
+    margin-block-start: var(--space-3xs);
+  }
 }
 .article-meta {
   display: flex;
   gap: var(--space-xs);
   align-items: baseline;
+
+  * {
+    line-height: 1;
+  }
 }
 .article-link {
   text-decoration-color: transparent;

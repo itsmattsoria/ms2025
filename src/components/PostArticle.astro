@@ -9,20 +9,19 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 ---
 
 <article>
+  <h2><a href={ 'journal/' + post.slug} class="article-link">{post.title}</a></h2>
   <div class="article-meta">
     <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
     {post.category.length > 0 && (
       <a href={ 'journal/category/' + post.category[0].slug } class="pill">{post.category[0].title}</a>
     )}
   </div>
-  <h2><a href={ 'journal/' + post.slug} class="article-link">{post.title}</a></h2>
 </article>
 
 <style scoped>
   article {
     h2 {
       font-size: var(--step-1);
-      margin-block-start: var(--space-xs);
     }
   }
 </style>
