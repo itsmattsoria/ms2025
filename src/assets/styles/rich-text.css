@@ -35,17 +35,12 @@
     margin-inline: 0;
     position: relative;
     padding-block: var(--space-xs);
-    padding-inline: var(--space-l);
-    background-color: var(--color-gray);
-    border-radius: var(--border-radius);
-    hanging-punctuation: first allow-end;
-    /* border-left: var(--space-3xs) solid var(--color-highlight); */
 
     &::before {
       content: '“';
       font-size: 8rem;
       position: absolute;
-      inset-inline: 0rem;
+      inset-inline-end: 100%;
       inset-block-start: -0.75rem;
       color: var(--color-highlight);
       font-family: var(--font-display);
@@ -53,16 +48,23 @@
 
     p {
       margin: 0;
+      display: inline;
       line-height: 1.2;
-      text-wrap: pretty;
+      text-wrap: balance;
+      position: relative;
       text-box-trim: trim-end;
       font-size: var(--step-3);
       font-family: var(--font-display);
+      background-image: linear-gradient(
+        transparent,
+        transparent 60%,
+        var(--color-gray) 60%,
+        var(--color-gray) 100%
+      );
     }
 
-    @media screen and (min-width: 768px) {
-      width: calc(100% + var(--space-l));
-      margin-inline-start: calc(-1 * var(--space-l));
+    @media screen and (min-width: 1024px) {
+      width: 120%;
     }
   }
 }
