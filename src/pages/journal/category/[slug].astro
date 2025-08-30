@@ -1,11 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getEntries } from '../components/EntriesFetch.astro';
-import PostArticle from '../components/PostArticle.astro';
-import LinkArticle from '../components/LinkArticle.astro';
+import Layout from '../../../layouts/Layout.astro';
+import { getEntries } from '../../../components/EntriesFetch.astro';
+import PostArticle from '../../../components/PostArticle.astro';
+import LinkArticle from '../../../components/LinkArticle.astro';
+
+export async function getStaticPaths() {
+  let entriesQuery = `{
+    entries(site: "personal", section: "personalJournalCategories") {
+      id
+      title
+      slug
+    }
+  }`;
+  let entries = await getEntries(entriesQuery);
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }, // Pass the full entry data as props
+  }));
+}
+
+const { entry } = Astro.props;
 
 let postQuery = `{
-  entries(site: "personal", section: "personalJournal", type: "journal_default") {
+  entries(site: "personal", section: "personalJournal", type: "journal_default", category: ${entry.id}) {
     id
     title
     slug
@@ -33,7 +50,7 @@ let postQuery = `{
 const posts = await getEntries(postQuery);
 
 let linksQuery = `{
-  entries(site: "personal", section: "personalJournal", type:"journal_external") {
+  entries(site: "personal", section: "personalJournal", type:"journal_external", category: ${entry.id}) {
     id
     title
     slug
@@ -55,11 +72,11 @@ const links = await getEntries(linksQuery);
 
 <Layout>
   <div class="layout">
+    <div class="title">
+      <h1>Journal: {entry.title}</h1>
+    </div>
     <div class="post-column">
-      <div class="title">
-        <h1 class="visually-hidden">Journal</h1>
-        <h2>Writing</h2>
-      </div>
+      <h2>Writing</h2>
 
       <ol class="posts-list" role="list">
         { posts.map((post) =>
@@ -103,12 +120,14 @@ const links = await getEntries(linksQuery);
     display: grid;
     gap: var(--space-m);
     grid-template-areas: 
+      "title"
       "main"
       "aside";
 
     @media screen and (min-width: 1024px) {
       grid-template-columns: repeat(3, 1fr);
       grid-template-areas: 
+        "title title title"
         "main main aside";
     }
   }

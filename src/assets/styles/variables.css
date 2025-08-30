@@ -1,6 +1,6 @@
 :root {
   --color-text: hsl(48, 31%, 5%);
-  --color-background: hsl(48, 31%, 94%);
+  --color-background: hsl(38, 61%, 94%);
   --color-highlight: hsl(117, 19%, 42%);
   --color-gray: hsla(117, 19%, 42%, 0.2);
 
@@ -9,7 +9,7 @@
 
   /* Fonts */
   --font-body: 'ISO', monospace;
-  --font-display: 'Degular Display', sans-serif;
+  --font-display: 'Walkout', sans-serif;
 
   /* Type Sizes */
   /* @link https://utopia.fyi/type/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */

@@ -6,10 +6,16 @@
 
 body {
   margin: 0;
-  padding: var(--space-l);
   color: var(--color-text);
   font-family: var(--font-body);
+  padding-inline: var(--space-l);
+  padding-block-end: var(--space-l);
   background-color: var(--color-background);
+}
+
+.site-header,
+.site-content {
+  padding-block-start: var(--space-l);
 }
 
 ::selection {
