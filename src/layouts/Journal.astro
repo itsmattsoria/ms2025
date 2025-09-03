@@ -1,64 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getEntries } from '../components/EntriesFetch.astro';
 import PostArticle from '../components/PostArticle.astro';
 import LinkArticle from '../components/LinkArticle.astro';
 
-let postQuery = `{
-  entries(site: "personal", section: "personalJournal", type: "journal_default") {
-    id
-    title
-    slug
-    postDate
-    ... on journal_default_Entry {
-      category(status: ["live"]) {
-        title
-        status
-        slug
-      }
-      image {
-        ... on personal_Asset {
-          alt
-          url
-          title
-          focalPoint
-          width
-          height
-          captionSimple
-        }
-      }
-    }
-  }
-}`;
-const posts = await getEntries(postQuery);
-
-let linksQuery = `{
-  entries(site: "personal", section: "personalJournal", type:"journal_external") {
-    id
-    title
-    slug
-    postDate
-    ... on journal_external_Entry {
-      externalLink
-      sourceAuthor
-      note
-      category(status: ["live"]) {
-        title
-        status
-        slug
-      }
-    }
-  }
-}`;
-const links = await getEntries(linksQuery);
+const { title, posts, links } = Astro.props;
 ---
 
 <Layout>
   <div class="layout">
     <div class="post-column">
       <div class="title">
-        <h1 class="visually-hidden">Blog</h1>
-        <h2>Writing</h2>
+        <h1 class="text-h1" set:html={title}></h1>
+        <h2 class="text-h1">Writing</h2>
       </div>
 
       <ol class="posts-list" role="list">
@@ -72,7 +25,7 @@ const links = await getEntries(linksQuery);
   
     <aside class="links-column">
       <div class="title">
-        <h2>Reading</h2>
+        <h2 class="text-h2">Reading / Listening / Watching</h2>
       </div>
 
       <ol class="links-list" role="list">
@@ -107,9 +60,9 @@ const links = await getEntries(linksQuery);
       "aside";
 
     @media screen and (min-width: 1024px) {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       grid-template-areas: 
-        "main main aside";
+        "main main main aside aside";
     }
   }
   .post-column {

@@ -61,6 +61,7 @@ ol {
 a {
   color: inherit;
   text-underline-offset: 0.15em;
+  text-decoration-thickness: 0.1rem;
 }
 
 *:focus-visible {
@@ -72,7 +73,7 @@ a {
   border-radius: 1rem;
   display: inline-block;
   text-decoration: none;
-  text-box-trim: trim-both;
+  text-box-trim: trim-end;
   color: var(--color-text);
   font-size: var(--step--2);
   background-color: var(--color-gray);
@@ -97,18 +98,20 @@ article {
 }
 .article-meta {
   display: flex;
+  align-items: center;
   gap: var(--space-xs);
-  align-items: baseline;
 
   * {
     line-height: 1;
   }
 }
 .article-link {
+  background-color: transparent;
   text-decoration-color: transparent;
 
   &:hover,
   &:focus-visible {
+    background-color: var(--color-gray);
     text-decoration-color: var(--color-highlight);
   }
 }

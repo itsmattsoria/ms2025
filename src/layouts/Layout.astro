@@ -20,7 +20,7 @@ const pathname = Astro.url.pathname;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<!-- Preloads -->
-		<link rel="preload" href="/fonts/Degular_Display-Semibold.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="/fonts/TAYWalkout.woff2" as="font" type="font/woff2" crossorigin>
 		<link rel="preload" href="/fonts/ISOv0.8-Regular.woff2" as="font" type="font/woff2" crossorigin>
 		<link rel="stylesheet" href="/fonts/webfonts.css" media="print" onload="this.media='all'; this.onload=null;">
 
@@ -39,7 +39,7 @@ const pathname = Astro.url.pathname;
 			<a href="/" class="site-title">matt soria</a>
 			<nav class="site-nav">
 				<ul>
-					<li><a href="/blog" aria-current={pathname === '/blog' ? 'page' : 'false' }>/blog</a></li>
+					<li><a href="/journal" aria-current={pathname === '/journal' ? 'page' : 'false' }>/journal</a></li>
 				</ul>
 			</nav>
 		</header>

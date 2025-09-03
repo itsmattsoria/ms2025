@@ -11,17 +11,7 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 ---
 
 <article>
-  <h2><a href={ 'journal/' + post.slug} class="article-link">{post.title}</a></h2>
-  {post.image[0] && (
-    <figure>
-      <Image
-        url={post.image[0].url}
-        width={post.image[0].width}
-        height={post.image[0].height}
-        focalPoint={post.image[0].focalPoint}
-      />
-    </figure>
-  )}
+  <h2 class="text-h3"><a href={ 'journal/' + post.slug} class="article-link">{post.title}</a></h2>
   <div class="article-meta">
     <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
     {post.category.length > 0 && (
@@ -32,10 +22,6 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 
 <style scoped>
   article {
-    h2 {
-      font-size: var(--step-1);
-    }
-
     figure {
       width: 100%;
       overflow: hidden;

@@ -6,12 +6,12 @@ import { getEntries } from '../../components/EntriesFetch.astro';
 
 export async function getStaticPaths() {
   let entriesQuery = `{
-    entries(site: "personal", section: "personalJournal", type: "journal_default") {
+    entries(site: "personal", section: "personalJournal", type: "journal_writing") {
       id
       title
       slug
       postDate
-      ... on journal_default_Entry {
+      ... on journal_writing_Entry {
         image {
           ... on personal_Asset {
             alt

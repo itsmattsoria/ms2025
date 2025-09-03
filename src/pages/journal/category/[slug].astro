@@ -1,8 +1,6 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
+import Journal from '../../../layouts/Journal.astro';
 import { getEntries } from '../../../components/EntriesFetch.astro';
-import PostArticle from '../../../components/PostArticle.astro';
-import LinkArticle from '../../../components/LinkArticle.astro';
 
 export async function getStaticPaths() {
   let entriesQuery = `{
@@ -22,12 +20,12 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 
 let postQuery = `{
-  entries(site: "personal", section: "personalJournal", type: "journal_default", category: ${entry.id}) {
+  entries(site: "personal", section: "personalJournal", type: "journal_writing", category: ${entry.id}) {
     id
     title
     slug
     postDate
-    ... on journal_default_Entry {
+    ... on journal_writing_Entry {
       category(status: ["live"]) {
         title
         status
@@ -59,6 +57,7 @@ let linksQuery = `{
       externalLink
       sourceAuthor
       note
+      externalType
       category(status: ["live"]) {
         title
         status
@@ -70,80 +69,4 @@ let linksQuery = `{
 const links = await getEntries(linksQuery);
 ---
 
-<Layout>
-  <div class="layout">
-    <div class="title">
-      <h1>Journal: {entry.title}</h1>
-    </div>
-    <div class="post-column">
-      <h2>Writing</h2>
-
-      <ol class="posts-list" role="list">
-        { posts.map((post) =>
-          <li>
-            <PostArticle post={post} />
-          </li>
-        )}
-      </ol>
-    </div>
-  
-    <aside class="links-column">
-      <div class="title">
-        <h2>Reading</h2>
-      </div>
-
-      <ol class="links-list" role="list">
-        { links.map((post) =>
-          <li>
-            <LinkArticle post={post} />
-          </li>
-        )}
-      </ol>
-    </aside>
-  </div>
-</Layout>
-
-<style scoped>
-	.title {
-    display: flex;
-    align-items: flex-end;
-    height: var(--step-3);
-    margin-block: 0 var(--space-l);
-    h1, h2 {
-      margin: 0;
-      line-height: 1;
-      text-box-trim: trim-both;
-    }
-  }
-
-  .layout {
-    display: grid;
-    gap: var(--space-m);
-    grid-template-areas: 
-      "title"
-      "main"
-      "aside";
-
-    @media screen and (min-width: 1024px) {
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-areas: 
-        "title title title"
-        "main main aside";
-    }
-  }
-  .post-column {
-    grid-area: main;
-  }
-  .links-column {
-    grid-area: aside;
-  }
-
-  .posts-list,
-  .links-list {
-    margin: 0;
-    padding: 0;
-    display: grid;
-    list-style-type: none;
-    row-gap: var(--space-s);
-  }
-</style>
+<Journal title={'Journal: ' + entry.title} posts={posts} links={links} />
