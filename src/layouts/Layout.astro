@@ -39,7 +39,7 @@ const pathname = Astro.url.pathname;
 			<a href="/" class="site-title">matt soria</a>
 			<nav class="site-nav">
 				<ul>
-					<li><a href="/journal" aria-current={pathname === '/journal' ? 'page' : 'false' }>/journal</a></li>
+					<li><a href="/journal" aria-current={pathname === '/journal' ? 'page' : 'false' }>journal</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -57,26 +57,20 @@ const pathname = Astro.url.pathname;
 </script>
 
 <style scoped>
-	body {
-		display: grid;
-		align-items: start;
-		row-gap: var(--space-l);
-		column-gap: var(--space-xl);
-		grid-template-areas: 
-		"head"
-		"main"
-		"footer";
-
-		@media screen and (min-width: 768px) {
-		grid-template-areas: 
-			"head main main main"
-			"footer footer footer footer";
-		}
-	}
 	.site-header {
-		grid-area: head;
-		position: sticky;
+		width: 100%;
+		z-index: 100;
+		display: flex;
+		position: fixed;
+		align-items: end;
+		gap: var(--space-xs);
 		inset-block-start: 0;
+		inset-inline-start: 0;
+		justify-content: space-between;
+		padding-inline: var(--space-l);
+		padding-block: var(--space-2xs);
+		background-color: var(--color-background);
+		border-bottom: 1px solid var(--color-text);
 	}
 	.site-nav {
 		margin-block-end: 0;
@@ -91,13 +85,6 @@ const pathname = Astro.url.pathname;
 			font-weight: 700;
 			text-decoration: none;
 		}
-	}
-
-	.site-content {
-		grid-area: main;
-	}
-	.site-footer {
-		grid-area: footer;
 	}
 
 	.smiley {

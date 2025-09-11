@@ -1,7 +1,7 @@
 ---
 import Image from '../components/CloudImage.astro';
 
-const { post } = Astro.props;
+const { post, first } = Astro.props;
 const dateObject = new Date(post.postDate);
 const formattedDate = dateObject.toLocaleDateString('en-US', {
     year: 'numeric',
@@ -10,12 +10,12 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 });
 ---
 
-<article>
-  <h2 class="text-h3"><a href={ 'journal/' + post.slug} class="article-link">{post.title}</a></h2>
+<article class={first ? '-first': ''}>
+  <h2 class="text-h3"><a href={ '/journal/' + post.slug} class="article-link">{post.title}</a></h2>
   <div class="article-meta">
     <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
     {post.category.length > 0 && (
-      <a href={ 'journal/category/' + post.category[0].slug } class="pill">{post.category[0].title}</a>
+      <a href={ '/journal/category/' + post.category[0].slug } class="pill">{post.category[0].title}</a>
     )}
   </div>
 </article>
