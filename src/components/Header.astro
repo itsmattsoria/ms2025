@@ -1,0 +1,64 @@
+---
+const pathname = Astro.url.pathname;
+import { getEntries } from '../components/EntriesFetch.astro';
+
+let navQuery = `{
+  entries(site: "personal", section: "personalNavigation", type:"navigation_default") {
+    ...on navigation_default_Entry {
+      entryRef(status:["live"]) {
+        title
+        slug
+        url
+      }
+    }
+  }
+}`;
+const nav = await getEntries(navQuery);
+---
+
+<header class="site-header">
+  <a href="/" class="site-title">matt soria</a>
+  <nav class="site-nav">
+    <ul class="flex gap-2xs" role="list">
+      {nav.map((item) => (
+        <li><a href={ '/' + item.entryRef[0].slug} aria-current={pathname === item.entryRef[0].slug ? 'page' : 'false' }>{item.entryRef[0].title}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style scoped>
+  .site-header {
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    position: fixed;
+    align-items: end;
+    gap: var(--spacing-xs);
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    justify-content: space-between;
+    padding-inline: var(--spacing-l);
+    padding-block: var(--spacing-2xs);
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-title {
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: var(--step-3);
+    font-family: var(--font-display);
+  }
+
+  .site-nav {
+    margin-block-end: 0;
+
+    a[aria-current="page"] {
+      font-weight: 700;
+      text-decoration: none;
+    }
+  }
+</style>

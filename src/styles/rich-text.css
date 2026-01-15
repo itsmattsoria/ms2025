@@ -34,7 +34,7 @@
   blockquote {
     margin-inline: 0;
     position: relative;
-    padding-block: var(--space-xs);
+    padding-block: var(--spacing-xs);
 
     &::before {
       content: '“';

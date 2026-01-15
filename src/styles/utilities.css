@@ -1,0 +1,21 @@
+@layer utilities {
+  /* Thanks to Lea Verou for this utility */
+  /* https://lea.verou.me/blog/2024/contrast-color/ */
+  .contrast-color {
+    /* Fallback for browsers that don't support RCS */
+    color: white;
+    text-shadow: 0 0 0.05em black, 0 0 0.05em black, 0 0 0.05em black,
+      0 0 0.05em black;
+
+    @supports (color: oklch(from red l c h)) {
+      --l: clamp(0, (l / var(--l-threshold, 0.623) - 1) * -infinity, 1);
+      color: oklch(from var(--color) var(--l) 0 h);
+      text-shadow: none;
+    }
+
+    @supports (color: contrast-color(red)) {
+      color: contrast-color(var(--color));
+      text-shadow: none;
+    }
+  }
+}

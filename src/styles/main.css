@@ -1,0 +1,54 @@
+@layer reset, theme, base, components, utilities;
+
+@import 'tailwindcss';
+@import './theme.css';
+@import './reset.css';
+@import './utilities.css';
+@import './typography';
+@import './components.css';
+@import './rich-text.css';
+
+@layer base {
+  body {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    padding-inline: var(--spacing-l);
+    background-color: var(--color-background);
+    padding-block: var(--spacing-3xl) var(--spacing-l);
+  }
+
+  ::selection {
+    background-color: var(--color-gray);
+  }
+
+  figure {
+    overflow: hidden;
+    border-radius: var(--border-radius);
+  }
+
+  ul,
+  ol {
+    padding: 0.75em;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 0.1rem;
+  }
+
+  *:focus-visible {
+    outline-offset: 0.3em;
+  }
+}
+
+/* Tippy Styles */
+.tippy-box[data-theme~='site'] {
+  text-align: center;
+  border-radius: 1em;
+  max-width: max-content;
+  padding: var(--spacing-2xs);
+  background-color: var(--color-text);
+  color: var(--color-background);
+}

@@ -44,9 +44,8 @@ const { title, posts, links } = Astro.props;
     margin: 0;
     display: flex; 
     align-items: flex-end;
-    height: var(--step-3);
-    padding-block-end: var(--space-l);
-    border-bottom: 1px solid var(--color-gray);
+    padding-block-end: var(--spacing-l);
+    border-bottom: 1px solid var(--color-border);
     h1, h2 {
       margin: 0;
       line-height: 1;
@@ -56,7 +55,7 @@ const { title, posts, links } = Astro.props;
 
   .layout {
     display: grid;
-    gap: var(--space-m);
+    gap: var(--spacing-m);
     grid-template-areas: 
       "primary"
       "aside";
@@ -92,6 +91,6 @@ const { title, posts, links } = Astro.props;
     padding: 0;
     display: grid;
     list-style-type: none;
-    row-gap: var(--space-s);
+    row-gap: var(--spacing-s);
   }
 </style>

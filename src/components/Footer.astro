@@ -1,0 +1,93 @@
+---
+import { getEntry } from '../components/EntryFetch.astro';
+import Smiley from '../assets/smiley.svg';
+import UsFlag from '../assets/us-in-distress.svg';
+
+type FooterLink = {
+  linkField: {
+    url: string;
+    target: string;
+    class: string;
+    id: string;
+    label: string;
+  };
+};
+
+let footerQuery = `{
+  entry(site: "personal", section: "personalFooter") {
+    ... on personalFooter_Entry {
+      linksIntro {
+        plainText
+      }
+      links {
+        ... on linkWithTooltip_Entry {
+          linkField {
+            url
+            target
+            class
+            id
+            label
+            ariaLabel
+          }
+          tooltip {
+            rawHtml
+          }
+          linkColor
+        }
+      }
+    }
+  }
+}`;
+const footer = await getEntry(footerQuery);
+const links: FooterLink[] = footer.links ?? [];
+---
+
+<footer class="site-footer">
+  <div class="text-center">
+    {footer.linksIntro && (
+      <h3 class="text-h4 mb-s">{footer.linksIntro.plainText}</h3>
+    )}
+    <ul class="text-balance space-y-xs space-x-xs *:inline-block flex-wrap max-w-prose mx-auto" role="list">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.linkField.url}
+            target={link.linkField.target}
+            class={'pill pill--lg contrast-color ' + link.linkField.class}
+            id={link.linkField.id}
+            style={`--color-pill: ${link.linkColor};`}
+            data-tippy-content={link.tooltip?.rawHtml}
+          >
+            {link.linkField.label}
+            {link.linkField.target === '_blank' && (
+              <>
+                <span class="sr-only">.</span>
+                <span aria-label="Opens in new tab.">↗</span>
+              </>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div class="flex items-center justify-center gap-s mt-l">
+   <Smiley />
+   <UsFlag />
+  </div>
+  <div class="text-center text-label mt-l grid gap-3xs">
+   <p>© {new Date().getFullYear()} Matt Soria</p>
+   <p>This site does not use cookies or track you in any way.</p>
+  </div>
+ </div>
+</footer>
+
+<style scoped>
+	.site-footer {
+		margin-block-start: var(--spacing-3xl);
+		padding: var(--spacing-3xl) var(--spacing-l);
+	}
+
+	.smiley, .us-flag{
+		width: var(--spacing-l);
+	}
+</style>

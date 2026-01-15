@@ -1,0 +1,101 @@
+@layer components {
+  .text-headline {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2.5rem;
+  }
+
+  .smiley-background {
+    fill: var(--color-background);
+  }
+  .smiley-face {
+    fill: var(--color-text);
+  }
+
+  .container {
+    max-width: 72ch;
+    margin-inline: auto;
+  }
+
+  .pill {
+    --color-pill: var(--color-highlight);
+    --color-pill-hover: var(--color-pill);
+    line-height: 1;
+    border-radius: 1rem;
+    display: inline-block;
+    text-decoration: none;
+    transform-origin: center;
+    font-size: var(--step--2);
+    padding: var(--spacing-3xs);
+    text-box: trim-both cap alphabetic;
+    box-shadow: 0 0 0 0.1rem var(--color-gray);
+    background-color: var(--color-pill-background);
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-pill-hover);
+    }
+
+    &:active {
+      transform: scale(0.97);
+      box-shadow: 0 0 0 0.2rem var(--color-gray);
+    }
+
+    &:not(.contrast-color) {
+      --color-pill-background: var(--color-gray);
+      color: var(--color-text);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--color-background);
+      }
+    }
+
+    &.contrast-color {
+      --color-pill-background: color-mix(
+        in hsl,
+        var(--color-pill),
+        transparent 25%
+      );
+      --color: var(--color-pill);
+    }
+
+    &.pill--lg {
+      font-size: var(--step--1);
+      padding: var(--spacing-2xs);
+    }
+  }
+
+  /* Article Styles */
+  article {
+    padding-block-start: var(--spacing-2xs);
+
+    &:not(.-first) {
+      border-top: var(--color-border) 1px solid;
+    }
+
+    > * + * {
+      margin-block-start: var(--spacing-3xs);
+    }
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+
+    * {
+      line-height: 1;
+    }
+  }
+  .article-link {
+    background-color: transparent;
+    text-decoration-color: transparent;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-gray);
+      text-decoration-color: var(--color-highlight);
+    }
+  }
+}

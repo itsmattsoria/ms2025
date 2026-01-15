@@ -1,27 +1,27 @@
 @font-face {
-  font-family: 'ISO';
-  src: url('../fonts/ISOv0.8-Regular.woff2') format('woff2');
+  font-family: 'VCTR Mono';
+  src: url('../fonts/VCTRMonov0.12-Regular.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'ISO';
-  src: url('../fonts/ISOv0.8-RegularItalic.woff2') format('woff2');
+  font-family: 'VCTR Mono';
+  src: url('../fonts/VCTRMonov0.12-RegularItalic.woff2') format('woff2');
   font-weight: 500;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
-  font-family: 'ISO';
-  src: url('../fonts/ISOv0.8-Bold.woff2') format('woff2');
+  font-family: 'VCTR Mono';
+  src: url('../fonts/VCTRMonov0.12-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'ISO';
-  src: url('../fonts/ISOv0.8-Black.woff2') format('woff2');
+  font-family: 'VCTR Mono';
+  src: url('../fonts/VCTRMonov0.12-Black.woff2') format('woff2');
   font-weight: 900;
   font-style: italic;
   font-display: swap;
