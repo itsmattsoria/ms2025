@@ -1,6 +1,5 @@
 @layer reset, theme, base, components, utilities;
 
-@import 'tailwindcss';
 @import './theme.css';
 @import './reset.css';
 @import './utilities.css';
@@ -9,11 +8,17 @@
 @import './rich-text.css';
 
 @layer base {
+  @view-transition {
+    navigation: auto;
+  }
+
   body {
     margin: 0;
+    font-size: 16px;
     color: var(--color-text);
     font-family: var(--font-body);
     padding-inline: var(--spacing-l);
+    hanging-punctuation: first allow-end;
     background-color: var(--color-background);
     padding-block: var(--spacing-3xl) var(--spacing-l);
   }
@@ -39,7 +44,8 @@
   }
 
   *:focus-visible {
-    outline-offset: 0.3em;
+    outline-offset: 0.35em;
+    corner-shape: squircle;
   }
 }
 
@@ -48,7 +54,15 @@
   text-align: center;
   border-radius: 1em;
   max-width: max-content;
-  padding: var(--spacing-2xs);
+  padding: var(--spacing-3xs);
   background-color: var(--color-text);
   color: var(--color-background);
+  
+  p {
+    line-height: 1;
+    font-size: var(--step--1);
+  }
+}
+.ms2026 .tippy-arrow {
+  color: var(--color-text);
 }

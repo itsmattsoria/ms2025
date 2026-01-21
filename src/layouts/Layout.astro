@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { title, bodyClass } = Astro.props;
+const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 ---
 
 <!doctype html>
@@ -34,7 +35,7 @@ const { title, bodyClass } = Astro.props;
 		<meta property="og:title" content="Matt Soria | photography + web development">
 		<meta property="og:url" content="https://www.mattsoria.com/">
 	</head>
-	<body class={bodyClass}>
+	<body class={fullBodyClass}>
 		<Header />
 
 		<main class="site-content">
@@ -57,6 +58,8 @@ const { title, bodyClass } = Astro.props;
 		followCursor: 'horizontal',
 		plugins: [followCursor],
 		interactive: true,
+		maxWidth: 250,
+		delay: [200, 0],
 		// hideOnClick: false,
 		// trigger: 'click'
 	});

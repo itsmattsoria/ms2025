@@ -1,96 +1,108 @@
-/* All Tailwind Theme Customizations */
-@theme {
-  /* Primary Theme Colors */
-  --color-parts-text: 0.1577 0.0176 81.33;
-  --color-text: oklch(var(--color-parts-text) / 1);
-  --color-parts-background: 0.9633 0.0176 81.33;
-  --color-background: oklch(var(--color-parts-background) / 1);
-  --color-parts-highlight: 0.5568 0.0743 143.31;
-  --color-highlight: oklch(var(--color-parts-highlight) / 1);
-  --color-gray: oklch(var(--color-parts-highlight) / 0.3);
-  --color-border: var(--color-gray);
-
-  /* Misc Colors */
-  --color-the-numbers: oklch(0.5219 0.2045 28.11);
-  --color-sweeper: oklch(0.3211 0 0);
-  --color-choose-for-me: oklch(0.5346 0.2195 261.14);
-  --color-gif-wall: oklch(0.7865 0.1503 158.09);
-  --color-codepen: oklch(0.9007 0.1671 96.23);
-  --color-github: oklch(0.3292 0.1316 294.44);
-  --color-instagram: #d300c5;
-  --color-halloween: oklch(0.6634 0.1506 43.79);
-
-  /* Misc */
-  --radius: 3px;
-
-  /* Fonts */
-  --font-body: 'VCTR Mono', monospace;
-  --font-display: 'Walkout', sans-serif;
-
-  /* Type Sizes */
-  /* @link https://utopia.fyi/type/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-  --step--2: clamp(0.7813rem, 0.7736rem + 0.0341vw, 0.8rem);
-  --step--1: clamp(0.9375rem, 0.9119rem + 0.1136vw, 1rem);
-  --step-0: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
-  --step-1: clamp(1.35rem, 1.2631rem + 0.3864vw, 1.5625rem);
-  --step-2: clamp(1.62rem, 1.4837rem + 0.6057vw, 1.9531rem);
-  --step-3: clamp(1.944rem, 1.7405rem + 0.9044vw, 2.4414rem);
-  --step-4: clamp(2.3328rem, 2.0387rem + 1.3072vw, 3.0518rem);
-  --step-5: clamp(2.7994rem, 2.384rem + 1.8461vw, 3.8147rem);
-
-  /* Spacing */
-  /* @link https://utopia.fyi/space/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-  --spacing-3xs: clamp(0.3125rem, 0.3125rem + 0vw, 0.3125rem);
-  --spacing-2xs: clamp(0.5625rem, 0.5369rem + 0.1136vw, 0.625rem);
-  --spacing-xs: clamp(0.875rem, 0.8494rem + 0.1136vw, 0.9375rem);
-  --spacing-s: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
-  --spacing-m: clamp(1.6875rem, 1.6108rem + 0.3409vw, 1.875rem);
-  --spacing-l: clamp(2.25rem, 2.1477rem + 0.4545vw, 2.5rem);
-  --spacing-xl: clamp(3.375rem, 3.2216rem + 0.6818vw, 3.75rem);
-  --spacing-2xl: clamp(4.5rem, 4.2955rem + 0.9091vw, 5rem);
-  --spacing-3xl: clamp(6.75rem, 6.4432rem + 1.3636vw, 7.5rem);
-
-  /* One-up pairs */
-  --spacing-3xs-2xs: clamp(0.3125rem, 0.1847rem + 0.5682vw, 0.625rem);
-  --spacing-2xs-xs: clamp(0.5625rem, 0.4091rem + 0.6818vw, 0.9375rem);
-  --spacing-xs-s: clamp(0.875rem, 0.7216rem + 0.6818vw, 1.25rem);
-  --spacing-s-m: clamp(1.125rem, 0.8182rem + 1.3636vw, 1.875rem);
-  --spacing-m-l: clamp(1.6875rem, 1.3551rem + 1.4773vw, 2.5rem);
-  --spacing-l-xl: clamp(2.25rem, 1.6364rem + 2.7273vw, 3.75rem);
-  --spacing-xl-2xl: clamp(3.375rem, 2.7102rem + 2.9545vw, 5rem);
-  --spacing-2xl-3xl: clamp(4.5rem, 3.2727rem + 5.4545vw, 7.5rem);
-
-  /* Custom pairs */
-  --spacing-s-l: clamp(1.125rem, 0.5625rem + 2.5vw, 2.5rem);
-
-  /* Responsive */
-  --breakpoint-min: 20rem; /* 320px */
-  --breakpoint-xs: 38rem; /* 608px */
-  --breakpoint-sm: 40rem; /* 640px */
-  --breakpoint-md: 48rem; /* 768px */
-  --breakpoint-nav: 50rem; /* 800px */
-  --breakpoint-ml: 75rem; /* 1200px */
-  --breakpoint-lg: 90rem; /* 1440px */
-  --breakpoint-max: 120rem; /* 1920px */
-  /* Container query breakpoints */
-  --container-min: 20rem; /* 320px */
-  --container-xs: 38rem; /* 608px */
-  --container-sm: 40rem; /* 640px */
-  --container-nav: 48rem; /* 640px */
-  --container-md: 48rem; /* 768px */
-  --container-ml: 75rem; /* 1200px */
-  --container-lg: 90rem; /* 1440px */
-  --container-max: 120rem; /* 1920px */
-
-  /* Easing functions */
-  --ease-out-quartic: cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-@custom-variant dark (&:where(.dark, .dark *));
-@custom-variant current (&[aria-current="page"]);
-
-@media (prefers-color-scheme: dark) {
+/* Theme Variables */
+@layer theme {
   :root {
+    /* Misc */
+    --radius: 3px;
+    --prose-max-width: 72ch;
+
+    /* Fonts */
+    --font-body: 'VCTR Mono', monospace;
+    --font-display: 'Walkout', sans-serif;
+
+    /* Type Sizes */
+    /* @link https://utopia.fyi/type/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+    --step--2: clamp(0.7813rem, 0.7736rem + 0.0341vw, 0.8rem);
+    --step--1: clamp(0.9375rem, 0.9119rem + 0.1136vw, 1rem);
+    --step-0: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
+    --step-1: clamp(1.35rem, 1.2631rem + 0.3864vw, 1.5625rem);
+    --step-2: clamp(1.62rem, 1.4837rem + 0.6057vw, 1.9531rem);
+    --step-3: clamp(1.944rem, 1.7405rem + 0.9044vw, 2.4414rem);
+    --step-4: clamp(2.3328rem, 2.0387rem + 1.3072vw, 3.0518rem);
+    --step-5: clamp(2.7994rem, 2.384rem + 1.8461vw, 3.8147rem);
+
+    /* Spacing */
+    /* @link https://utopia.fyi/space/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+    --spacing-3xs: clamp(0.3125rem, 0.3125rem + 0vw, 0.3125rem);
+    --spacing-2xs: clamp(0.5625rem, 0.5369rem + 0.1136vw, 0.625rem);
+    --spacing-xs: clamp(0.875rem, 0.8494rem + 0.1136vw, 0.9375rem);
+    --spacing-s: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
+    --spacing-m: clamp(1.6875rem, 1.6108rem + 0.3409vw, 1.875rem);
+    --spacing-l: clamp(2.25rem, 2.1477rem + 0.4545vw, 2.5rem);
+    --spacing-xl: clamp(3.375rem, 3.2216rem + 0.6818vw, 3.75rem);
+    --spacing-2xl: clamp(4.5rem, 4.2955rem + 0.9091vw, 5rem);
+    --spacing-3xl: clamp(6.75rem, 6.4432rem + 1.3636vw, 7.5rem);
+
+    /* One-up pairs */
+    --spacing-3xs-2xs: clamp(0.3125rem, 0.1847rem + 0.5682vw, 0.625rem);
+    --spacing-2xs-xs: clamp(0.5625rem, 0.4091rem + 0.6818vw, 0.9375rem);
+    --spacing-xs-s: clamp(0.875rem, 0.7216rem + 0.6818vw, 1.25rem);
+    --spacing-s-m: clamp(1.125rem, 0.8182rem + 1.3636vw, 1.875rem);
+    --spacing-m-l: clamp(1.6875rem, 1.3551rem + 1.4773vw, 2.5rem);
+    --spacing-l-xl: clamp(2.25rem, 1.6364rem + 2.7273vw, 3.75rem);
+    --spacing-xl-2xl: clamp(3.375rem, 2.7102rem + 2.9545vw, 5rem);
+    --spacing-2xl-3xl: clamp(4.5rem, 3.2727rem + 5.4545vw, 7.5rem);
+
+    /* Custom pairs */
+    --spacing-s-l: clamp(1.125rem, 0.5625rem + 2.5vw, 2.5rem);
+
+    /* Responsive */
+    --breakpoint-min: 20rem; /* 320px */
+    --breakpoint-xs: 38rem; /* 608px */
+    --breakpoint-sm: 40rem; /* 640px */
+    --breakpoint-md: 48rem; /* 768px */
+    --breakpoint-nav: 50rem; /* 800px */
+    --breakpoint-ml: 75rem; /* 1200px */
+    --breakpoint-lg: 90rem; /* 1440px */
+    --breakpoint-max: 120rem; /* 1920px */
+    /* Container query breakpoints */
+    --container-min: 20rem; /* 320px */
+    --container-xs: 38rem; /* 608px */
+    --container-sm: 40rem; /* 640px */
+    --container-nav: 48rem; /* 640px */
+    --container-md: 48rem; /* 768px */
+    --container-ml: 75rem; /* 1200px */
+    --container-lg: 90rem; /* 1440px */
+    --container-max: 120rem; /* 1920px */
+
+    /* Easing functions */
+    --ease-out-quartic: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  /* Light Color mode */
+  :root, html[data-mode="light"] {
+    /* Primary Theme Colors */
+    --color-parts-text: 0.1577 0.0176 81.33;
+    --color-text: oklch(var(--color-parts-text) / 1);
+    --color-parts-background: 0.9633 0.0176 81.33;
+    --color-background: oklch(var(--color-parts-background) / 1);
+    --color-parts-highlight: 0.5568 0.0743 143.31;
+    --color-highlight: oklch(var(--color-parts-highlight) / 1);
+    --color-gray: oklch(var(--color-parts-highlight) / 0.3);
+    --color-border: var(--color-gray);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      -moz-font-smoothing: antialiased;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    :root:not(html[data-mode="light"]) {
+      /* Primary Theme Colors */
+      --color-parts-text: 0.9633 0.0176 81.33;
+      --color-text: oklch(var(--color-parts-text) / 1);
+      --color-parts-background: 0.1577 0.0086 81.33;
+      --color-background: oklch(var(--color-parts-background) / 1);
+      --color-parts-highlight: 0.5568 0.0743 143.31;
+      --color-highlight: oklch(var(--color-parts-highlight) / 1);
+      --color-gray: oklch(var(--color-parts-highlight) / 0.6);
+      --color-border: oklch(var(--color-parts-text) / 0.6);
+    }
+  }
+
+  html[data-mode="dark"] {
+    -moz-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     /* Primary Theme Colors */
     --color-parts-text: 0.9633 0.0176 81.33;
     --color-text: oklch(var(--color-parts-text) / 1);
@@ -98,14 +110,8 @@
     --color-background: oklch(var(--color-parts-background) / 1);
     --color-parts-highlight: 0.5568 0.0743 143.31;
     --color-highlight: oklch(var(--color-parts-highlight) / 1);
-    --color-gray: oklch(var(--color-parts-highlight) / 0.5);
-    --color-border: oklch(var(--color-parts-text) / 0.5);
+    --color-gray: oklch(var(--color-parts-highlight) / 0.6);
+    --color-border: oklch(var(--color-parts-text) / 0.6);
   }
 }
 
-/* Custom utilities */
-@utility scrollbar-hide {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-}

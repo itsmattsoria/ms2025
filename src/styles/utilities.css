@@ -1,4 +1,15 @@
 @layer utilities {
+  /* Visually Hidden */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0); /* Legacy property for Internet Explorer */
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
   /* Thanks to Lea Verou for this utility */
   /* https://lea.verou.me/blog/2024/contrast-color/ */
   .contrast-color {
@@ -17,5 +28,35 @@
       color: contrast-color(var(--color));
       text-shadow: none;
     }
+  }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Grid Utilities */
+  .grid {
+    display: grid;
+  }
+  .grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .grid-9 {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+  }
+  .grid-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .col-span-full {
+    grid-column: 1 / -1;
   }
 }
