@@ -14,7 +14,6 @@
 
   .prose-container {
     max-width: 72ch;
-    margin-inline: auto;
   }
 
   /* Lazyloading images */
@@ -85,6 +84,17 @@
     }
   }
 
+  /* Link Styles */
+  .basic-link {
+    background-color: transparent;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-gray);
+      text-decoration-color: var(--color-highlight);
+    }
+  }
+
   /* Article Styles */
   article {
     padding-block: var(--spacing-s);
@@ -104,16 +114,6 @@
 
     * {
       line-height: 1;
-    }
-  }
-  .article-link {
-    background-color: transparent;
-    text-decoration-color: transparent;
-
-    &:hover,
-    &:focus-visible {
-      background-color: var(--color-gray);
-      text-decoration-color: var(--color-highlight);
     }
   }
 }
