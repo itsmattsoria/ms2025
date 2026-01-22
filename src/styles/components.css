@@ -42,6 +42,7 @@
     text-decoration: none;
     corner-shape: squircle;
     transform-origin: center;
+    text-transform: lowercase;
     font-size: var(--step--2);
     padding: var(--spacing-3xs);
     text-box: trim-both cap alphabetic;
@@ -51,6 +52,7 @@
 
     &:hover,
     &:focus-visible {
+      transform: scale(1.02);
       background-color: var(--color-pill-hover);
     }
 
@@ -89,9 +91,11 @@
     background-color: transparent;
 
     &:hover,
-    &:focus-visible {
-      background-color: var(--color-gray);
+    &:focus-visible,
+    &[aria-current="page"]  {
+      font-style: italic;
       text-decoration-color: var(--color-highlight);
+      background-color: var(--color-highlight-hover);
     }
   }
 
@@ -116,4 +120,43 @@
       line-height: 1;
     }
   }
+
+}
+
+/* Noisy border */
+.noisy-border {
+  --noisy-border-position: relative;
+  --noisy-border-inset: -0.5em;
+  position: var(--noisy-border-position);
+
+  &::before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    border-radius: 2em;
+    corner-shape: squircle;
+    inset: var(--noisy-border-inset);
+    filter: var(--border-noise-filter);
+    opacity: var(--border-noise-opacity);
+    background: var(--border-noise-background);
+    mix-blend-mode: var(--border-noise-blend-mode);
+  }
+}
+
+/* Tippy Styles */
+.tippy-box[data-theme~='site'] {
+  text-align: center;
+  border-radius: 1em;
+  max-width: max-content;
+  padding: var(--spacing-3xs);
+  color: var(--color-background);
+  background-color: var(--color-highlight);
+
+  p {
+    line-height: 1;
+    font-size: var(--step--1);
+  }
+}
+.ms2026 .tippy-arrow {
+  color: var(--color-highlight);
 }

@@ -8,6 +8,9 @@
     /* Fonts */
     --font-body: 'VCTR Mono', monospace;
     --font-display: 'Walkout', sans-serif;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-black: 900;
 
     /* Type Sizes */
     /* @link https://utopia.fyi/type/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
@@ -31,6 +34,7 @@
     --spacing-xl: clamp(3.375rem, 3.2216rem + 0.6818vw, 3.75rem);
     --spacing-2xl: clamp(4.5rem, 4.2955rem + 0.9091vw, 5rem);
     --spacing-3xl: clamp(6.75rem, 6.4432rem + 1.3636vw, 7.5rem);
+    --spacing-4xl: clamp(9rem, 8.591rem + 1.8182vw, 10rem);
 
     /* One-up pairs */
     --spacing-3xs-2xs: clamp(0.3125rem, 0.1847rem + 0.5682vw, 0.625rem);
@@ -44,6 +48,9 @@
 
     /* Custom pairs */
     --spacing-s-l: clamp(1.125rem, 0.5625rem + 2.5vw, 2.5rem);
+
+    /* Custom spacing */
+    --site-gutter: var(--spacing-m-l);
 
     /* Responsive */
     --breakpoint-min: 20rem; /* 320px */
@@ -68,50 +75,46 @@
     --ease-out-quartic: cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
-  /* Light Color mode */
-  :root, html[data-mode="light"] {
-    /* Primary Theme Colors */
-    --color-parts-text: 0.1577 0.0176 81.33;
-    --color-text: oklch(var(--color-parts-text) / 1);
-    --color-parts-background: 0.9633 0.0176 81.33;
-    --color-background: oklch(var(--color-parts-background) / 1);
-    --color-parts-highlight: 0.5568 0.0743 143.31;
-    --color-highlight: oklch(var(--color-parts-highlight) / 1);
-    --color-gray: oklch(var(--color-parts-highlight) / 0.3);
-    --color-border: var(--color-gray);
-  }
+  :root {
+    --color-light: oklch(0.9633 0.0176 81.33 / 1);
+    --color-dark: oklch(0.2075 0.0086 81.33 / 1);
 
-  @media (prefers-color-scheme: dark) {
-    html {
-      -moz-font-smoothing: antialiased;
-      -webkit-font-smoothing: antialiased;
+    &[data-color-scheme="light"] {
+      color-scheme: light;
+      --color-parts-text: 0.1577 0.0176 81.33;
+      --color-text: oklch(var(--color-parts-text) / 1);
+      --color-parts-background: 0.9633 0.0176 81.33;
+      --color-background: oklch(var(--color-parts-background) / 1);
+      --color-parts-highlight: 0.5568 0.0743 143.31;
+      --color-highlight: oklch(var(--color-parts-highlight) / 1); /* #597f57 */
+      --color-highlight-hover: oklch(var(--color-parts-highlight) / 20%);
+      --color-gray: oklch(0.2075 0.0086 81.33 / 5%);
+      --color-border: var(--color-gray);
+      --color-gradient-parts: 0.5 0.03 143.31;
+      --border-noise-opacity: 1;
+      --border-noise-blend-mode: darken;
+      --border-noise-filter: contrast(530%) brightness(250%) saturate(27%);
+      --border-noise-background: linear-gradient(0deg, oklch(var(--color-gradient-parts) / 0.6) 70%, oklch(var(--color-gradient-parts) / 0)),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'%3E%3C/feColorMatrix%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
-
-    :root:not(html[data-mode="light"]) {
-      /* Primary Theme Colors */
+    &[data-color-scheme="dark"] {
+      color-scheme: dark;
       --color-parts-text: 0.9633 0.0176 81.33;
       --color-text: oklch(var(--color-parts-text) / 1);
-      --color-parts-background: 0.1577 0.0086 81.33;
+      --color-parts-background: 0.2075 0.0086 81.33;
       --color-background: oklch(var(--color-parts-background) / 1);
       --color-parts-highlight: 0.5568 0.0743 143.31;
       --color-highlight: oklch(var(--color-parts-highlight) / 1);
-      --color-gray: oklch(var(--color-parts-highlight) / 0.6);
+      --color-highlight-hover: oklch(var(--color-parts-highlight) / 50%);
+      --color-gray: oklch(0.9633 0.0176 81.33 / 6%);
       --color-border: oklch(var(--color-parts-text) / 0.6);
+      --color-gradient-parts: 0.5 0.03 143.31;
+      --border-noise-opacity: 0.8;
+      --border-noise-blend-mode: screen;
+      --border-noise-filter: contrast(530%) brightness(100%) saturate(50%);
+      --border-noise-background: linear-gradient(0deg, oklch(var(--color-parts-background) / 0) 70%, oklch(var(--color-parts-background) / 0.7)),
+      linear-gradient(0deg, oklch(var(--color-gradient-parts) / 0.6) 70%, oklch(var(--color-gradient-parts) / 0)),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'%3E%3C/feColorMatrix%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
-  }
-
-  html[data-mode="dark"] {
-    -moz-font-smoothing: antialiased;
-    -webkit-font-smoothing: antialiased;
-    /* Primary Theme Colors */
-    --color-parts-text: 0.9633 0.0176 81.33;
-    --color-text: oklch(var(--color-parts-text) / 1);
-    --color-parts-background: 0.1577 0.0086 81.33;
-    --color-background: oklch(var(--color-parts-background) / 1);
-    --color-parts-highlight: 0.5568 0.0743 143.31;
-    --color-highlight: oklch(var(--color-parts-highlight) / 1);
-    --color-gray: oklch(var(--color-parts-highlight) / 0.6);
-    --color-border: oklch(var(--color-parts-text) / 0.6);
-  }
+  } 
 }
-

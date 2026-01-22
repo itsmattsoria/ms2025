@@ -36,6 +36,13 @@
     -webkit-overflow-scrolling: touch;
   }
 
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+
   /* Grid Utilities */
   .grid {
     display: grid;
@@ -58,5 +65,10 @@
 
   .col-span-full {
     grid-column: 1 / -1;
+  }
+
+  /* Spacing Utilities */
+  .px-site-gutter {
+    padding-inline: var(--site-gutter);
   }
 }

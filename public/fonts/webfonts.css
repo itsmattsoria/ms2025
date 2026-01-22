@@ -1,29 +1,36 @@
 @font-face {
   font-family: 'VCTR Mono';
+  src: url('../fonts/VCTRMonov0.12-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'VCTR Mono';
+  src: url('../fonts/VCTRMonov0.12-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'VCTR Mono';
   src: url('../fonts/VCTRMonov0.12-Regular.woff2') format('woff2');
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'VCTR Mono';
   src: url('../fonts/VCTRMonov0.12-RegularItalic.woff2') format('woff2');
-  font-weight: 500;
+  font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'VCTR Mono';
-  src: url('../fonts/VCTRMonov0.12-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'VCTR Mono';
-  src: url('../fonts/VCTRMonov0.12-Black.woff2') format('woff2');
+  src: url('../fonts/VCTRMonov0.12-BlackItalic.woff2') format('woff2');
   font-weight: 900;
-  font-style: italic;
+  font-style: normal;
   font-display: swap;
 }
 

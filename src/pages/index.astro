@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<div>
+	<div class="px-site-gutter">
 		<section class="prose-container">
 			<p>Hello! Happy to see you here. I'm currently in the process of rebuilding my site. In the meantime you can take a look at versions from the past:</p>
 			<ul role="list">
@@ -13,117 +13,39 @@ import Layout from '../layouts/Layout.astro';
 			<p>If you need to get in touch, <a href="mailto:matt.soria@hey.com">email me</a>.</p>
 			<p>Take care,<br> Matt.</p>
 		</section>
-
-		<section>
-			<h2 class="text-h3">Recent dev projects:</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Project</th>
-						<th>Role</th>
-						<th>Tech</th>
-						<th>Highlights</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><a href="https://www.s2ginvestments.com/" target="_blank" class="basic-link">S2G Investments</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS, Getro, FormAssembly, GSAP, Sprig</td>
-						<td><a href="https://share.mattsoria.com/S2G-Investments_Moprhing-Hero" target="_blank" class="basic-link">Morphing hero</a>, <a href="https://share.mattsoria.com/S2G-Investmenst_Line-Drawing" target="_blank" class="basic-link">Line drawing on Scroll</a>, <a href="https://share.mattsoria.com/S2G-Investments_Avanced-Search-Filtering" target="_blank" class="basic-link">Advanced search + filtering</a></td>
-					</tr>
-					<tr>
-						<td><a href="https://egenesisbio.com/" target="_blank" class="basic-link">eGenesis</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS, GSAP</td>
-						<td><a href="https://share.mattsoria.com/eGenesis_Subtle-Graphic-Fade" target="_blank" class="basic-link">Subtle Graphic Fade</a></td>
-					</tr>
-					<tr>
-						<td><a href="https://expeditionmedicines.com/" target="_blank" class="basic-link">Expedition Medicines</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS, Greenhouse, GSAP, Canvas</td>
-						<td><a href="https://share.mattsoria.com/Expedition-Medicines_Interactve-Canvas-Grid" target="_blank" class="basic-link">Interactive canvas grid</a>, <a href="https://share.mattsoria.com/Expedition-Medicines_Interactive-Hero" target="_blank" class="basic-link">Interactive hero</a>, <a href="https://share.mattsoria.com/Expedition-Medicines_Parallax-Graphic" target="_blank" class="basic-link">Parallax graphic</a></td>
-					</tr>
-					<tr>
-						<td><a href="https://quotient-tx.com/" target="_blank" class="basic-link">Quotient TX</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS, Greenhouse, GSAP, Lottie</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://lilacsolutions.com/" target="_blank" class="basic-link">Lilac Solutions</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS, Weglot, Hubspot, GSAP</td>
-						<td><a href="https://share.mattsoria.com/Lilac_Scroll-Changing-Background-Color" target="_blank" class="basic-link">Background color change on scroll</a>, <a href="https://share.mattsoria.com/Lilac_CSS-Folder-Style-Shapes" target="_blank" class="basic-link">CSS 'folder' style shapes</a>, <a href="https://share.mattsoria.com/Lilac_Translation-Toggle-With-Weglot" target="_blank" class="basic-link">Translation toggle with Weglot integration</a></td>
-					</tr>
-					<tr>
-						<td><a href="https://www.spheresemi.com/" target="_blank" class="basic-link">Sphere Semi</a></td>
-						<td>Lead Developer</td>
-						<td>HTML/CSS/JavaScript✨, Spline, </td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://lubeznikcenter.org/" target="_blank" class="basic-link">Lubeznik Center for the Arts</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS, GSAP, Swup</td>
-						<td><a href="https://share.mattsoria.com/Lubeznik_Fun-Hover-Squiggles" target="_blank" class="basic-link">Fun hover squiggles</a>, <a href="https://share.mattsoria.com/Lubeznik_Page-Transitions" target="_blank" class="basic-link">Page transitions</a>, <a href="https://share.mattsoria.com/Lubeznik_Varialbe-Logo" target="_blank" class="basic-link">Variable Logo</a>, <a href="https://share.mattsoria.com/Lubeznik_Lost-Lubuddy" target="_blank" class="basic-link">Lost Lubuddy</a>, <a href="https://share.mattsoria.com/Lubeznik_Changing-Selection-Highlight" target="_blank" class="basic-link">Changing selection highlight</a></td>
-					</tr>
-					<tr>
-						<td><a href="https://designingabetterchicago.org/" target="_blank" class="basic-link">Designing a Better Chicago</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://mam.org/" target="_blank" class="basic-link">Museum of Architecture and Design</a></td>
-						<td>Developer, Project Lead</td>
-						<td>Eleventy, GSAP</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://scaaic.org/" target="_blank" class="basic-link">Society for Contemporary Art</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS, Craft Commerce, Stripe, Sprig, p5.js</td>
-						<td><a href="https://share.mattsoria.com/SCA_p5-Interactive-Lines" target="_blank" class="basic-link">p5 interactive lines</a>, <a href="https://scaaic.org/membership/join?plan=fd359de9-19f7-4aa6-b824-d3f6b3feafc3" target="_blank" class="basic-link">Multi-step membership form integrated with Stripe subscriptions + user accounts</a></td>
-					</tr>
-					<tr>
-						<td><a href="https://www.peopleforcommunityrecovery.org/" target="_blank" class="basic-link">People for Community Recovery</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://www.buildersinitiative.org/" target="_blank" class="basic-link">Builders Initiative</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://www.buildersvision.com/" target="_blank" class="basic-link">Builders Vision</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://www.buildersassetmanagement.com/" target="_blank" class="basic-link">Builders Asset Management</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://2020.firebelly.co/" target="_blank" class="basic-link">Firebelly 2020</a></td>
-						<td>Lead Developer</td>
-						<td>Craft CMS</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</section>
 	</div>
 </Layout>
 
 <style scoped>
-	section + section {
-		margin-block-start: var(--spacing-3xl);
+	section {
+		margin: auto;
+		position: relative;
+		border-radius: 2em;
+		corner-shape: squircle;
+		color: var(--color-light);
+		padding: var(--spacing-s);
+		background-color: var(--color-highlight);
+		&::before {
+			z-index: -1;
+			content: '';
+			inset: -0.5em;
+			position: absolute;
+			border-radius: 2em;
+			corner-shape: squircle;
+			filter: var(--border-noise-filter);
+			opacity: var(--border-noise-opacity);
+			background: var(--border-noise-background);
+			mix-blend-mode: var(--border-noise-blend-mode);
+		}
+
+		* {
+			line-height: 1.2;
+			font-weight: 400;
+			font-size: var(--step-1);
+		}
+
+		* + * {
+			margin-block-start: var(--spacing-s);
+		}
 	}
 </style>
