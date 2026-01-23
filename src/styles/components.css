@@ -77,7 +77,7 @@
         var(--color-pill),
         transparent 25%
       );
-      --color: var(--color-pill);
+      --contrast-color: var(--color-pill);
     }
 
     &.pill--lg {
@@ -92,14 +92,21 @@
     --basic-link-secondary: var(--color-highlight-hover);
     text-decoration: none;
     background-color: transparent;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0) 0.55em, var(--basic-link-secondary) 0.55em, var(--basic-link-secondary) 0.78em, var(--basic-link-primary) 0.78em, var(--basic-link-primary));
+    background-image: linear-gradient(to bottom, var(--basic-link-secondary), var(--basic-link-secondary)), linear-gradient(to bottom, var(--basic-link-primary), var(--basic-link-primary));
+    background-repeat: no-repeat;
+    background-size: 100% 35%, 100% 8%;
+    background-position: bottom;
+    transition: background-size 0.05s ease-out;
 
     &:hover,
     &:focus-visible,
     &[aria-current="page"]  {
       text-decoration-color: var(--basic-link-primary);
-      background-image: linear-gradient(to bottom, var(--basic-link-secondary), var(--basic-link-secondary) 0.78em, var(--basic-link-primary) 0.78em, var(--basic-link-primary));
+      background-size: 100% 100%, 100% 8%;
     }
+  }
+  .contrast-color .basic-link {
+    --basic-link-primary: currentColor!important;
   }
 
   /* Article Styles */
@@ -138,9 +145,7 @@
 
 /* Noisy border */
 .noisy-border {
-  --noisy-border-position: relative;
-  --noisy-border-inset: -0.5em;
-  position: var(--noisy-border-position);
+  position: var(--noisy-border-position, relative);
 
   &::before {
     z-index: -1;
@@ -148,11 +153,12 @@
     position: absolute;
     border-radius: 2em;
     corner-shape: squircle;
-    inset: var(--noisy-border-inset);
-    filter: var(--border-noise-filter);
-    opacity: var(--border-noise-opacity);
-    background: var(--border-noise-background);
-    mix-blend-mode: var(--border-noise-blend-mode);
+    filter: var(--noisy-border-filter);
+    opacity: var(--noisy-border-opacity);
+    inset: var(--noisy-border-inset, -0.5em);
+    background: var(--noisy-border-background);
+    mix-blend-mode: var(--noisy-border-blend-mode);
+    color: var(--noisy-border-color, var(--color-highlight))
   }
 }
 
@@ -161,7 +167,7 @@
   text-align: center;
   border-radius: 1em;
   max-width: max-content;
-  padding: var(--spacing-3xs);
+  padding: var(--spacing-2xs) 0;
   color: var(--color-background);
   background-color: var(--color-highlight);
 

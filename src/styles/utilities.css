@@ -20,12 +20,12 @@
 
     @supports (color: oklch(from red l c h)) {
       --l: clamp(0, (l / var(--l-threshold, 0.623) - 1) * -infinity, 1);
-      color: oklch(from var(--color) var(--l) 0 h);
+      color: oklch(from var(--contrast-color) var(--l) 0 h);
       text-shadow: none;
     }
 
     @supports (color: contrast-color(red)) {
-      color: contrast-color(var(--color));
+      color: contrast-color(var(--contrast-color));
       text-shadow: none;
     }
   }

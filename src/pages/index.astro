@@ -4,44 +4,39 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Matt Soria | photography + web development" bodyClass="">
 	<div class="px-site-gutter">
-		<section class="prose-container">
-			<p>Hello! Happy to see you here. I'm currently in the process of rebuilding my site. In the meantime you can take a look at versions from the past:</p>
+		<div class="prose-container site-intro noisy-border">
+			<p>Hello!:wave: Happy to see you here. I'm in the process of rebuilding my site, so things might be a little funky around here. In the meantime you can take a look at versions from the past:</p>
 			<ul role="list">
 				<li><a href="https://2020.mattsoria.com" class="basic-link">2020-2025</a></li>
 				<li><a href="https://2016.mattsoria.com" class="basic-link">2016-2020</a></li>
 			</ul>
-			<p>If you need to get in touch, <a href="mailto:matt.soria@hey.com">email me</a>.:horns::wave:</p>
-			<p>Take care,<br> Matt.</p>
-		</section>
+			<p>If you need to get in touch, <a href="mailto:matt.soria@hey.com" class="basic-link">email me</a>.:horns:</p>
+			<p>Take care,<br> matt</p>
+		</div>
 	</div>
 </Layout>
 
 <style scoped>
-	section {
-		margin: auto;
+	.site-intro {
 		position: relative;
 		border-radius: 2em;
+		margin-inline: auto;
 		corner-shape: squircle;
 		color: var(--color-light);
 		padding: var(--spacing-s);
+		margin-block-start: var(--spacing-xl);
 		background-color: var(--color-highlight);
-		&::before {
-			z-index: -1;
-			content: '';
-			inset: -0.5em;
-			position: absolute;
-			border-radius: 2em;
-			corner-shape: squircle;
-			filter: var(--border-noise-filter);
-			opacity: var(--border-noise-opacity);
-			background: var(--border-noise-background);
-			mix-blend-mode: var(--border-noise-blend-mode);
-		}
 
 		* {
 			line-height: 1.2;
 			font-weight: 400;
+			text-wrap: pretty;
 			font-size: var(--step-1);
+		}
+
+		a {
+			--basic-link-primary: var(--color-light);
+			--basic-link-secondary: oklch(var(--color-parts-light) / 20%);
 		}
 
 		> * + * {
