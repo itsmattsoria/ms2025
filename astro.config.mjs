@@ -2,9 +2,12 @@
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
+import shortcodeReplacer from './src/integrations/shortcodeReplacer.ts';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://mattsoria.com',
+  integrations: [shortcodeReplacer()],
   vite: {
     plugins: [tailwindcss()]
   }

@@ -11,6 +11,10 @@ type FooterLink = {
     id: string;
     label: string;
   };
+  tooltip?: {
+    rawHtml: string;
+  };
+  linkColor: string;
 };
 
 let footerQuery = `{
@@ -78,10 +82,9 @@ const links: FooterLink[] = footer.links ?? [];
     </div>
     <div class="text-center text-meta mt-l grid gap-3xs">
      <p>© {new Date().getFullYear()} Matt Soria</p>
-     <p">This site does not use cookies or track you in any way.✌️</p>
+     <p>This site does not use cookies or track you in any way.:peace:</p>
     </div>
   </div>
- </div>
 </footer>
 
 <style scoped>

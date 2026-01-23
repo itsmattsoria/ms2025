@@ -6,11 +6,11 @@ import LinkArticle from '../components/LinkArticle.astro';
 const { title, posts, links } = Astro.props;
 ---
 
-<Layout>
+<Layout title={title} bodyClass="">
   <div class="px-site-gutter">
     <div class="post-column">
       <div class="title">
-        <h1 class="visually-hidden" set:html={title}></h1>
+        <h1 class="visually-hidden">{title}</h1>
         <h2 class="text-h1">Writing</h2>
       </div>
 

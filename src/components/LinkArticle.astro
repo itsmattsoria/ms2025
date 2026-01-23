@@ -13,7 +13,7 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 <article class={first ? '-first' : ''}>
   <h2 class="text-h4"><a href={ post.externalLink } class="basic-link">{post.title}</a></h2>
   {post.sourceAuthor && (
-    <div class="text-meta">By { post.sourceAuthor }</div>
+    <div class="text-meta">By {post.sourceAuthor}</div>
   )}
   <div class="article-meta">
     <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>

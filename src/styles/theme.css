@@ -76,7 +76,8 @@
   }
 
   :root {
-    --color-light: oklch(0.9633 0.0176 81.33 / 1);
+    --color-parts-light: 0.9633 0.0176 81.33;
+    --color-light: oklch(var(--color-parts-light) / 1);
     --color-dark: oklch(0.2075 0.0086 81.33 / 1);
 
     &[data-color-scheme="light"] {

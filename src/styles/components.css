@@ -88,14 +88,17 @@
 
   /* Link Styles */
   .basic-link {
+    --basic-link-primary: var(--color-highlight);
+    --basic-link-secondary: var(--color-highlight-hover);
+    text-decoration: none;
     background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0) 0.55em, var(--basic-link-secondary) 0.55em, var(--basic-link-secondary) 0.78em, var(--basic-link-primary) 0.78em, var(--basic-link-primary));
 
     &:hover,
     &:focus-visible,
     &[aria-current="page"]  {
-      font-style: italic;
-      text-decoration-color: var(--color-highlight);
-      background-color: var(--color-highlight-hover);
+      text-decoration-color: var(--basic-link-primary);
+      background-image: linear-gradient(to bottom, var(--basic-link-secondary), var(--basic-link-secondary) 0.78em, var(--basic-link-primary) 0.78em, var(--basic-link-primary));
     }
   }
 
@@ -119,6 +122,16 @@
     * {
       line-height: 1;
     }
+  }
+
+  /* Custom Emoji */
+  .custom-emoji {
+    width: auto;
+    height: 1.2em;
+    margin-block: 0;
+    margin-inline: 0;
+    display: inline-block;
+    vertical-align: middle;
   }
 
 }

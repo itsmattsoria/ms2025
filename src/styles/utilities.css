@@ -43,6 +43,10 @@
     text-wrap: balance;
   }
 
+  .italic {
+    font-style: italic;
+  }
+
   /* Grid Utilities */
   .grid {
     display: grid;

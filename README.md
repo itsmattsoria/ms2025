@@ -46,3 +46,59 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## 🎨 Custom Emoji Shortcodes
+
+This site includes a global shortcode replacement system that converts text shortcodes into inline images during the build process.
+
+### Usage
+
+Simply type shortcodes anywhere in your content - templates, CMS content, anywhere! No function calls or special syntax required.
+
+**Supported Shortcodes:**
+- `:horns:` - Horns emoji
+- `:heart:` - Heart emoji
+- `:wave:` - Wave emoji
+- `:sunglasses:` - Sunglasses emoji
+- `:peace:` - Peace emoji
+
+**Example:**
+
+```html
+<p>Hello :wave: from me :horns:</p>
+```
+
+Becomes:
+
+```html
+<p>Hello <img src="/images/emoji/wave.png" alt="wave emoji" class="custom-emoji" /> from me <img src="/images/emoji/horns.png" alt="horns emoji" class="custom-emoji" /></p>
+```
+
+### How It Works
+
+The system uses an Astro integration that automatically processes all HTML output during the build. The replacement happens globally across:
+- Static template content
+- CMS-fetched content
+- Any rendered HTML
+
+**Note:** In development mode, shortcodes appear as plain text (e.g., `:horns:`). They are automatically converted to images when you build for production.
+
+### Adding New Shortcodes
+
+To add new emoji shortcodes:
+
+1. Add your image file to `/public/images/emoji/`
+2. Update the `SHORTCODE_MAP` in [`src/utils/shortcodeReplacer.ts`](src/utils/shortcodeReplacer.ts):
+
+```typescript
+{
+  shortcode: ':smile:',
+  imagePath: '/images/emoji/smile.png',
+  alt: 'smile emoji',
+}
+```
+
+### Styling
+
+All emoji images are rendered with the class `custom-emoji` for consistent styling (defined in [`src/styles/components.css`](src/styles/components.css)).
+

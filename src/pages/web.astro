@@ -4,10 +4,13 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout>
   <section class="px-site-gutter">
-    <h2 class="text-h3">Recent Work</h2>
+    <h2 class="text-h3">Featured Work</h2>
     <ul role="list">
       <li class="noisy-border">
-        <h3 class="text-h3 text-balance"><a href="https://www.s2ginvestments.com/" target="_blank" class="basic-link">S2G Investments</a></h3>
+        <div>
+          <h3 class="text-h3 text-balance"><a href="https://www.s2ginvestments.com/" target="_blank" class="basic-link">S2G Investments</a></h3>
+          <div class="text-meta italic">2024-2025</div>
+        </div>
         <div class="text-balance">
         <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
         <div><strong>Role:</strong> Lead Developer</div>
@@ -16,7 +19,10 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </li>
       <li class="noisy-border">
-        <h3 class="text-h3 text-balance"><a href="https://egenesisbio.com/" target="_blank" class="basic-link">eGenesis</a></h3>
+        <div>
+          <h3 class="text-h3 text-balance"><a href="https://egenesisbio.com/" target="_blank" class="basic-link">eGenesis</a></h3>
+          <div class="text-meta italic">2025-2026</div>
+        </div>
         <div class="text-balance">
         <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
         <div><strong>Role:</strong> Lead Developer</div>
@@ -25,7 +31,10 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </li>
       <li class="noisy-border">
-        <h3 class="text-h3 text-balance"><a href="https://expeditionmedicines.com/" target="_blank" class="basic-link">Expedition Medicines</a></h3>
+        <div>
+          <h3 class="text-h3 text-balance"><a href="https://expeditionmedicines.com/" target="_blank" class="basic-link">Expedition Medicines</a></h3>
+          <div class="text-meta italic">2025</div>
+        </div>
         <div class="text-balance">
         <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
         <div><strong>Role:</strong> Lead Developer</div>
@@ -55,7 +64,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="text-balance">
         <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
         <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> HTML/CSS/JavaScript✨, Spline, </div>
+        <div><strong>Tech:</strong> HTML/CSS/JavaScript :sparkles:, Spline, </div>
         </div>
       </li>
       <li class="noisy-border">
@@ -129,7 +138,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="text-balance">
         <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
         <div><strong>Role:</strong> Lead Developer</div>
-        <td>HTML/CSS/JavaScript✨</td>
+        <div><strong>Tech:</strong>HTML/CSS/JavaScript :sparkles:</div>
         </div>
       </li>
     </ul>
@@ -146,23 +155,28 @@ import Layout from '../layouts/Layout.astro';
     display: grid;
     position: relative;
     align-items: baseline;
+    color: var(--color-light);
+    grid-template-columns: 1fr;
+    min-height: var(--spacing-4xl);
     gap: var(--spacing-2xs) var(--spacing-l);
     padding: var(--spacing-l) var(--spacing-xs);
-    min-height: var(--spacing-4xl);
-    grid-template-columns: 1fr;
     &::after {
       content: '';
       position: absolute;
       border-radius: 2em;
       pointer-events: none;
       corner-shape: squircle;
-      border: 2px solid var(--color-highlight-hover);
       inset: 0 calc(var(--spacing-xs) * -1);
-      background-color: var(--color-background);
+      background-color: var(--color-highlight);
     }
 
     &.noisy-border {
       --noisy-border-inset: calc(var(--spacing-xs) * -0.5) calc(var(--spacing-xs) * -1.5);
+    }
+
+    a {
+      --basic-link-primary: var(--color-light);
+      --basic-link-secondary: oklch(var(--color-parts-light) / 20%);
     }
 
     > * {
@@ -182,6 +196,6 @@ import Layout from '../layouts/Layout.astro';
   }
 
   li + li {
-    margin-block-start: var(--spacing-m);
+    margin-block-start: var(--spacing-s);
   }
 </style>
