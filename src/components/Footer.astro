@@ -1,6 +1,7 @@
 ---
 import { getEntry } from '../components/EntryFetch.astro';
 import Smiley from '../assets/smiley.svg';
+import Arrow from '../assets/arrow.svg';
 import UsFlag from '../assets/us-in-distress.svg';
 
 type FooterLink = {
@@ -68,7 +69,7 @@ const links: FooterLink[] = footer.links ?? [];
               {link.linkField.target === '_blank' && (
                 <>
                   <span class="visually-hidden">.</span>
-                  <span aria-label="Opens in new tab.">↗</span>
+                  <span aria-label="Opens in new tab."><Arrow /></span>
                 </>
               )}
             </a>
@@ -125,7 +126,7 @@ const links: FooterLink[] = footer.links ?? [];
     margin-inline: auto;
     text-wrap: balance;
     justify-content: center;
-    max-width: 90ch;
+    max-width: 70ch;
     
     li {
       display: inline-block;

@@ -3,142 +3,245 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
+  <section class="section px-site-gutter">
+    <div class="page-intro">
+      <div class="container--text">
+        <p>I'm a front-end developer focused on building memorable, impactful, and accessbile web experiences with highly talented designers and agencies.</p>
+        <p>If you're interested in working together, <a href="mailto:matt.soria@hey.com?subject=Hey%20Matt!" class="basic-link">say hey:wave:</a>.</p>
+      </div>
+      <div class="container--text">
+        <p>I've been making things for the web since the days of <a href="https://en.wikipedia.org/wiki/GeoCities" class="basic-link">Geocities</a>, but I've been working professionally since 2012. I currently work with the wonderful folks at <a href="https://www.onedesigncompany.com" class="basic-link">One Design Company</a> as a Senior Web Developer. I find the most joy in the little details. Small personal touches that make it clear there was a human behind it.</p>
+        <p>I put as much care into constructing a functional and enjoyable authoring experience (which is why I often turn to <a href="https://craftcms.com/" class="basic-link" target="_blank">Craft CMS</a>, though I'll use whatever tool is right for the job) as I do a performant, semantic front-end. I lean on the native web platform as much as possible, and try to keep up with modern tooling when it's needed.</p>
+        <p>I formerly taught workshops and courses at <a href="https://generalassemb.ly/instructors/matt-soria/4564" class="basic-link">General Assembly</a>, and hosted a very fun recurring <a href="https://codepen.io/poopsplat/post/first-codepen-chicago-meetup" class="basic-link">CodePen meetup</a> in Chicago.</p>
+        <p class="text-italic">I love the web, and I want to be part of the community that's making it a more inclusive, fun, and beautiful place.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container--text px-site-gutter">
+      <div class="pl-xs">
+        <h2 class="text-h3">Testimonials</h2>
+        <p>Some very kind words from some very kind people I've worked with.</p>
+      </div>
+    </div>
+    <div class="px-site-gutter mt-l">
+      <ul class="testimonials masonry-grid" role="list">
+        <div class="gutter-sizer"></div>
+        <li class="masonry-item">
+          <blockquote class="testimonial">
+            <p class="text-h1 noisy-border">“Matt is undoubtedly one of the best developers I’ve worked with—he brought my wildest ideas to life.”</p>
+            <cite>- Ross Burwell, Design Director at <a href="https://hypetype.studio/" class="basic-link" target="_blank">Hype Type Studio</a></cite>
+          </blockquote>
+        </li>
+        <li class="masonry-item">
+          <blockquote class="testimonial testimonial--light">
+            <p class="text-h1 noisy-border">“He works fast without cutting corners. He’s a really reliable technical partner for both designers and project managers.”</p>
+            <cite>- Osa Usuomon, Project Manager at <a href="https://www.onedesigncompany.com/" class="basic-link" target="_blank">One Design Company</a></cite>
+          </blockquote>
+        </li>
+      </ul>
+    </div>
+  </section>
   <section class="px-site-gutter">
-    <h2 class="text-h3">Featured Work</h2>
-    <ul role="list">
-      <li class="noisy-border contrast-color" style="--card-color: #CCD8CC; --noisy-border-filter: contrast(85%) brightness(120%) saturate(200%);">
-        <div>
+    <h2 class="text-h3 pl-xs">Featured Work</h2>
+    <ul class="featured-work masonry-grid" role="list">
+      <div class="gutter-sizer"></div>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #F46331;">
+        <div class="title">
           <h3 class="text-h3 text-balance"><a href="https://www.s2ginvestments.com/" target="_blank" class="basic-link">S2G Investments</a></h3>
-          <div class="text-meta italic">2024-2025</div>
+          <div class="year text-meta italic">2024-2025</div>
         </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS, Getro, FormAssembly, GSAP, Sprig</div>
-        <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/S2G-Investments_Moprhing-Hero" target="_blank" class="basic-link">Morphing hero</a>, <a href="https://share.mattsoria.com/S2G-Investmenst_Line-Drawing" target="_blank" class="basic-link">Line drawing on Scroll</a>, <a href="https://share.mattsoria.com/S2G-Investments_Avanced-Search-Filtering" target="_blank" class="basic-link">Advanced search + filtering</a></div>
+          <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> Craft CMS, Getro, FormAssembly, GSAP, Sprig</div>
+          <div><strong>Recognition:</strong> <a href="https://100.typographicarts.org/winners/2025/s2g" target="_blank" class="basic-link">STA 100 - 2025</a></div>
+          <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/S2G-Investments_Moprhing-Hero" target="_blank" class="basic-link">Morphing hero</a>, <a href="https://share.mattsoria.com/S2G-Investmenst_Line-Drawing" target="_blank" class="basic-link">Line drawing on Scroll</a>, <a href="https://share.mattsoria.com/S2G-Investments_Avanced-Search-Filtering" target="_blank" class="basic-link">Advanced search + filtering</a></div>
         </div>
       </li>
-      <li class="noisy-border contrast-color" style="--card-color: #6085ff;">
-        <div>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #6085ff;">
+        <div class="title">
           <h3 class="text-h3 text-balance"><a href="https://egenesisbio.com/" target="_blank" class="basic-link">eGenesis</a></h3>
-          <div class="text-meta italic">2025-2026</div>
+          <div class="year text-meta italic">2025-2026</div>
         </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS, GSAP</div>
-        <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/eGenesis_Subtle-Graphic-Fade" target="_blank" class="basic-link">Subtle Graphic Fade</a></div>
+          <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> Craft CMS, GSAP</div>
+          <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/eGenesis_Subtle-Graphic-Fade" target="_blank" class="basic-link">Subtle Graphic Fade</a></div>
         </div>
       </li>
-      <li class="noisy-border contrast-color" style="--card-color: #b2592a; --noisy-border-filter: contrast(85%) brightness(120%) saturate(200%);">
-        <div>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #c9b7fe; --noisy-border-filter: contrast(85%) brightness(120%) saturate(200%);">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://lilacsolutions.com/" target="_blank" class="basic-link">Lilac Solutions</a></h3>
+          <div class="year text-meta italic">2025</div>
+        </div>
+        <div class="text-balance">
+          <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> Craft CMS, Weglot, Hubspot, GSAP</div>
+          <div><strong>Recognition:</strong> <a href="https://100.typographicarts.org/winners/2025/lilac" target="_blank" class="basic-link">STA 100 - 2025</a>, <a href="https://print.awardsplatform.com/gallery/jZEPaQPd/ZQgDvQgY?search=f931654117764960-3" target="_blank" class="basic-link">Print Awards - 2026</a>, <a href="https://www.siteinspire.com/website/12997-lilac" target="_blank" class="basic-link">SiteInspire</a></div>
+          <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/Lilac_Scroll-Changing-Background-Color" target="_blank" class="basic-link">Background color change on scroll</a>, <a href="https://share.mattsoria.com/Lilac_CSS-Folder-Style-Shapes" target="_blank" class="basic-link">CSS 'folder' style shapes</a>, <a href="https://share.mattsoria.com/Lilac_Translation-Toggle-With-Weglot" target="_blank" class="basic-link">Translation toggle with Weglot integration</a></div>
+        </div>
+      </li>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #E4AC55; --noisy-border-filter: contrast(85%) brightness(120%) saturate(200%);">
+        <div class="title">
           <h3 class="text-h3 text-balance"><a href="https://expeditionmedicines.com/" target="_blank" class="basic-link">Expedition Medicines</a></h3>
-          <div class="text-meta italic">2025</div>
+          <div class="year text-meta italic">2025</div>
         </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS, Greenhouse, GSAP, Canvas</div>
-        <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/Expedition-Medicines_Interactve-Canvas-Grid" target="_blank" class="basic-link">Interactive canvas grid</a>, <a href="https://share.mattsoria.com/Expedition-Medicines_Interactive-Hero" target="_blank" class="basic-link">Interactive hero</a>, <a href="https://share.mattsoria.com/Expedition-Medicines_Parallax-Graphic" target="_blank" class="basic-link">Parallax graphic</a></div>
-        </div>
-      </li>
-      <li class="noisy-border contrast-color" style="--card-color: #33c592;">
-        <h3 class="text-h3 text-balance"><a href="https://quotient-tx.com/" target="_blank" class="basic-link">Quotient TX</a></h3>
-        <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS, Greenhouse, GSAP, Lottie</div>
+          <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> Craft CMS, Greenhouse, GSAP, Canvas</div>
+          <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/Expedition-Medicines_Interactve-Canvas-Grid" target="_blank" class="basic-link">Interactive canvas grid</a>, <a href="https://share.mattsoria.com/Expedition-Medicines_Interactive-Hero" target="_blank" class="basic-link">Interactive hero</a>, <a href="https://share.mattsoria.com/Expedition-Medicines_Parallax-Graphic" target="_blank" class="basic-link">Parallax graphic</a></div>
         </div>
       </li>
-      <li class="noisy-border contrast-color" style="--card-color: #c9b7fe;">
-        <h3 class="text-h3 text-balance"><a href="https://lilacsolutions.com/" target="_blank" class="basic-link">Lilac Solutions</a></h3>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #4B6BED;">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://www.spheresemi.com/" target="_blank" class="basic-link">Sphere Semi</a></h3>
+          <div class="year text-meta italic">2025</div>
+        </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS, Weglot, Hubspot, GSAP</div>
-        <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/Lilac_Scroll-Changing-Background-Color" target="_blank" class="basic-link">Background color change on scroll</a>, <a href="https://share.mattsoria.com/Lilac_CSS-Folder-Style-Shapes" target="_blank" class="basic-link">CSS 'folder' style shapes</a>, <a href="https://share.mattsoria.com/Lilac_Translation-Toggle-With-Weglot" target="_blank" class="basic-link">Translation toggle with Weglot integration</a></div>
+          <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> HTML/CSS/JavaScript:sparkles:, Spline</div>
         </div>
       </li>
-      <li class="noisy-border contrast-color">
-        <h3 class="text-h3 text-balance"><a href="https://www.spheresemi.com/" target="_blank" class="basic-link">Sphere Semi</a></h3>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #33c592;">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://quotient-tx.com/" target="_blank" class="basic-link">Quotient TX</a></h3>
+          <div class="year text-meta italic">2023</div>
+        </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> HTML/CSS/JavaScript :sparkles:, Spline, </div>
+          <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> Craft CMS, Greenhouse, GSAP, Lottie</div>
         </div>
       </li>
-      <li class="noisy-border contrast-color">
-        <h3 class="text-h3 text-balance"><a href="https://lubeznikcenter.org/" target="_blank" class="basic-link">Lubeznik Center for the Arts</a></h3>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #D5E16A; --noisy-border-filter: contrast(85%) brightness(120%) saturate(200%);">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://www.averincapital.com/" target="_blank" class="basic-link">Averin Capital</a></h3>
+          <div class="year text-meta italic">2025</div>
+        </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS, GSAP, Swup</div>
-        <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/Lubeznik_Fun-Hover-Squiggles" target="_blank" class="basic-link">Fun hover squiggles</a>, <a href="https://share.mattsoria.com/Lubeznik_Page-Transitions" target="_blank" class="basic-link">Page transitions</a>, <a href="https://share.mattsoria.com/Lubeznik_Varialbe-Logo" target="_blank" class="basic-link">Variable Logo</a>, <a href="https://share.mattsoria.com/Lubeznik_Lost-Lubuddy" target="_blank" class="basic-link">Lost Lubuddy</a>, <a href="https://share.mattsoria.com/Lubeznik_Changing-Selection-Highlight" target="_blank" class="basic-link">Changing selection highlight</a></div>
+          <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> Craft CMS, GSAP</div>
         </div>
       </li>
-      <li class="noisy-border contrast-color">
-        <h3 class="text-h3 text-balance"><a href="https://designingabetterchicago.org/" target="_blank" class="basic-link">Designing a Better Chicago</a></h3>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #F66698;">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://lubeznikcenter.org/" target="_blank" class="basic-link">Lubeznik Center for the Arts</a></h3>
+          <div class="year text-meta italic">2021</div>
+        </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS</div>
+          <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> Craft CMS, GSAP, Swup</div>
+          <div><strong>Recognition:</strong> <a href="https://100.sta-chicago.org/winners/2021/lubeznik" class="basic-link" target="_blank">STA 100 - 2021</a>, <a href="https://www.oneclub.org/awards/tdcawards/-award/41934/lubeznik-center-for-the-arts" class="basic-link" target="_blank">TDC68 Award - Communication Design</a>, <a href="https://www.underconsideration.com/brandnew/archives/new_logo_and_identity_for_lubeznik_center_for_the_arts_by_firebelly.php" class="basic-link" target="_blank">Reviewed: Brand New</a>, <a href="https://fontsinuse.com/uses/43894/lubeznik-center-for-the-arts" class="basic-link" target="_blank">Staff Pick - Fonts In Use</a>, <a href="https://aiga-365-design-competition.secure-platform.com/a/gallery/rounds/236/details/52807" class="basic-link" target="_blank">AIGA 365 2021</a></div>
+          <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/Lubeznik_Fun-Hover-Squiggles" target="_blank" class="basic-link">Fun hover squiggles</a>, <a href="https://share.mattsoria.com/Lubeznik_Page-Transitions" target="_blank" class="basic-link">Page transitions</a>, <a href="https://share.mattsoria.com/Lubeznik_Varialbe-Logo" target="_blank" class="basic-link">Variable Logo</a>, <a href="https://share.mattsoria.com/Lubeznik_Lost-Lubuddy" target="_blank" class="basic-link">Lost Lubuddy</a>, <a href="https://share.mattsoria.com/Lubeznik_Changing-Selection-Highlight" target="_blank" class="basic-link">Changing selection highlight</a></div>
         </div>
       </li>
-      <li class="noisy-border contrast-color">
-        <h3 class="text-h3 text-balance"><a href="https://mam.org/" target="_blank" class="basic-link">Museum of Architecture and Design</a></h3>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #F24F35;">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://designingabetterchicago.org/" target="_blank" class="basic-link">Designing a Better Chicago</a></h3>
+          <div class="year text-meta italic">2020</div>
+        </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com/" target="_blank" class="basic-link">One Design Company</a></div>
-        <div><strong>Role: </strong> Developer, Project Lead</div>
-        <div><strong>Tech:</strong> Eleventy, GSAP</div>
+          <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> Craft CMS</div>
+          <div><strong>Recognition:</strong> 
+          <a href="https://100.sta-chicago.org/winners/2021/designing-a-better-chicago" class="basic-link" target="_blank">STA 100 - 2021</a>, 
+          <a href="https://www.oneclub.org/awards/tdcawards/-award/38359/designing-a-better-chicago" class="basic-link" target="_blank">TDC67 Award - Communication Design</a>, 
+          <a href="https://www.typewolf.com/site-of-the-day/designing-a-better-chicago" class="basic-link" target="_blank">Typewolf: Site of the Day</a>, 
+          <a href="https://fontsinuse.com/uses/38357/designing-a-better-chicago" class="basic-link" target="_blank">Fonts in Use: Staff Pick</a></div>
         </div>
       </li>
-      <li class="noisy-border contrast-color">
-        <h3 class="text-h3 text-balance"><a href="https://scaaic.org/" target="_blank" class="basic-link">Society for Contemporary Art</a></h3>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #238fe7;">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://mam.org/" target="_blank" class="basic-link">Milwaukee Art Museum</a></h3>
+          <div class="year text-meta italic">2022</div>
+        </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS, Craft Commerce, Stripe, Sprig, p5.js</div>
-        <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/SCA_p5-Interactive-Lines" target="_blank" class="basic-link">p5 interactive lines</a>, <a href="https://scaaic.org/membership/join?plan=fd359de9-19f7-4aa6-b824-d3f6b3feafc3" target="_blank" class="basic-link">Multi-step membership form integrated with Stripe subscriptions + user accounts</a></div>
+          <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com/" target="_blank" class="basic-link">One Design Company</a></div>
+          <div><strong>Role: </strong> Developer, Project Lead</div>
+          <div><strong>Tech:</strong> Eleventy, GSAP</div>
         </div>
       </li>
-      <li class="noisy-border contrast-color">
-        <h3 class="text-h3 text-balance"><a href="https://www.peopleforcommunityrecovery.org/" target="_blank" class="basic-link">People for Community Recovery</a></h3>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #51FF6D; --noisy-border-filter: contrast(85%) brightness(100%) saturate(100%);">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://scaaic.org/" target="_blank" class="basic-link">Society for Contemporary Art</a></h3>
+          <div class="year text-meta italic">2022</div>
+        </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS</div>
+          <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> Craft CMS, Craft Commerce, Stripe, Sprig, p5.js</div>
+          <div class="prose-container"><strong>Highlights:</strong> <a href="https://share.mattsoria.com/SCA_p5-Interactive-Lines" target="_blank" class="basic-link">p5 interactive lines</a>, <a href="https://scaaic.org/membership/join?plan=fd359de9-19f7-4aa6-b824-d3f6b3feafc3" target="_blank" class="basic-link">Multi-step membership form integrated with Stripe subscriptions + user accounts</a></div>
         </div>
       </li>
-      <li class="noisy-border contrast-color">
-        <h3 class="text-h3 text-balance"><a href="https://www.buildersinitiative.org/" target="_blank" class="basic-link">Builders Initiative</a></h3>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #A3E5CE; --noisy-border-filter: contrast(85%) brightness(120%) saturate(100%);">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://www.peopleforcommunityrecovery.org/" target="_blank" class="basic-link">People for Community Recovery</a></h3>
+          <div class="year text-meta italic">2022</div>
+        </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS, Multisite, Sprig</div>
+          <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> Craft CMS</div>
+          <div><strong>Recognition:</strong> <a href="https://www.anthemawards.com/winners/list/entry/#!sustainability-environment-climate/branded-content-or-collaboration/people-for-community-recovery-brand-identity/0/people-for-community-recovery/387671" class="basic-link" target="_blank">Anthem Award - 2022</a></div>
         </div>
       </li>
-      <li class="noisy-border contrast-color">
-        <h3 class="text-h3 text-balance"><a href="https://www.buildersvision.com/" target="_blank" class="basic-link">Builders Vision</a></h3>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #5B6938;">
+        <div class="title">
+          <h3 class="text-h3 text-balance">Builders</h3>
+          <div class="year text-meta italic">2021</div>
+        </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS, Multisite, Sprig</div>
+          <div>
+            <a href="https://www.buildersinitiative.org/" target="_blank" class="basic-link">Builders Initiative</a><br>
+            <a href="https://www.buildersvision.com/" target="_blank" class="basic-link">Builders Vision</a><br>
+            <a href="https://www.buildersassetmanagement.com/" target="_blank" class="basic-link">Builders Asset Management</a>
+          </div>
+          <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> Craft CMS, Multisite, Sprig</div>
         </div>
       </li>
-      <li class="noisy-border contrast-color">
-        <h3 class="text-h3 text-balance"><a href="https://www.buildersassetmanagement.com/" target="_blank" class="basic-link">Builders Asset Management</a></h3>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #8291F0; --noisy-border-filter: contrast(85%) brightness(120%) saturate(200%);">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://girlsgarage.org/" target="_blank" class="basic-link">Girls Garage</a></h3>
+          <div class="year text-meta italic">2015</div>
+        </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong> Craft CMS, Multisite, Sprig</div>
+          <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong> WordPress</div>
+          <div><strong>Recognition:</strong> <a href="https://100.typographicarts.org/winners/2017/girls-garage" class="basic-link" target="_blank">STA 100 - 2017</a></div>
         </div>
       </li>
-      <li class="noisy-border contrast-color">
-        <h3 class="text-h3 text-balance"><a href="https://2020.firebelly.co/" target="_blank" class="basic-link">Firebelly 2020</a></h3>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #A5E4F2; --noisy-border-filter: contrast(85%) brightness(120%) saturate(200%);">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://2020.firebelly.co/" target="_blank" class="basic-link">Firebelly 2020</a></h3>
+          <div class="year text-meta italic">2020</div>
+        </div>
         <div class="text-balance">
-        <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
-        <div><strong>Role:</strong> Lead Developer</div>
-        <div><strong>Tech:</strong>HTML/CSS/JavaScript :sparkles:</div>
+          <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
+          <div><strong>Role:</strong> Lead Developer</div>
+          <div><strong>Tech:</strong>HTML/CSS/JavaScript :sparkles:</div>
+        </div>
+      </li>
+      <li class="masonry-item noisy-border contrast-color" style="--card-color: #232323; --noisy-border-filter: contrast(100%) brightness(250%);">
+        <div class="title">
+          <h3 class="text-h3 text-balance"><a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></h3>
+          <div class="year text-meta italic">2020</div>
+        </div>
+        <div class="text-balance">
+          <div><strong>Agencey:</strong> <a href="https://firebellydesign.com/" target="_blank" class="basic-link">Firebelly Design</a></div>
+          <div><strong>Role:</strong>Developer</div>
+          <div><strong>Tech:</strong>Craft CMS</div>
+          <div><strong>Highlights:</strong> <a href="https://share.mattsoria.com/Firebelly_Design-Type_Tester_Tool" target="_blank" class="basic-link">Custom type tester tool</a></div>
         </div>
       </li>
     </ul>
@@ -148,16 +251,12 @@ import Layout from '../layouts/Layout.astro';
 <style scoped>
   h2 {
     margin-block-end: var(--spacing-s);
-    padding-inline-start: var(--spacing-xs);
   }
 
-  ul {
-    display: grid;
-    align-items: center;
-    gap: var(--spacing-xl);
+  .testimonials {
   }
 
-  li {
+  .featured-work li {
     --contrast-color: var(--card-color, var(--color-highlight));
     display: grid;
     position: relative;
@@ -169,7 +268,7 @@ import Layout from '../layouts/Layout.astro';
     &::after {
       content: '';
       position: absolute;
-      border-radius: 2em;
+      border-radius: 2.5rem;
       pointer-events: none;
       corner-shape: squircle;
       inset: 0 calc(var(--spacing-xs) * -1);
@@ -184,9 +283,21 @@ import Layout from '../layouts/Layout.astro';
       }
     }
 
+    .title {
+      display: flex;
+      align-items: baseline;
+      gap: var(--spacing-s);
+      justify-content: space-between;
+
+      @media screen and (min-width: 1024px) {
+        height: 100%;
+        flex-direction: column;
+      }
+    }
     a {
       --basic-link-primary: var(--color-light);
-      --basic-link-secondary: oklch(var(--color-parts-light) / 20%);
+      --basic-link-secondary: oklch(var(--color-parts-light) / 40%);
+      background-blend-mode: overlay;
     }
 
     > * {
@@ -194,14 +305,28 @@ import Layout from '../layouts/Layout.astro';
       position: relative;
     }
 
-    > div {
+    > div:not(.title) {
       display: grid;
       align-content: start;
-      gap: var(--spacing-3xs);
+      gap: var(--spacing-xs);
     }
 
     @media screen and (min-width: 1024px) {
       grid-template-columns: 2fr 3fr;
+    }
+  }
+
+  .masonry-item {
+    + .masonry-item {
+      margin-block-start: var(--spacing-l);
+    }
+
+    @media screen and (min-width: 1024px) {
+      width: calc(50% - (var(--spacing-xl) / 2));
+
+      &:nth-child(3) {
+        margin-block-start: var(--spacing-2xl);
+      }
     }
   }
 </style>

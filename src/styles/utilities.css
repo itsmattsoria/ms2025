@@ -47,6 +47,16 @@
     font-style: italic;
   }
 
+  /* Sizing Utilities */
+  .prose-container {
+    max-width: 65ch;
+  }
+
+  .w-max {
+    max-width: 100%;
+    width: max-content;
+  }
+
   /* Grid Utilities */
   .grid {
     display: grid;
@@ -74,5 +84,17 @@
   /* Spacing Utilities */
   .px-site-gutter {
     padding-inline: var(--site-gutter);
+  }
+  .pl-xs {
+    padding-left: var(--spacing-xs);
+  }
+  .mt-l {
+    margin-block-start: var(--spacing-l);
+  }
+  .mt-xl {
+    margin-block-start: var(--spacing-xl);
+  }
+  .mx-auto {
+    margin-inline: auto;
   }
 }

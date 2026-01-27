@@ -12,10 +12,6 @@
     fill: var(--color-text);
   }
 
-  .prose-container {
-    max-width: 72ch;
-  }
-
   /* Lazyloading images */
   .lazyload,
   .lazyloading {
@@ -141,6 +137,82 @@
     vertical-align: middle;
   }
 
+  /* Prose */
+  .container--text {
+    padding-inline-start: var(--spacing-xs);
+
+    > * {
+      max-width: 65ch;
+
+      + * {
+        margin-block-start: 1.5em;
+      }
+    }
+  }
+
+  .page-intro {
+    display: grid;
+    gap: var(--spacing-xl);
+
+    > div {
+      padding-inline: var(--spacing-xs);
+    }
+
+    > div > * + * {
+      margin-block-start: 1em;
+    }
+
+    div:first-child {
+      p {
+        font-size: var(--step-2);
+      }
+    }
+
+    div:last-child {
+      p {
+        font-size: var(--step-0);
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+/* Testimonials */
+.testimonial {
+  margin: 0;
+
+  p {
+    position: relative;
+    border-radius: 2.5rem;
+    corner-shape: squircle;
+    color: var(--color-highlight);
+    padding: var(--spacing-l) var(--spacing-xs) var(--spacing-m);
+    &::after {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      border-radius: 2.5rem;
+      pointer-events: none;
+      corner-shape: squircle;
+      inset: 0 calc(var(--spacing-xs) * -1);
+      border: 1px solid var(--color-highlight);
+      background-color: var(--color-background);
+    }
+  }
+
+  .noisy-border {
+    --noisy-border-inset: calc(var(--spacing-xs) * -0.5) calc(var(--spacing-xs) * -1.5);
+    --noisy-border-filter: contrast(350%) brightness(110%) saturate(60%);
+  }
+
+  cite {
+    display: block;
+    margin-block-start: var(--spacing-s);
+    padding-inline-start: var(--spacing-xs);
+  }
 }
 
 /* Noisy border */
@@ -151,11 +223,11 @@
     z-index: -1;
     content: '';
     position: absolute;
-    border-radius: 2em;
+    border-radius: 2.5rem;
     corner-shape: squircle;
     filter: var(--noisy-border-filter);
     opacity: var(--noisy-border-opacity);
-    inset: var(--noisy-border-inset, -0.5em);
+    inset: var(--noisy-border-inset, -0.5rem);
     background: var(--noisy-border-background);
     mix-blend-mode: var(--noisy-border-blend-mode);
     color: var(--noisy-border-color, var(--color-highlight))
@@ -165,7 +237,8 @@
 /* Tippy Styles */
 .tippy-box[data-theme~='site'] {
   text-align: center;
-  border-radius: 1em;
+  border-radius: 2em;
+  corner-shape: squircle;
   max-width: max-content;
   padding: var(--spacing-2xs) 0;
   color: var(--color-background);

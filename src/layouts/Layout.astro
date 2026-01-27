@@ -46,10 +46,20 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 	</body>
 </html>
 
+<style global>
+	.gutter-sizer {
+		height: 1px;
+		position: absolute;
+		pointer-events: none;
+		width: var(--spacing-xl);
+	}
+</style>
+
 <script>
 	import "lazysizes";
 	import tippy, {followCursor} from 'tippy.js';
 	import 'tippy.js/dist/tippy.css';
+	import Masonry from 'masonry-layout';
 
 	tippy('[data-tippy-content]', {
 		allowHTML: true,
@@ -63,4 +73,15 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 		// hideOnClick: false,
 		// trigger: 'click'
 	});
+
+	const msnryGrids = document.querySelectorAll('.masonry-grid');
+	if (msnryGrids.length > 0) {
+		msnryGrids.forEach(grid => {
+			new Masonry(grid, {
+				itemSelector: '.masonry-item',
+				gutter: '.gutter-sizer',
+				transitionDuration: 0,
+			});
+		});
+	}
 </script>
