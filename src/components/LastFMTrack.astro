@@ -22,13 +22,14 @@ import arrowSvg from '../assets/arrow.svg?raw';
       const track = await getRecentTrack('itsmattsoria');
       
       if (track) {
+        console.log(track);
         const statusText = track.nowPlaying ? 'Now listening to' : 'Recently listened to';
         const statusClass = track.nowPlaying ? 'status-now-playing' : 'status-recent';
         
         // Render immediately with loading state on album art (no image yet)
         container.innerHTML = `
           <div class="status-badge pill ${statusClass}">${statusText}</div>
-          <a href="${track.url}" target="_blank" rel="noopener noreferrer" class="lastfm-link" data-mbid="${track.mbid}">
+          <a href="${track.url}" target="_blank" rel="noopener noreferrer" class="lastfm-link">
             <div class="track-content">
               <div class="album-art album-art-loading noisy-border">
                 <div class="album-art-placeholder">${track.album}</div>
@@ -44,9 +45,9 @@ import arrowSvg from '../assets/arrow.svg?raw';
         // Determine if artwork should be blocked
         let shouldBlockArtwork = false;
         
-        if (track.image && track.mbid) {
-          // Check MusicBrainz API for NSFW tag
-          shouldBlockArtwork = await checkNSFWTag(track.mbid);
+        if (track.image && track.artist && track.album) {
+          // Check Last.fm API for NSFW tag
+          shouldBlockArtwork = await checkNSFWTag(track.artist, track.album, 'itsmattsoria');
         }
 
         const albumArtEl = container.querySelector('.album-art');
