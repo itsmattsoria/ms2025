@@ -36,7 +36,7 @@ import arrowSvg from '../assets/arrow.svg?raw';
               </div>
               <div class="track-info">
                 <div class="track-name basic-link">${track.name} ${arrowSvg}</div>
-                <div class="artist-name">${track.artist}</div>
+                <div class="artist-name">By: ${track.artist}</div>
               </div>
             </div>
           </a>
@@ -57,7 +57,7 @@ import arrowSvg from '../assets/arrow.svg?raw';
 
           // Show image or fallback based on check result
           if (shouldBlockArtwork || !track.image) {
-            albumArtEl.innerHTML = `<div class="album-art-fallback">${track.album}</div>`;
+            albumArtEl.innerHTML = `<div class="album-art-fallback"><div><div class="text-label">Album</div>${track.album}</div></div>`;
           } else {
             albumArtEl.innerHTML = `<img src="${track.image}" alt="Album art for ${track.album}" />`;
           }
