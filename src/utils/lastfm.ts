@@ -8,34 +8,7 @@ export interface LastFMTrack {
   url: string;
   image: string;
   nowPlaying: boolean;
-}
-
-/**
- * Blocklist for albums with NSFW artwork
- * Add entries with artist and album names (will be matched case-insensitively)
- */
-const ALBUM_ARTWORK_BLOCKLIST: Array<{ artist: string; album: string }> = [
-  // Example: { artist: 'artist name', album: 'album name' },
-  { artist: 'Deftones', album: 'Around the Fur' },
-  { artist: 'Dimmu Borgir', album: 'In Sorte Diaboli' },
-  { artist: 'Dimmu Borgir', album: 'Puritanical Euphoric Misanthropia' },
-  { artist: 'Halsey', album: 'If I Can’t Have Love, I Want Power' },
-  { artist: 'Halsey', album: 'If I Can’t Have Love, I Want Power (Deluxe)' },
-  { artist: 'Grails', album: "Doomsdayer's Holiday" },
-];
-
-/**
- * Check if an album is in the blocklist
- */
-function isAlbumBlocked(artist: string, album: string): boolean {
-  const artistLower = artist.toLowerCase();
-  const albumLower = album.toLowerCase();
-
-  return ALBUM_ARTWORK_BLOCKLIST.some(
-    blocked =>
-      blocked.artist.toLowerCase() === artistLower &&
-      blocked.album.toLowerCase() === albumLower
-  );
+  mbid: string | null;
 }
 
 /**
@@ -55,21 +28,83 @@ export async function getRecentTrack(
     const artist = track.artist['#text'];
     const album = track.album['#text'];
     const albumImage = track.image[3]['#text']; // extralarge image
-
-    // Check if album is in the blocklist and use fallback if needed
-    const isBlocked = isAlbumBlocked(artist, album);
-    const imageUrl = isBlocked ? '' : albumImage;
+    const albumMbid = track.album.mbid || null; // Extract album MBID
 
     return {
       artist,
       name: track.name,
       album,
       url: track.url,
-      image: imageUrl,
+      image: albumImage,
       nowPlaying: track['@attr']?.nowplaying === 'true',
+      mbid: albumMbid,
     };
   } catch (error) {
     console.error('Error fetching LastFM data:', error);
     return null;
+  }
+}
+
+/**
+ * Check if an album has the "nsfw cover art" tag on MusicBrainz
+ * Checks both community tags and user-specific tags (if credentials provided)
+ */
+export async function checkNSFWTag(mbid: string): Promise<boolean> {
+  if (!mbid) return false;
+
+  try {
+    // First, check public community tags (no auth required)
+    const publicResponse = await fetch(
+      `https://musicbrainz.org/ws/2/release/${mbid}?fmt=json&inc=tags`,
+      {
+        headers: {
+          'User-Agent': 'ms2025-website/1.0 (https://mattsoria.com)',
+        },
+      }
+    );
+
+    if (publicResponse.ok) {
+      const publicData = await publicResponse.json();
+      const tags = publicData['tags'] || [];
+
+      const hasPublicNSFWTag = tags.some(
+        (tag: any) => tag.name.toLowerCase() === 'nsfw cover art'
+      );
+
+      if (hasPublicNSFWTag) {
+        return true;
+      }
+    }
+
+    // Then check user-specific tags (requires auth)
+    const username = import.meta.env.MUSICBRAINZ_USERNAME;
+    const password = import.meta.env.MUSICBRAINZ_PASSWORD;
+
+    if (username && password) {
+      const userResponse = await fetch(
+        `https://musicbrainz.org/ws/2/release/${mbid}?fmt=json&inc=user-tags`,
+        {
+          headers: {
+            'User-Agent': 'ms2025-website/1.0 (https://mattsoria.com)',
+            Authorization: 'Basic ' + btoa(`${username}:${password}`),
+          },
+        }
+      );
+
+      if (userResponse.ok) {
+        const userData = await userResponse.json();
+        const userTags = userData['user-tags'] || [];
+
+        return userTags.some(
+          (tag: any) => tag.name.toLowerCase() === 'nsfw cover art'
+        );
+      }
+    }
+
+    // If no NSFW tag found in either place, allow artwork
+    return false;
+  } catch (error) {
+    console.error('Error checking MusicBrainz NSFW tag:', error);
+    return true; // Fail safe: hide artwork if check fails
   }
 }

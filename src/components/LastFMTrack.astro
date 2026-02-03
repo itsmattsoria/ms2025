@@ -11,7 +11,7 @@ import arrowSvg from '../assets/arrow.svg?raw';
 </div>
 
 <script>
-  import { getRecentTrack } from '../utils/lastfm';
+  import { getRecentTrack, checkNSFWTag } from '../utils/lastfm';
 
   async function loadLastFMTrack() {
     const container = document.getElementById('lastfm-track');
@@ -25,12 +25,13 @@ import arrowSvg from '../assets/arrow.svg?raw';
         const statusText = track.nowPlaying ? 'Now listening to' : 'Recently listened to';
         const statusClass = track.nowPlaying ? 'status-now-playing' : 'status-recent';
         
+        // Render immediately with loading state on album art (no image yet)
         container.innerHTML = `
           <div class="status-badge pill ${statusClass}">${statusText}</div>
-          <a href="${track.url}" target="_blank" rel="noopener noreferrer" class="lastfm-link">
+          <a href="${track.url}" target="_blank" rel="noopener noreferrer" class="lastfm-link" data-mbid="${track.mbid}">
             <div class="track-content">
-              <div class="album-art noisy-border">
-                ${track.image ? `<img src="${track.image}" alt="Album art for ${track.album}" />` : `<div class="album-art-fallback">${track.album}</div>`}
+              <div class="album-art album-art-loading noisy-border">
+                <div class="album-art-placeholder">${track.album}</div>
               </div>
               <div class="track-info">
                 <div class="track-name basic-link">${track.name} ${arrowSvg}</div>
@@ -39,6 +40,27 @@ import arrowSvg from '../assets/arrow.svg?raw';
             </div>
           </a>
         `;
+
+        // Determine if artwork should be blocked
+        let shouldBlockArtwork = false;
+        
+        if (track.image && track.mbid) {
+          // Check MusicBrainz API for NSFW tag
+          shouldBlockArtwork = await checkNSFWTag(track.mbid);
+        }
+
+        const albumArtEl = container.querySelector('.album-art');
+        if (albumArtEl) {
+          // Remove loading state
+          albumArtEl.classList.remove('album-art-loading');
+
+          // Show image or fallback based on check result
+          if (shouldBlockArtwork || !track.image) {
+            albumArtEl.innerHTML = `<div class="album-art-fallback">${track.album}</div>`;
+          } else {
+            albumArtEl.innerHTML = `<img src="${track.image}" alt="Album art for ${track.album}" />`;
+          }
+        }
       } else {
         container.innerHTML = `
           <div class="lastfm-error">
@@ -135,6 +157,51 @@ import arrowSvg from '../assets/arrow.svg?raw';
       font-weight: var(--font-weight-regular);
       border: 1px solid var(--color-highlight);
       background-color: var(--color-background);
+    }
+
+    .album-art-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      text-wrap: balance;
+      border-radius: 1.5em;
+      align-items: flex-end;
+      corner-shape: squircle;
+      font-size: var(--step-0);
+      padding: var(--spacing-2xs);
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-regular);
+      border: 1px solid var(--color-border);
+      background-color: var(--color-background);
+    }
+  }
+
+  .album-art-loading {
+    position: relative;
+    opacity: 0.7;
+  }
+
+  .album-art-loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      oklch(var(--color-parts-background) / 50%),
+      transparent
+    );
+    animation: loading-shimmer 2s infinite;
+    border-radius: 1.5em;
+    corner-shape: squircle;
+  }
+
+  @keyframes loading-shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
     }
   }
 
