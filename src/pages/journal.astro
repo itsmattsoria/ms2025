@@ -1,55 +1,9 @@
 ---
 import Journal from '../layouts/Journal.astro';
-import { getEntries } from '../components/EntriesFetch.astro';
+import { journalEntries, journalLinks } from '../utils/data';
 
-let postQuery = `{
-  entries(site: "personal", section: "personalJournal", type: "journal_writing") {
-    id
-    title
-    slug
-    postDate
-    ... on journal_writing_Entry {
-      category(status: ["live"]) {
-        title
-        status
-        slug
-      }
-      image {
-        ... on personal_Asset {
-          alt
-          url
-          title
-          focalPoint
-          width
-          height
-          captionSimple
-        }
-      }
-    }
-  }
-}`;
-const posts = await getEntries(postQuery);
-
-let linksQuery = `{
-  entries(site: "personal", section: "personalJournal", type:"journal_external") {
-    id
-    title
-    slug
-    postDate
-    ... on journal_external_Entry {
-      externalLink
-      sourceAuthor
-      note
-      externalType
-      category(status: ["live"]) {
-        title
-        status
-        slug
-      }
-    }
-  }
-}`;
-const links = await getEntries(linksQuery);
+const posts = journalEntries;
+const links = journalLinks;
 ---
 
 <Journal title="Journal" posts={posts} links={links} />

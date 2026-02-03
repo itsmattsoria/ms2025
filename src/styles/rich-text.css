@@ -1,4 +1,8 @@
 .rich-text {
+  > * + * {
+    margin-block-start: var(--spacing-s);
+  }
+
   p,
   li,
   blockquote {
@@ -7,27 +11,30 @@
   }
 
   a {
-    display: inline;
-    font-weight: 700;
-    position: relative;
+    --basic-link-primary: var(--color-highlight);
+    --basic-link-secondary: var(--color-highlight-hover);
     text-decoration: none;
-    background: linear-gradient(
-      270deg,
-      transparent,
-      transparent 50%,
-      var(--color-gray) 0,
-      var(--color-gray)
-    );
-    background-size: 201%;
-    background-position: 100%;
-    box-shadow: 0 0.1rem 0 0;
-    transition: color 0.15s ease-out, background-position 0.25s ease-out,
-      box-shadow 0.15s ease-out;
+    background-color: transparent;
+    background-image: linear-gradient(
+        to bottom,
+        var(--basic-link-secondary),
+        var(--basic-link-secondary)
+      ),
+      linear-gradient(
+        to bottom,
+        var(--basic-link-primary),
+        var(--basic-link-primary)
+      );
+    background-repeat: no-repeat;
+    background-size: 100% 35%, 100% 8%;
+    background-position: bottom;
+    transition: background-size 0.05s ease-out;
 
     &:hover,
-    &:focus-visible {
-      background-position: 0;
-      box-shadow: 0 0.1rem 0 0 var(--color-highlight);
+    &:focus-visible,
+    &[aria-current='page'] {
+      background-size: 100% 100%, 100% 8%;
+      text-decoration-color: var(--basic-link-primary);
     }
   }
 

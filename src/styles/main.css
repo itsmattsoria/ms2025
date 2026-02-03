@@ -53,8 +53,4 @@
   strong {
     font-weight: var(--font-weight-regular);
   }
-
-  section + section {
-    margin-block-start: var(--spacing-2xl);
-  }
 }

@@ -1,20 +1,10 @@
 ---
 const pathname = Astro.url.pathname;
-import { getEntries } from '../components/EntriesFetch.astro';
+import { getEntries } from '../utils/craftApi';
+import { NAVIGATION_QUERY } from '../utils/queries';
 import ColorModeToggle from '../components/ColorModeToggle.astro';
 
-let navQuery = `{
-  entries(site: "personal", section: "personalNavigation", type:"navigation_default") {
-    ...on navigation_default_Entry {
-      entryRef(status:["live"]) {
-        title
-        slug
-        url
-      }
-    }
-  }
-}`;
-const nav = await getEntries(navQuery);
+const nav = await getEntries(NAVIGATION_QUERY);
 console.log(pathname);
 ---
 
@@ -61,9 +51,7 @@ console.log(pathname);
 
   .site-nav-container {
     display: flex;
-    align-items: end;
-    gap: var(--spacing-3xs);
-    flex-direction: column-reverse;
+    gap: var(--spacing-s);
   }
 
   .site-nav {
@@ -80,7 +68,7 @@ console.log(pathname);
 
     ul {
       display: flex;
-      column-gap: var(--spacing-2xs);
+      column-gap: var(--spacing-xs);
     }
   }
 

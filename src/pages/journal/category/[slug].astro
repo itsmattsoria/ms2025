@@ -1,16 +1,10 @@
 ---
 import Journal from '../../../layouts/Journal.astro';
-import { getEntries } from '../../../components/EntriesFetch.astro';
+import { getEntries } from '../../../utils/craftApi';
+import { JOURNAL_CATEGORIES_QUERY, journalEntriesByCategoryQuery, journalLinksByCategoryQuery } from '../../../utils/queries';
 
 export async function getStaticPaths() {
-  let entriesQuery = `{
-    entries(site: "personal", section: "personalJournalCategories") {
-      id
-      title
-      slug
-    }
-  }`;
-  let entries = await getEntries(entriesQuery);
+  const entries = await getEntries(JOURNAL_CATEGORIES_QUERY);
   return entries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry }, // Pass the full entry data as props
@@ -19,54 +13,15 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 
-let postQuery = `{
-  entries(site: "personal", section: "personalJournal", type: "journal_writing", category: ${entry.id}) {
-    id
-    title
-    slug
-    postDate
-    ... on journal_writing_Entry {
-      category(status: ["live"]) {
-        title
-        status
-        slug
-      }
-      image {
-        ... on personal_Asset {
-          alt
-          url
-          title
-          focalPoint
-          width
-          height
-          captionSimple
-        }
-      }
-    }
-  }
-}`;
-const posts = await getEntries(postQuery);
+const posts = await getEntries(journalEntriesByCategoryQuery(entry.id));
 
-let linksQuery = `{
-  entries(site: "personal", section: "personalJournal", type:"journal_external", category: ${entry.id}) {
-    id
-    title
-    slug
-    postDate
-    ... on journal_external_Entry {
-      externalLink
-      sourceAuthor
-      note
-      externalType
-      category(status: ["live"]) {
-        title
-        status
-        slug
-      }
-    }
-  }
-}`;
-const links = await getEntries(linksQuery);
+// Fetch links separately with error handling
+let links = [];
+try {
+  links = await getEntries(journalLinksByCategoryQuery(entry.id));
+} catch (error) {
+  console.warn('Could not fetch journal links for category:', error);
+}
 ---
 
 <Journal title={'Journal: ' + entry.title} posts={posts} links={links} />

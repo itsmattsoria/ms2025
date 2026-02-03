@@ -15,6 +15,7 @@
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
     box-sizing: border-box;
+    scrollbar-gutter: stable;
   }
 
   /* Remove default margin in favour of better control in authored CSS */
@@ -53,22 +54,26 @@
     margin-block: 0;
     text-wrap: pretty;
   }
-  *:not([class*="text-"]) > p:not([class*="text-"]) {
+  *:not([class*='text-']) > p:not([class*='text-']) {
     font-size: var(--step-0);
   }
 
-  td, th, li {
+  td,
+  th,
+  li {
     font-size: var(--step-0);
   }
 
-  td, th {
+  td,
+  th {
     text-align: left;
     text-wrap: pretty;
     vertical-align: top;
   }
 
   /* Remove list styles */
-  ul, ol {
+  ul,
+  ol {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -91,6 +96,7 @@
   /* Make images easier to work with */
   figure {
     margin-inline: 0;
+    display: block;
   }
   img,
   picture {

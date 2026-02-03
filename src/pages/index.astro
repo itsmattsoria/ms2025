@@ -1,36 +1,99 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getEntry } from '../utils/craftApi';
+import { HOME_PAGE_QUERY } from '../utils/queries';
+import { journalEntries, journalLinks } from '../utils/data';
+import LastFMTrack from '../components/LastFMTrack.astro';
+import Image from '../components/CloudImage.astro';
+import PostArticle from '../components/PostArticle.astro';
+import LinkArticle from '../components/LinkArticle.astro';
+
+const homeData = await getEntry(HOME_PAGE_QUERY);
+const latestJournalEntries = journalEntries.slice(0, 3);
+const latestJournalLinks = journalLinks.slice(0, 3);
 ---
 
 <Layout title="Matt Soria | photography + web development" bodyClass="">
 	<div class="px-site-gutter">
-		<div class="prose-container site-intro noisy-border">
-			<p>Hello!:wave: Happy to see you here. I'm in the process of rebuilding my site, so things might be a little funky around here. In the meantime you can take a look at versions from the past:</p>
-			<ul role="list">
-				<li><a href="https://2020.mattsoria.com" class="basic-link">2020-2025</a></li>
-				<li><a href="https://2016.mattsoria.com" class="basic-link">2016-2020</a></li>
-			</ul>
-			<p>If you need to get in touch, <a href="mailto:matt.soria@hey.com" class="basic-link">email me</a>.:horns:</p>
-			<p>Take care,<br> matt</p>
+		<div class="bento-box">
+			<div class="site-intro noisy-border">
+				<div class="prose-container">
+					{ homeData.note && <div class="rich-text" set:html={homeData.note} /> }
+				</div>
+			</div>
+			{ homeData.portrait && (
+				<div class="site-portrait noisy-border">
+					<figure>
+						<Image
+							url={homeData.portrait[0].url}
+							width={homeData.portrait[0].width}
+							height={homeData.portrait[0].height}
+						/>
+						{homeData.portrait[0].captionSimple && (
+							<figcaption class="pill">{homeData.portrait[0].captionSimple}</figcaption>
+						)}
+					</figure>
+				</div>
+			)}
+			{ latestJournalEntries && (
+				<div class="latest-entries">
+					<h2 class="text-h2">Latest Journal Entries</h2>
+					<div class="latest-journal-entry-content">
+						{ latestJournalEntries.map((post) =>
+							<PostArticle post={post} first={false} />
+						)}
+					</div>
+				</div>
+			)}
+			<div class="recent-track">
+				<LastFMTrack />
+			</div>
+			{ latestJournalLinks && (
+				<div class="latest-entries">
+					<h2 class="text-h2">Latest Links</h2>
+					<ol class="links-list" role="list">
+						{ latestJournalLinks.map((post) =>
+							<li>
+								<LinkArticle post={post} first={false} />
+							</li>
+						)}
+					</ol>
+				</div>
+			)}
 		</div>
 	</div>
 </Layout>
 
 <style scoped>
+	.bento-box {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--spacing-l);
+		align-items: flex-start;
+		
+		> * {
+			flex-grow: 1;
+		}
+		
+		@media screen and (min-width: 1024px) {
+			display: grid;
+			grid-auto-flow: row dense;
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+		}
+	}
+
 	.site-intro {
 		position: relative;
 		border-radius: 2em;
-		margin-inline: auto;
 		corner-shape: squircle;
 		color: var(--color-light);
 		padding: var(--spacing-s);
 		background-color: var(--color-highlight);
 
 		* {
-			line-height: 1.2;
-			font-weight: 400;
 			text-wrap: pretty;
 			font-size: var(--step-1);
+			font-weight: var(--font-weight-light);
 		}
 
 		a {
@@ -38,8 +101,74 @@ import Layout from '../layouts/Layout.astro';
 			--basic-link-secondary: oklch(var(--color-parts-light) / 20%);
 		}
 
-		> * + * {
-			margin-block-start: var(--spacing-s);
+		@media screen and (min-width: 1024px) {
+			grid-column: auto / span 5;
+		}
+	}
+
+	.site-portrait {
+		position: relative;
+
+		figure {
+			width: 100%;
+			overflow: hidden;
+			border-radius: 2em;
+			aspect-ratio: 4 / 5;
+			position: relative;
+			corner-shape: squircle;
+
+			&:hover {
+				figcaption {
+					opacity: 1;
+				}
+			}
+		}
+
+		figcaption {
+			--color-pill-background: var(--color-background);
+			z-index: 1;
+			opacity: 0;
+			position: absolute;
+			display: inline-block;
+			transition: opacity 0.2s ease-out;
+			inset-block-end: var(--spacing-2xs);
+			inset-inline-start: var(--spacing-2xs);
+		}
+
+		@media screen and (min-width: 600px) {
+			max-width: 200px;
+		}
+
+		@media screen and (min-width: 1024px) {
+			max-width: none;
+			grid-column: auto / span 3;
+		}
+	}
+
+	.recent-track {
+		@media screen and (min-width: 600px) {
+			max-width: 200px;
+		}
+
+		@media screen and (min-width: 1024px) {
+			max-width: 100%;
+			grid-column: auto / span 4;
+		}
+	}
+
+	.latest-entries {
+		display: flex;
+		max-width: 400px;
+		gap: var(--spacing-s);
+		flex-direction: column;
+
+		li {
+			width: 100%;
+		}
+
+		@media screen and (min-width: 1024px) {
+			max-width: none;
+			grid-column: auto / span 4;
 		}
 	}
 </style>

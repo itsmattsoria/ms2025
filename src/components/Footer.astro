@@ -1,49 +1,11 @@
 ---
-import { getEntry } from '../components/EntryFetch.astro';
+import { getEntry } from '../utils/craftApi';
+import { FOOTER_QUERY } from '../utils/queries';
 import Smiley from '../assets/smiley.svg';
 import Arrow from '../assets/arrow.svg';
 import UsFlag from '../assets/us-in-distress.svg';
 
-type FooterLink = {
-  linkField: {
-    url: string;
-    target: string;
-    class: string;
-    id: string;
-    label: string;
-  };
-  tooltip?: {
-    rawHtml: string;
-  };
-  linkColor: string;
-};
-
-let footerQuery = `{
-  entry(site: "personal", section: "personalFooter") {
-    ... on personalFooter_Entry {
-      linksIntro {
-        plainText
-      }
-      links {
-        ... on linkWithTooltip_Entry {
-          linkField {
-            url
-            target
-            class
-            id
-            label
-            ariaLabel
-          }
-          tooltip {
-            rawHtml
-          }
-          linkColor
-        }
-      }
-    }
-  }
-}`;
-const footer = await getEntry(footerQuery);
+const footer = await getEntry(FOOTER_QUERY);
 const links: FooterLink[] = footer.links ?? [];
 ---
 

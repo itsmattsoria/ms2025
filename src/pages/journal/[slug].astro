@@ -2,64 +2,11 @@
 import Layout from '../../layouts/Layout.astro';
 import Image from '../../components/CloudImage.astro';
 import JournalBlocks from '../../components/JournalBlocks.astro';
-import { getEntries } from '../../components/EntriesFetch.astro';
+import { getEntries } from '../../utils/craftApi';
+import { JOURNAL_ENTRY_FULL_QUERY } from '../../utils/queries';
 
 export async function getStaticPaths() {
-  let entriesQuery = `{
-    entries(site: "personal", section: "personalJournal", type: "journal_writing") {
-      id
-      title
-      slug
-      postDate
-      ... on journal_writing_Entry {
-        image {
-          ... on personal_Asset {
-            alt
-            url
-            title
-            focalPoint
-            width
-            height
-            captionSimple
-          }
-        }
-        category(status: ["live"]) {
-          title
-          status
-          slug
-        }
-        journalContent {
-          ... on image_Entry {
-            typeHandle
-            image {
-              ... on personal_Asset {
-                alt
-                url
-                title
-                focalPoint
-                width
-                height
-                captionSimple
-              }
-            }
-          }
-          ... on textSection_Entry {
-            typeHandle
-            richText
-            blockId
-            sectionClasses
-          }
-          ... on embed_Entry {
-            typeHandle
-            embed
-            blockId
-            sectionClasses
-          }
-        }
-      }
-    }
-  }`;
-  let entries = await getEntries(entriesQuery);
+  const entries = await getEntries(JOURNAL_ENTRY_FULL_QUERY);
   return entries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry }, // Pass the full entry data as props
@@ -77,24 +24,29 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 
 <Layout title={'Matt Soria: ' + entry.title}>
   <div class="container">
-    <h1 class="text-h1">{entry.title}</h1>
-    <div class="article-meta">
-      <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
-      {entry.category.length > 0 && (
-        <a href={ '/journal/category/' + entry.category[0].slug } class="pill">{entry.category[0].title}</a>
-      )}
-    </div>
+    <header>
+      <div class="breadcrumbs"><a href="/journal" class="pill">&larr;journal</a></div>
+      <h1 class="text-h1">{entry.title}</h1>
+      <div class="article-meta">
+        <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
+        {entry.category.length > 0 && (
+          <a href={ '/journal/category/' + entry.category[0].slug } class="pill">{entry.category[0].title}</a>
+        )}
+      </div>
+    </header>
 
     <div class="entry-content">
-      {entry.image[0] && (
-        <figure class="entry-image">
-          <Image
-            url={entry.image[0].url}
-            width={entry.image[0].width}
-            height={entry.image[0].height}
-            focalPoint={entry.image[0].focalPoint}
-          />
-        </figure>
+      {entry.journalImage[0] && (
+        <div class="noisy-border">
+          <figure class="entry-image">
+            <Image
+              url={entry.journalImage[0].url}
+              width={entry.journalImage[0].width}
+              height={entry.journalImage[0].height}
+              focalPoint={entry.journalImage[0].focalPoint}
+            />
+          </figure>
+        </div>
       )}
 
       { entry.journalContent.map((block) => (
@@ -105,15 +57,31 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 </Layout>
 
 <style scoped>
-  .article-meta {
-    margin-block-start: var(--spacing-2xs);
+  .container {
+    display: grid;
+    align-items: start;
+    gap: var(--spacing-l);
+    padding-inline: var(--site-gutter);
+
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: 1fr 3fr;
+    }
+  }
+
+  header {
+    > * + * {
+      margin-block-start: var(--spacing-2xs);
+    }
+
+    @media screen and (min-width: 1024px) {
+      position: sticky;
+      inset-block-start: var(--spacing-l);
+    }
   }
 
   .entry-image {
     position: relative;
-    border-radius: var(--border-radius);
-  }
-  .entry-content {
-    margin-block-start: var(--spacing-l);
+    border-radius: var(--radius);
+    margin-block-end: var(--spacing-l);
   }
 </style>

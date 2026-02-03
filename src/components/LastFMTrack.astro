@@ -1,0 +1,167 @@
+---
+// LastFM Recent Track Component
+// Fetches and displays the most recent track from LastFM on page load
+import arrowSvg from '../assets/arrow.svg?raw';
+---
+
+<div class="lastfm-track" id="lastfm-track" data-arrow-svg={arrowSvg}>
+  <div class="lastfm-loading">
+    <span class="loading-text pill">Loading recent track...</span>
+  </div>
+</div>
+
+<script>
+  import { getRecentTrack } from '../utils/lastfm';
+
+  async function loadLastFMTrack() {
+    const container = document.getElementById('lastfm-track');
+    const arrowSvg = container?.getAttribute('data-arrow-svg') || '';
+    if (!container) return;
+
+    try {
+      const track = await getRecentTrack('itsmattsoria');
+      
+      if (track) {
+        const statusText = track.nowPlaying ? 'Now listening to' : 'Recently listened to';
+        const statusClass = track.nowPlaying ? 'status-now-playing' : 'status-recent';
+        
+        container.innerHTML = `
+          <div class="status-badge pill ${statusClass}">${statusText}</div>
+          <a href="${track.url}" target="_blank" rel="noopener noreferrer" class="lastfm-link">
+            <div class="track-content">
+              <div class="album-art noisy-border">
+                ${track.image ? `<img src="${track.image}" alt="Album art for ${track.album}" />` : `<div class="album-art-fallback">${track.album}</div>`}
+              </div>
+              <div class="track-info">
+                <div class="track-name basic-link">${track.name} ${arrowSvg}</div>
+                <div class="artist-name">${track.artist}</div>
+              </div>
+            </div>
+          </a>
+        `;
+      } else {
+        container.innerHTML = `
+          <div class="lastfm-error">
+            <p>Unable to load recent track</p>
+          </div>
+        `;
+      }
+    } catch (error) {
+      console.error('Error loading LastFM track:', error);
+      container.innerHTML = `
+        <div class="lastfm-error">
+          <p>Unable to load recent track</p>
+        </div>
+      `;
+    }
+  }
+
+  // Load track when page loads
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadLastFMTrack);
+  } else {
+    loadLastFMTrack();
+  }
+</script>
+
+<style is:global>
+  .lastfm-track {
+    width: 100%;
+    position: relative;
+  }
+
+  .lastfm-loading,
+  .lastfm-error {
+    width: 100%;
+    font-size: var(--step--1);
+    color: var(--color-text-secondary);
+  }
+
+  .lastfm-error p {
+    margin: 0;
+  }
+
+  .status-badge {
+    margin-block-end: var(--spacing-xs);
+  }
+
+  .lastfm-link {
+    display: block;
+    text-decoration: none;
+  }
+
+  .lastfm-link:hover,
+  .lastfm-link:focus-visible {
+    .album-art img {
+      transform: scale(1.02);
+    }
+  }
+
+  .track-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-s);
+    align-items: flex-start;
+  }
+
+  .album-art {
+    width: 100%;
+    flex-shrink: 0;
+    max-width: 200px;
+    position: relative;
+    aspect-ratio: 1 / 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 1.5em;
+      corner-shape: squircle;
+      transition: transform 0.2s ease-out;
+    }
+
+    .album-art-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      text-wrap: balance;
+      border-radius: 1.5em;
+      align-items: flex-end;
+      corner-shape: squircle;
+      font-size: var(--step-0);
+      padding: var(--spacing-2xs);
+      color: var(--color-highlight);
+      font-weight: var(--font-weight-regular);
+      border: 1px solid var(--color-highlight);
+      background-color: var(--color-background);
+    }
+  }
+
+  .track-info {
+    max-width: 250px;
+    text-wrap: pretty;
+  }
+
+  .status-now-playing {
+    color: var(--color-highlight);
+    background-color: oklch(var(--color-parts-highlight) / 20%);
+  }
+
+  .status-recent {
+    color: var(--color-text-secondary);
+    background-color: oklch(var(--color-parts-text) / 10%);
+  }
+
+  .track-name {
+    display: inline;
+    font-size: var(--step-0);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .artist-name {
+    font-size: var(--step--1);
+    color: var(--color-text-secondary);
+    margin-block-start: var(--spacing-3xs);
+  }
+</style>

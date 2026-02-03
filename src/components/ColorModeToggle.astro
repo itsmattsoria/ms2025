@@ -3,95 +3,64 @@ import SunIcon from '../assets/sun.svg';
 import MoonIcon from '../assets/moon.svg';
 ---
 
-<fieldset id="theme-switcher">
-  <legend>Theme</legend>
-
-  <label for="theme-dark">
-    <input type="radio" name="color-theme" value="dark" onchange="switchDark()" id="theme-dark">
+<div id="mode-switcher">
+  <button aria-label="Switch to dark mode." onclick="switchDark()" id="mode-dark">
     <MoonIcon />
-  </label>
+  </button>
 
-  <label for="theme-light">
-    <input type="radio" name="color-theme" value="light" onchange="switchLight()" id="theme-light">
+  <button aria-label="Switch to light mode." onclick="switchLight()" id="mode-light">
     <SunIcon />
-  </label>
-</fieldset>
+  </button>
+</div>
 
 <script is:inline>
 function switchLight() {
-	document.documentElement.dataset.colorScheme = "light";
-	localStorage.setItem("mode", "light");
-	document.getElementById("theme-light").checked = true;
+	document.documentElement.dataset.colorMode = "light";
+	localStorage.setItem("color-mode", "light");
 }
 
 function switchDark() {
-	document.documentElement.dataset.colorScheme = "dark";
-	localStorage.setItem("mode", "dark");
-	document.getElementById("theme-dark").checked = true;
+	document.documentElement.dataset.colorMode = "dark";
+	localStorage.setItem("color-mode", "dark");
 }
-
-function switchAuto() {
-	delete document.documentElement.dataset.colorScheme;
-	localStorage.removeItem("mode");
-	document.getElementById("theme-system").checked = true;
-}
-document.addEventListener('DOMContentLoaded', function(){
-	document.getElementById("theme-switcher").classList.add("visible"); // show theme switcher when JS loads
-
-	const mode = localStorage.getItem("mode");
-
-	if (mode === "light") switchLight();
-	if (mode === "dark") switchDark();
-});
-
+// Doing the actual check on page load in the head in Layout.astro for fastest reaction time
 </script>
 
 <style scoped>
-  #theme-switcher {
+  #mode-switcher {
     margin: 0;
     padding: 0;
-    border: none;
-    display: none;
+    display: inline-flex;
     color: var(--color-text);
     column-gap: var(--spacing-2xs);
   }
 
-  #theme-switcher legend {
-    position: absolute;
-    left: -100vw;
+  button {
+    all: unset;
+
+    &:hover, &:focus-visible {
+      svg {
+        opacity: 1;
+      }
+    }
   }
-  #theme-switcher label {
-    position: relative;
-  }
-  input[name="color-theme"] {
-    height:1em;
-    width:1em;
-    position: absolute;
-    left:-0.05em;
-    top:0.2em;
-    opacity: 0;
-  }
-  #theme-switcher label {
-    translate: 0 calc(0.5ex – 0.5cap);
-  }
-  #theme-switcher label svg {
-    opacity: 0.4;
-    transition-property: color, opacity;
-    transition-duration: 0.25s;
-    transition-timing-function: ease;
-    cursor: pointer;
-  }
-  #theme-switcher label:hover svg,
-  #theme-switcher input[name="color-theme"]:focus + svg  {
-    opacity: 1;
-  }
-  #theme-switcher input[name="color-theme"]:checked + svg {
+
+  svg {
     opacity: 0.8;
-    cursor: auto;
+    display: block;
+    cursor: pointer;
+    transition: color 0.25s ease-out, opacity 0.25s ease-out;
   }
-  @supports(color:light-dark(#fff,#000)) {
-    #theme-switcher.visible {
-      display: inline-flex;
+
+  #mode-light {
+    display: none;
+  }
+  html[data-color-mode="dark"] {
+    #mode-dark {
+      display: none;
+    }
+    #mode-light {
+      display: block;
     }
   }
 </style>
