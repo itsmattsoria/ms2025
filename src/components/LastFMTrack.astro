@@ -190,23 +190,25 @@ import arrowSvg from '../assets/arrow.svg?raw';
   }
 
   .album-art-loading {
-    opacity: 0.7;
     position: relative;
-  }
 
-  .album-art-loading::after {
-    inset: 0;
-    content: '';
-    position: absolute;
-    border-radius: 1.5em;
-    corner-shape: squircle;
-    animation: loading-shimmer 2s infinite;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      oklch(var(--color-parts-background) / 50%),
-      transparent
-    );
+    .album-art-wrapper {
+      background-color: var(--color-highlight);
+      &::after {
+        inset: 0;
+        content: '';
+        position: absolute;
+        border-radius: 1.5em;
+        corner-shape: squircle;
+        animation: loading-shimmer 2s infinite;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          oklch(var(--color-parts-background) / 50%),
+          transparent
+        );
+      }
+    }
   }
 
   @keyframes loading-shimmer {
