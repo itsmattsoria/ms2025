@@ -28,13 +28,12 @@ import arrowSvg from '../assets/arrow.svg?raw';
         
         // Render immediately with loading state on album art (no image yet)
         container.innerHTML = `
-          <div class="status-badge pill ${statusClass}">${statusText}</div>
           <a href="${track.url}" target="_blank" rel="noopener noreferrer" class="lastfm-link">
             <div class="track-content">
               <div class="album-art album-art-loading noisy-border">
-                <div class="album-art-placeholder">${track.album}</div>
               </div>
               <div class="track-info">
+                <div class="status-badge pill ${statusClass}">${statusText}</div>
                 <div class="track-name basic-link">${track.name} ${arrowSvg}</div>
                 <div class="artist-name">By: ${track.artist}</div>
               </div>
@@ -59,7 +58,19 @@ import arrowSvg from '../assets/arrow.svg?raw';
           if (shouldBlockArtwork || !track.image) {
             albumArtEl.innerHTML = `<div class="album-art-fallback"><div><div class="text-label">Album</div>${track.album}</div></div>`;
           } else {
-            albumArtEl.innerHTML = `<img src="${track.image}" alt="Album art for ${track.album}" />`;
+            // Create image with fade-in effect using lazysizes classes
+            const imgWrapper = document.createElement('div');
+            imgWrapper.className = 'album-art-wrapper';
+            const img = document.createElement('img');
+            img.src = track.image;
+            img.alt = `Album art for ${track.album}`;
+            img.className = 'lazyload';
+            img.onload = () => {
+              img.classList.remove('lazyload');
+              img.classList.add('lazyloaded');
+            };
+            albumArtEl.appendChild(imgWrapper);
+            imgWrapper.appendChild(img);
           }
         }
       } else {
@@ -104,10 +115,6 @@ import arrowSvg from '../assets/arrow.svg?raw';
     margin: 0;
   }
 
-  .status-badge {
-    margin-block-end: var(--spacing-xs);
-  }
-
   .lastfm-link {
     display: block;
     text-decoration: none;
@@ -115,7 +122,9 @@ import arrowSvg from '../assets/arrow.svg?raw';
 
   .lastfm-link:hover,
   .lastfm-link:focus-visible {
-    .album-art img {
+    .album-art-wrapper,
+    .album-art-fallback,
+    .album-art-placeholder {
       transform: scale(1.02);
     }
   }
@@ -133,21 +142,32 @@ import arrowSvg from '../assets/arrow.svg?raw';
     max-width: 200px;
     position: relative;
     aspect-ratio: 1 / 1;
+    border-radius: 1.5em;
+    corner-shape: squircle;
+    background-color: var(--color-background);
+
+    .album-art-wrapper {
+      overflow: hidden;
+      position: relative;
+      border-radius: 1.5em;
+      corner-shape: squircle;
+      transition: transform 0.2s ease-out;
+    }
 
     img {
       width: 100%;
       height: 100%;
       display: block;
       object-fit: cover;
-      border-radius: 1.5em;
-      corner-shape: squircle;
-      transition: transform 0.2s ease-out;
+      transition-duration: 0.5s;
     }
 
-    .album-art-fallback {
+    .album-art-fallback,
+    .album-art-placeholder {
       width: 100%;
       height: 100%;
       display: flex;
+      line-height: 1;
       text-wrap: balance;
       border-radius: 1.5em;
       align-items: flex-end;
@@ -155,46 +175,35 @@ import arrowSvg from '../assets/arrow.svg?raw';
       font-size: var(--step-0);
       padding: var(--spacing-2xs);
       color: var(--color-highlight);
+      transition: transform 0.2s ease-out;
       font-weight: var(--font-weight-regular);
       border: 1px solid var(--color-highlight);
       background-color: var(--color-background);
-    }
 
-    .album-art-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      text-wrap: balance;
-      border-radius: 1.5em;
-      align-items: flex-end;
-      corner-shape: squircle;
-      font-size: var(--step-0);
-      padding: var(--spacing-2xs);
-      color: var(--color-text-secondary);
-      font-weight: var(--font-weight-regular);
-      border: 1px solid var(--color-border);
-      background-color: var(--color-background);
+      .text-label {
+        margin-block-end: var(--spacing-3xs);
+      }
     }
   }
 
   .album-art-loading {
-    position: relative;
     opacity: 0.7;
+    position: relative;
   }
 
   .album-art-loading::after {
+    inset: 0;
     content: '';
     position: absolute;
-    inset: 0;
+    border-radius: 1.5em;
+    corner-shape: squircle;
+    animation: loading-shimmer 2s infinite;
     background: linear-gradient(
       90deg,
       transparent,
       oklch(var(--color-parts-background) / 50%),
       transparent
     );
-    animation: loading-shimmer 2s infinite;
-    border-radius: 1.5em;
-    corner-shape: squircle;
   }
 
   @keyframes loading-shimmer {
@@ -211,6 +220,11 @@ import arrowSvg from '../assets/arrow.svg?raw';
     text-wrap: pretty;
   }
 
+  .status-badge {
+    display: block;
+    margin-block-end: var(--spacing-2xs);
+  }
+
   .status-now-playing {
     color: var(--color-highlight);
     background-color: oklch(var(--color-parts-highlight) / 20%);
@@ -223,6 +237,7 @@ import arrowSvg from '../assets/arrow.svg?raw';
 
   .track-name {
     display: inline;
+    line-height: 1.2;
     font-size: var(--step-0);
     font-weight: var(--font-weight-regular);
   }

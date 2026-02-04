@@ -16,50 +16,54 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 <Layout title="Matt Soria | photography + web development" bodyClass="">
 	<div class="px-site-gutter">
 		<div class="bento-box">
-			<div class="site-intro noisy-border">
-				<div class="prose-container">
-					{ homeData.note && <div class="rich-text" set:html={homeData.note} /> }
-				</div>
-			</div>
-			{ homeData.portrait && (
-				<div class="site-portrait noisy-border">
-					<figure>
-						<Image
-							url={homeData.portrait[0].url}
-							width={homeData.portrait[0].width}
-							height={homeData.portrait[0].height}
-						/>
-						{homeData.portrait[0].captionSimple && (
-							<figcaption class="pill">{homeData.portrait[0].captionSimple}</figcaption>
-						)}
-					</figure>
-				</div>
-			)}
-			{ latestJournalEntries && (
-				<div class="latest-entries">
-					<h2 class="text-h2">Latest Journal Entries</h2>
-					<div class="latest-journal-entry-content">
-						{ latestJournalEntries.map((post) =>
-							<PostArticle post={post} first={false} />
-						)}
+			<div class="personal-meta">
+				<div class="site-intro noisy-border">
+					<div class="prose-container">
+						{ homeData.note && <div class="rich-text" set:html={homeData.note} /> }
 					</div>
 				</div>
-			)}
-			<div class="recent-track">
-				<LastFMTrack />
-			</div>
-			{ latestJournalLinks && (
-				<div class="latest-entries">
-					<h2 class="text-h2">Latest Links</h2>
-					<ol class="links-list" role="list">
-						{ latestJournalLinks.map((post) =>
-							<li>
-								<LinkArticle post={post} first={false} />
-							</li>
-						)}
-					</ol>
+				{ homeData.portrait && (
+					<div class="site-portrait noisy-border">
+						<figure>
+							<Image
+								url={homeData.portrait[0].url}
+								width={homeData.portrait[0].width}
+								height={homeData.portrait[0].height}
+							/>
+							{homeData.portrait[0].captionSimple && (
+								<figcaption class="pill">{homeData.portrait[0].captionSimple}</figcaption>
+							)}
+						</figure>
+					</div>
+				)}
+				<div class="recent-track">
+					<LastFMTrack />
 				</div>
-			)}
+			</div>
+			<div class="latest-entries-container">
+				{ latestJournalEntries && (
+					<div class="latest-entries latest-journal-entries">
+						<h2 class="text-h2">Latest Journal Entries</h2>
+						<div class="latest-journal-entry-content">
+							{ latestJournalEntries.map((post) =>
+								<PostArticle post={post} first={false} />
+							)}
+						</div>
+					</div>
+				)}
+				{ latestJournalLinks && (
+					<div class="latest-entries latest-links">
+						<h2 class="text-h2">Latest Links</h2>
+						<ol class="links-list" role="list">
+							{ latestJournalLinks.map((post) =>
+								<li>
+									<LinkArticle post={post} first={false} />
+								</li>
+							)}
+						</ol>
+					</div>
+				)}
+			</div>
 		</div>
 	</div>
 </Layout>
@@ -77,12 +81,21 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 		
 		@media screen and (min-width: 1024px) {
 			display: grid;
-			grid-auto-flow: row dense;
-			grid-template-columns: repeat(12, minmax(0, 1fr));
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
+	.personal-meta {
+		display: grid;
+		align-items: start;
+		gap: var(--spacing-l);
+		grid-template-areas: 
+			"intro intro"
+			"portrait track";
+	}
+
 	.site-intro {
+		grid-area: intro;
 		position: relative;
 		border-radius: 2em;
 		corner-shape: squircle;
@@ -99,10 +112,6 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 		a {
 			--basic-link-primary: var(--color-light);
 			--basic-link-secondary: oklch(var(--color-parts-light) / 20%);
-		}
-
-		@media screen and (min-width: 1024px) {
-			grid-column: auto / span 5;
 		}
 	}
 
@@ -134,41 +143,24 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 			inset-block-end: var(--spacing-2xs);
 			inset-inline-start: var(--spacing-2xs);
 		}
-
-		@media screen and (min-width: 600px) {
-			max-width: 200px;
-		}
-
-		@media screen and (min-width: 1024px) {
-			max-width: none;
-			grid-column: auto / span 3;
-		}
 	}
 
 	.recent-track {
-		@media screen and (min-width: 600px) {
-			max-width: 200px;
-		}
+	}
 
-		@media screen and (min-width: 1024px) {
-			max-width: 100%;
-			grid-column: auto / span 4;
-		}
+	.latest-entries-container {
+		display: flex;
+		gap: var(--spacing-l);
+		flex-direction: column;
 	}
 
 	.latest-entries {
 		display: flex;
-		max-width: 400px;
 		gap: var(--spacing-s);
 		flex-direction: column;
 
 		li {
 			width: 100%;
-		}
-
-		@media screen and (min-width: 1024px) {
-			max-width: none;
-			grid-column: auto / span 4;
 		}
 	}
 </style>

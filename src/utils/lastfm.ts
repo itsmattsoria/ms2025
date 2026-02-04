@@ -11,6 +11,48 @@ export interface LastFMTrack {
 }
 
 /**
+ * Sanitize the track name to keep it PG
+ */
+function sanitizeTrackName(name: string): string {
+  const curseWords = [
+    'fuck',
+    'shit',
+    'bitch',
+    'cunt',
+    'cock',
+    'dick',
+    'asshole',
+    'ass',
+    'pussy',
+    'bastard',
+    'nigger',
+    'nigga',
+    'cum',
+    'titties',
+    'tit',
+    'whore',
+    'faggot',
+    'dyke',
+    'tranny',
+  ];
+
+  // Censor curse words
+  return name.replace(new RegExp(`(${curseWords.join('|')})`, 'gi'), match => {
+    if (match.length <= 3) {
+      // For 3 or fewer characters, replace all but the first letter
+      return match.charAt(0) + '*'.repeat(match.length - 1);
+    } else {
+      // For 4+ characters, keep first and last, replace middle
+      return (
+        match.charAt(0) +
+        '*'.repeat(match.length - 2) +
+        match.charAt(match.length - 1)
+      );
+    }
+  });
+}
+
+/**
  * Fetch the most recent track for a LastFM user
  */
 export async function getRecentTrack(
@@ -18,7 +60,6 @@ export async function getRecentTrack(
 ): Promise<LastFMTrack | null> {
   const apiKey = 'c3d5cf45ea0b15fd91993cf6846ab664';
   const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1&extended=1`;
-  console.log(url);
 
   try {
     const response = await fetch(url);
@@ -31,7 +72,7 @@ export async function getRecentTrack(
 
     return {
       artist,
-      name: track.name,
+      name: sanitizeTrackName(track.name),
       album,
       url: track.url,
       image: albumImage,
@@ -60,7 +101,6 @@ export async function checkNSFWTag(
   )}&album=${encodeURIComponent(
     album
   )}&api_key=${apiKey}&format=json&user=${username}`;
-  console.log(url);
 
   try {
     const response = await fetch(url);
