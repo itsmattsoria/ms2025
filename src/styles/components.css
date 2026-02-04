@@ -140,6 +140,16 @@
     }
   }
 
+  /* Masonry Styles */
+  .masonry-grid {
+    opacity: 0;
+    transition: opacity 1.25s ease-out 0.1s;
+
+    &.loaded {
+      opacity: 1;
+    }
+  }
+
   /* Article Styles */
   article {
     padding-block: var(--spacing-s);

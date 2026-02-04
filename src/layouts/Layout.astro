@@ -85,11 +85,21 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 
 	const msnryGrids = document.querySelectorAll('.masonry-grid');
 	if (msnryGrids.length > 0) {
-		msnryGrids.forEach(grid => {
-			new Masonry(grid, {
-				itemSelector: '.masonry-item',
-				gutter: '.gutter-sizer',
-				transitionDuration: 0,
+		document.fonts.ready.then(() => {
+			msnryGrids.forEach(grid => {
+				let msnry = new Masonry(grid, {
+					itemSelector: '.masonry-item',
+					gutter: '.gutter-sizer',
+					transitionDuration: 0,
+				});
+
+				// add loaded class after masonry has finished layout
+				msnry.once('layoutComplete', () => {
+					console.log('hello?');
+					grid.classList.add('loaded');
+				});
+
+				msnry.layout();
 			});
 		});
 	}
