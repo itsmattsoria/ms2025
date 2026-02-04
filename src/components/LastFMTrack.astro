@@ -102,6 +102,7 @@ import arrowSvg from '../assets/arrow.svg?raw';
   .lastfm-track {
     width: 100%;
     position: relative;
+    container: lastfm-track / inline-size;
   }
 
   .lastfm-loading,
@@ -131,15 +132,17 @@ import arrowSvg from '../assets/arrow.svg?raw';
 
   .track-content {
     display: flex;
-    flex-wrap: wrap;
     gap: var(--spacing-s);
     align-items: flex-start;
+
+    @container lastfm-track (max-width: 280px) {
+      flex-direction: column;
+    }
   }
 
   .album-art {
     width: 100%;
-    flex-shrink: 0;
-    max-width: 200px;
+    flex-shrink: 10;
     position: relative;
     aspect-ratio: 1 / 1;
     border-radius: 1.5em;
@@ -216,12 +219,14 @@ import arrowSvg from '../assets/arrow.svg?raw';
   }
 
   .track-info {
-    max-width: 250px;
+    flex-grow: 1;
+    max-width: 180px;
     text-wrap: pretty;
   }
 
   .status-badge {
     display: block;
+    width: max-content;
     margin-block-end: var(--spacing-2xs);
   }
 
