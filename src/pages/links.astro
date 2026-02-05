@@ -1,0 +1,8 @@
+---
+import Journal from '../layouts/Journal.astro';
+import { journalLinks } from '../utils/data';
+
+const posts = journalLinks;
+---
+
+<Journal title="Links" description="Links to the things I'm reading, watching, and listening to by folks who are much smarter and interesting than myself." posts={posts} type="link" />

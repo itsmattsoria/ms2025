@@ -1,9 +1,8 @@
 ---
 import Journal from '../layouts/Journal.astro';
-import { journalEntries, journalLinks } from '../utils/data';
+import { journalEntries } from '../utils/data';
 
 const posts = journalEntries;
-const links = journalLinks;
 ---
 
-<Journal title="Journal" posts={posts} links={links} />
+<Journal title="Journal" description="A loose collection of thoughts, musings, snapshots, and doodles." posts={posts} type="post" />

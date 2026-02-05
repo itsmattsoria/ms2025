@@ -12,7 +12,7 @@ export const JOURNAL_ENTRIES_QUERY = `{
     slug
     postDate
     ... on journalEntry_Entry {
-      category(status: ["live"]) {
+      categories(status: ["live"]) {
         title
         status
         slug
@@ -53,7 +53,7 @@ export const JOURNAL_ENTRY_FULL_QUERY = `{
           captionSimple
         }
       }
-      category(status: ["live"]) {
+      categories(status: ["live"]) {
         title
         status
         slug
@@ -104,7 +104,7 @@ export const JOURNAL_LINKS_QUERY = `{
       sourceAuthor
       note
       externalType
-      category(status: ["live"]) {
+      categories(status: ["live"]) {
         title
         status
         slug
@@ -151,7 +151,7 @@ export const JOURNAL_CATEGORIES_QUERY = `{
  * Query builder for fetching journal entries by category ID
  */
 export const journalEntriesByCategoryQuery = (categoryId: number | string) => `{
-  entries(site: "personal", section: "personalJournal", type: "journal_writing", category: ${categoryId}) {
+  entries(site: "personal", section: "personalJournal", type: "journal_writing", categories: ["${categoryId}"]) {
     id
     title
     slug
@@ -181,7 +181,7 @@ export const journalEntriesByCategoryQuery = (categoryId: number | string) => `{
  * Query builder for fetching journal links by category ID
  */
 export const journalLinksByCategoryQuery = (categoryId: number | string) => `{
-  entries(site: "personal", section: "personalJournal", type:"journal_external", category: ${categoryId}) {
+  entries(site: "personal", section: "personalJournal", type:"journal_external", categories: ["${categoryId}"]) {
     id
     title
     slug

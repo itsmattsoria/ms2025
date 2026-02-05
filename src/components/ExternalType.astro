@@ -11,14 +11,14 @@ if (type === 'reading') {
 }
 ---
 
-<div>
+<a href={`/links/type/${type}`} class="pill">
   <div set:html={icon} aria-hidden="true"></div>
   <div set:html={type} class="visually-hidden"></div>
-</div>
+</a>
 
 <style scoped>
-  div div {
-    font-size: 1rem;
+  a div {
+    font-size: 1em;
     text-box-trim: trim-both;
     margin-block-end: -0.2em;
   }

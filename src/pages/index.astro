@@ -17,7 +17,7 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 	<div class="px-site-gutter">
 		<div class="bento-box">
 			<div class="personal-meta">
-				<div class="site-intro noisy-border">
+				<div class="site-intro card noisy-border">
 					<div class="prose-container">
 						{ homeData.note && <div class="rich-text" set:html={homeData.note} /> }
 					</div>
@@ -97,23 +97,6 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 
 	.site-intro {
 		grid-area: intro;
-		position: relative;
-		border-radius: 2em;
-		corner-shape: squircle;
-		color: var(--color-light);
-		padding: var(--spacing-s);
-		background-color: var(--color-highlight);
-
-		* {
-			text-wrap: pretty;
-			font-size: var(--step-1);
-			font-weight: var(--font-weight-light);
-		}
-
-		a {
-			--basic-link-primary: var(--color-light);
-			--basic-link-secondary: oklch(var(--color-parts-light) / 20%);
-		}
 	}
 
 	.site-portrait {

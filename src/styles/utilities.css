@@ -57,6 +57,10 @@
     width: max-content;
   }
 
+  .w-prose {
+    max-width: 65ch;
+  }
+
   /* Grid Utilities */
   .grid {
     display: grid;

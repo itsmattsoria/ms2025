@@ -14,8 +14,10 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
   <h2 class="text-h3"><a href={ '/journal/' + post.slug} class="basic-link">{post.title}</a></h2>
   <div class="article-meta">
     <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
-    {post.category.length > 0 && (
-      <a href={ '/journal/category/' + post.category[0].slug } class="pill">{post.category[0].title}</a>
+    { post.categories.length > 0 && (
+      post.categories.map((category) => (
+        <a href={ '/journal/category/' + category.slug } class="pill">{category.title}</a>
+      ))
     )}
   </div>
 </article>

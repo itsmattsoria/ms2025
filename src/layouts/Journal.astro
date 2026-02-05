@@ -3,39 +3,23 @@ import Layout from '../layouts/Layout.astro';
 import PostArticle from '../components/PostArticle.astro';
 import LinkArticle from '../components/LinkArticle.astro';
 
-const { title, posts, links } = Astro.props;
+const { title, description, posts, type } = Astro.props;
 ---
 
 <Layout title={title} bodyClass="">
-  <div class="px-site-gutter">
-    <div class="post-column">
-      <div class="title">
-        <h1 class="visually-hidden">{title}</h1>
-        <h2 class="text-h1">Writing</h2>
-      </div>
+  <div class="px-site-gutter layout">
+    <header class="card noisy-border">
+      <h1 class="text-h1">{title}</h1>
+      <p>{description}</p>
+    </header>
 
-      <ol class="posts-list" role="list">
-        { posts.map((post, index) =>
-          <li>
-            <PostArticle post={post} first={index === 0} />
-          </li>
-        )}
-      </ol>
-    </div>
-  
-    <aside class="links-column">
-      <div class="title">
-        <h2 class="text-h2">Reading / Listening / Watching</h2>
-      </div>
-
-      <ol class="links-list" role="list">
-        { links.map((post, index) =>
-          <li>
-            <LinkArticle post={post} first={index === 0} />
-          </li>
-        )}
-      </ol>
-    </aside>
+    <ol class="posts-list" role="list">
+      { posts.map((post, index) =>
+        <li>
+          { type === 'post' ? <PostArticle post={post} first={index === 0} /> : <LinkArticle post={post} first={index === 0} /> }
+        </li>
+      )}
+    </ol>
   </div>
 </Layout>
 
@@ -55,41 +39,24 @@ const { title, posts, links } = Astro.props;
 
   .layout {
     display: grid;
-    gap: var(--spacing-m);
+    align-items: baseline;
+    gap: var(--spacing-l);
     grid-template-areas: 
-      "primary"
-      "aside";
+      "intro"
+      "posts";
 
     @media screen and (min-width: 1024px) {
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       grid-template-areas: 
-        "primary primary primary aside aside";
+        "intro posts posts";
     }
   }
-  .post-column {
-    grid-area: primary;
-  }
-  .links-column {
-    grid-area: aside;
-
-    @media screen and (min-width: 1024px) {
-      overflow: auto;
-      max-height: 100vh;
-      scrollbar-gutter: stable;
-
-      .title {
-        position: sticky;
-        inset-block-start: 0;
-        background-color: var(--color-background);
-      }
-    }
-  }
-
-  .posts-list,
-  .links-list {
+  
+  .posts-list {
     margin: 0;
     padding: 0;
     display: grid;
+    grid-area: posts;
     list-style-type: none;
   }
 </style>
