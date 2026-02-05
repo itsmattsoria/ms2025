@@ -132,6 +132,18 @@ export const HOME_PAGE_QUERY = `{
           captionSimple
         }
       }
+      currentlyReading {
+        bookTitle
+        author
+        image {
+          ... on personal_Asset {
+            alt
+            url
+            width
+            height
+          }
+        }
+      }
     }
   }
 }`;

@@ -2,24 +2,37 @@
 const { type } = Astro.props;
 let icon = '';
 
-if (type === 'reading') {
+if (type === 'book') {
   icon = '📖';
-} else if (type === 'listening') {
-  icon = '🎧';
-} else if (type === 'watching') {
+} else if (type === 'article') {
+  icon = '📰';
+} else if (type === 'podcast') {
+  icon = '🎙';
+} else if (type === 'music') {
+  icon = '🎵';
+} else if (type === 'movie') {
+  icon = '🎥';
+} else if (type === 'tv-show') {
+  icon = '📺';
+} else if (type === 'video') {
   icon = '📼';
+} else if (type === 'game') {
+  icon = '🎮';
 }
 ---
 
-<a href={`/links/type/${type}`} class="pill">
+<a href={`/links/type/${type}`}>
   <div set:html={icon} aria-hidden="true"></div>
   <div set:html={type} class="visually-hidden"></div>
 </a>
 
 <style scoped>
-  a div {
-    font-size: 1em;
-    text-box-trim: trim-both;
-    margin-block-end: -0.2em;
-  }
+  a {
+    text-decoration: none;
+    div {
+      font-size: 1em;
+      text-box-trim: trim-both;
+      margin-block-end: -0.2em;
+    }
+  } 
 </style>

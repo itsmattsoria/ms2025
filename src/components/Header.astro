@@ -1,5 +1,6 @@
 ---
 const pathname = Astro.url.pathname;
+import Smiley from '../assets/smiley.svg';
 import { getEntries } from '../utils/craftApi';
 import { NAVIGATION_QUERY } from '../utils/queries';
 import ColorModeToggle from '../components/ColorModeToggle.astro';
@@ -10,7 +11,7 @@ console.log(pathname);
 
 <header class="site-header">
   <div class="site-header-content">
-    <a href="/" class="site-title">matt soria</a>
+    <a href="/" class="site-title"><Smiley /> matt soria</a>
     <div class="site-nav-container">
       <nav class="site-nav">
         <ul role="list">
@@ -42,11 +43,39 @@ console.log(pathname);
 
   .site-title {
     line-height: 1;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
     text-decoration: none;
+    gap: var(--spacing-2xs);
     color: var(--color-text);
     font-size: var(--step-3);
     font-family: var(--font-display);
+
+    svg {
+      height: 1em;
+      width: auto;
+      display: block;
+    }
+
+    &:hover, &:focus-visible {
+      svg {
+        animation: spin 0.35s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      }
+    }
+
+    &:active svg {
+      transform: scale(0.95);
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .site-nav-container {

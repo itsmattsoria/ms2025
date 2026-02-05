@@ -39,6 +39,16 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 				<div class="recent-track">
 					<LastFMTrack />
 				</div>
+				{homeData.currentlyReading && (
+					<div class="currently-reading">
+						<h2 class="text-h2">Currently Reading</h2>
+						<div class="currently-reading-content">
+							<div class="currently-reading-image">
+								<Image url={homeData.currentlyReading.image[0].url} width={homeData.currentlyReading.image[0].width} height={homeData.currentlyReading.image[0].height} />
+							</div>
+						</div>
+					</div>
+				)}
 			</div>
 			<div class="latest-entries-container">
 				{ latestJournalEntries && (
@@ -57,7 +67,7 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 						<ol class="links-list" role="list">
 							{ latestJournalLinks.map((post) =>
 								<li>
-									<LinkArticle post={post} first={false} />
+									<LinkArticle post={post} first={false} includeNote={false} />
 								</li>
 							)}
 						</ol>
@@ -106,7 +116,6 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 			width: 100%;
 			overflow: hidden;
 			border-radius: 2em;
-			aspect-ratio: 4 / 5;
 			position: relative;
 			corner-shape: squircle;
 

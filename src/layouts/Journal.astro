@@ -24,16 +24,10 @@ const { title, description, posts, type } = Astro.props;
 </Layout>
 
 <style scoped>
-	.title {
-    margin: 0;
-    display: flex; 
-    align-items: flex-end;
-    padding-block-end: var(--spacing-l);
-    border-bottom: 1px solid var(--color-border);
-    h1, h2 {
-      margin: 0;
-      line-height: 1;
-      text-box-trim: trim-both;
+	header {
+    @media screen and (min-width: 1024px) {
+      position: sticky;
+      top: var(--site-gutter);
     }
   }
 

@@ -88,7 +88,7 @@
     --color-parts-highlight: 0.5568 0.0743 143.31;
     --color-highlight: oklch(var(--color-parts-highlight) / 1); /* #597f57 */
     --color-highlight-hover: oklch(var(--color-parts-highlight) / 20%);
-    --color-gray: oklch(0.2075 0.0086 81.33 / 5%);
+    --color-gray: oklch(0.2075 0.0086 81.33 / 8%);
     --color-border: var(--color-gray);
     --color-gradient-parts: 0.5 0.03 143.31;
     --noisy-border-opacity: 1;

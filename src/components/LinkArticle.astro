@@ -1,7 +1,7 @@
 ---
 import ExternalType from '../components/ExternalType.astro';
 
-const { post, first } = Astro.props;
+const { post, first, includeNote = true } = Astro.props;
 const dateObject = new Date(post.postDate);
 const formattedDate = dateObject.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -13,7 +13,7 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 <article class={first ? '-first' : ''}>
   <h2 class="text-h4"><a href={ post.externalLink } class="basic-link">{post.title}</a></h2>
   {post.sourceAuthor && (
-    <div class="text-meta">By {post.sourceAuthor}</div>
+    <div class="article-author text-meta">By {post.sourceAuthor}</div>
   )}
   <div class="article-meta">
     <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
@@ -26,16 +26,42 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
       ))
     )}
   </div>
+  {includeNote && post.note && (
+    <div class="link-note" set:html={post.note} />
+  )}
 </article>
 
 <style scoped>
   article {
-    .text-meta {
-      margin-block-start: var(--spacing-xs);
-    }
-
     h2 {
       text-transform: capitalize;
+    }
+
+    .link-note {
+      max-width: 50ch;
+      corner-shape: squircle;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius);
+      background-color: var(--color-gray);
+      margin-block-start: var(--spacing-s);
+
+      &:has(blockquote) {
+        max-width: 60ch;
+        background-color: var(--color-highlight-hover);
+      }
+      p {
+        font-size: var(--step--1);
+      }
+
+      blockquote {
+        margin-inline: 0;
+        padding-inline: 0;
+
+        p {
+          font-style: italic;
+          font-size: var(--step-0);
+        }
+      }
     }
   }
 </style>
