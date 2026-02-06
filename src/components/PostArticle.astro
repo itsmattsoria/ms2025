@@ -13,12 +13,12 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 <article class={first ? '-first': ''}>
   <h3 class="text-h4"><a href={ '/journal/' + post.slug} class="basic-link">{post.title}</a></h3>
   <div class="article-meta">
-    <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
     { post.categories.length > 0 && (
       post.categories.map((category) => (
         <a href={ '/journal/category/' + category.slug } class="pill">{category.title}</a>
       ))
     )}
+    <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
   </div>
 </article>
 

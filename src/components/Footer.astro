@@ -40,7 +40,7 @@ const links: FooterLink[] = footer.links ?? [];
       </ul>
     </div>
     <div class="flex items-center justify-center gap-s mt-l">
-     <Smiley />
+      <Smiley />
     </div>
     <div class="fine-print text-meta">
      <p>© {new Date().getFullYear()} Matt Soria</p>
@@ -103,6 +103,14 @@ const links: FooterLink[] = footer.links ?? [];
   .fine-print {
     p + p {
       margin-block-start: var(--spacing-3xs);
+    }
+  }
+
+  .smiley {
+    @media screen and (prefers-reduced-motion: no-preference) {
+      &:hover {
+        filter: url("#distortionFilter");
+      }
     }
   }
 

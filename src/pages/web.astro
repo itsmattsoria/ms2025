@@ -97,6 +97,7 @@ import Layout from '../layouts/Layout.astro';
           <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
           <div><strong>Role:</strong> Lead Developer</div>
           <div><strong>Tech:</strong> HTML/CSS/JavaScript:sparkles:, Spline</div>
+          <div><strong>Highlights:</strong> <a href="https://share.mattsoria.com/Sphere-Semi_CSS-Scroll-Driven-Parallax" target="_blank" class="basic-link">CSS scroll-driven parallax</a></div>
         </div>
       </li>
       <li class="project masonry-item noisy-border contrast-color" style="--card-color: #33c592;">
@@ -108,6 +109,7 @@ import Layout from '../layouts/Layout.astro';
           <div><strong>Agencey:</strong> <a href="https://www.onedesigncompany.com" target="_blank" class="basic-link">One Design Company</a></div>
           <div><strong>Role:</strong> Lead Developer</div>
           <div><strong>Tech:</strong> Craft CMS, Greenhouse, GSAP, Lottie</div>
+          <div><strong>Highlights:</strong> <a href="https://share.mattsoria.com/Quotient-TX_Filterable-Greenhouse-Integration" target="_blank" class="basic-link">Filterable Greenhouse integration</a></div>
         </div>
       </li>
       <li class="masonry-item">
@@ -275,6 +277,12 @@ import Layout from '../layouts/Layout.astro';
 
       &::before {
         --noisy-border-color: var(--card-color);
+      }
+    }
+
+    @media screen and (prefers-reduced-motion: no-preference) {
+      &.noisy-border:has(.title a:hover, .title a:focus-visible)::after {
+        filter: url('#distortionFilter');
       }
     }
 

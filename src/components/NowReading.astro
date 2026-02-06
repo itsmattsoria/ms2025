@@ -6,7 +6,7 @@ const { book } = Astro.props;
 
 <a href={book.bookLink} target="_blank" class="now-reading">
   <div class="now-reading-content">
-    <div class="book-cover noisy-border">
+    <div class="book-cover noisy-border" style={`aspect-ratio: ${book.image[0].width} / ${book.image[0].height};`}>
       <div class="book-cover-wrapper">
         <Image url={book.image[0].url} width={book.image[0].width} height={book.image[0].height} />
       </div>
@@ -24,7 +24,7 @@ const { book } = Astro.props;
 
 <style scoped>
   .now-reading {
-    display: flex;
+    display: block;
     position: relative;
     text-decoration: none;
     container: now-reading / inline-size;
@@ -42,7 +42,7 @@ const { book } = Astro.props;
     gap: var(--spacing-s);
     align-items: flex-start;
 
-    @container now-reading (max-width: 280px) {
+    @container now-reading (max-width: 300px) {
       flex-direction: column;
     }
   }
@@ -57,6 +57,7 @@ const { book } = Astro.props;
   }
 
   .book-cover-wrapper {
+    width: 100%;
     overflow: hidden;
     position: relative;
     border-radius: 1.5em;

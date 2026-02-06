@@ -16,7 +16,6 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
     <div class="article-author text-meta">By {post.sourceAuthor}</div>
   )}
   <div class="article-meta">
-    <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
      {post.externalType && (
         <ExternalType type={post.externalType} />
      )}
@@ -25,6 +24,7 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
         <a href={ '/journal/category/' + category.slug } class="pill">{category.title}</a>
       ))
     )}
+    <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
   </div>
   {includeNote && post.note && (
     <div class="link-note" set:html={post.note} />

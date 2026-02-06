@@ -53,4 +53,17 @@
   strong {
     font-weight: var(--font-weight-regular);
   }
+
+  /* Remove animations and transitions for people who prefer not to see them */
+  @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+    *,
+    *::before,
+    *::after {
+      background-attachment: initial !important;
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }

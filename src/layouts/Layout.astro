@@ -14,46 +14,76 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<!-- Preloads -->
-		<link rel="preload" href="/fonts/TAYWalkout.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/VCTRMonov0.12-Regular.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="stylesheet" href="/fonts/webfonts.css" media="print" onload="this.media='all'; this.onload=null;">
-
-		<link rel="shortcut icon" type="image/ico" href="/favicon.png">
-
-		<meta name="HandheldFriendly" content="True">
-		<meta name="MobileOptimized" content="320">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		<meta name="description" content="Photographer and Web Developer from Chicago. Adventure, Lifestyle, Travel and Editorial Photography. Specializing in Front-end Development.">
-		<meta property="og:title" content="Matt Soria | photography + web development">
-		<meta property="og:url" content="https://www.mattsoria.com/">
-
-		<script is:inline>
-			if (
-				localStorage.getItem("color-mode") === "dark" ||
-				(window.matchMedia("(prefers-color-scheme: dark)").matches &&
-					!localStorage.getItem("color-mode"))
-			) {
-				document.documentElement.setAttribute("data-color-mode", "dark");
-			}
-		</script>
-	</head>
-	<body class={fullBodyClass}>
-		<Header />
-
-		<main class="site-content">
-			<slot />
-		</main>
-
-		<Footer />
-	</body>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta name="generator" content={Astro.generator} />
+	<title>{title}</title>
+	<!-- Preloads -->
+	<link rel="preload" href="/fonts/TAYWalkout.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="/fonts/VCTRMonov0.12-Regular.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="stylesheet" href="/fonts/webfonts.css" media="print" onload="this.media='all'; this.onload=null;">
+	
+	<link rel="shortcut icon" type="image/ico" href="/favicon.png">
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<meta name="description" content="Photographer and Web Developer from Chicago. Adventure, Lifestyle, Travel and Editorial Photography. Specializing in Front-end Development.">
+	<meta property="og:title" content="Matt Soria | photography + web development">
+	<meta property="og:url" content="https://www.mattsoria.com/">
+	
+	<script is:inline>
+		if (
+		localStorage.getItem("color-mode") === "dark" ||
+		(window.matchMedia("(prefers-color-scheme: dark)").matches &&
+		!localStorage.getItem("color-mode"))
+		) {
+			document.documentElement.setAttribute("data-color-mode", "dark");
+		}
+	</script>
+</head>
+<body class={fullBodyClass}>
+	<Header />
+	
+	<main class="site-content">
+		<slot />
+	</main>
+	
+	<Footer />
+	
+	<!-- credit: https://kirgroup.net/blog/2025/07/21-SVG-Hand-Drawing-without-js.html -->
+		<svg id="filter-svg" style="position: absolute; width: 0px; height: 0px;" xmlns="http://www.w3.org/2000/svg" version="1.1" width="400" height="400" viewBox="0 0 400 400">
+			<defs>
+				<filter id="distortionFilter">
+					<feTurbulence
+					type="turbulence"
+					baseFrequency="0.01"
+					numOctaves="3"
+					seed="1"
+					result="noise"
+					id="feTurbulence1">
+					<animate
+					id="turbolente-baseFrequency-anim"
+					attributeName="baseFrequency"
+					values="0.01;0.013;0.011;0.012"
+					calcMode="discrete"
+					repeatCount="indefinite"
+					dur=".4" />
+				</feTurbulence>
+				<feDisplacementMap
+				in="SourceGraphic"
+				in2="noise"
+				scale="2"
+				xChannelSelector="R"
+				yChannelSelector="G"
+				id="feDisplacementMap1" />
+			</filter>
+		</defs>
+	</svg>
+</body>
 </html>
 
 <style is:global>
@@ -70,7 +100,7 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 	import tippy, {followCursor} from 'tippy.js';
 	import 'tippy.js/dist/tippy.css';
 	import Masonry from 'masonry-layout';
-
+	
 	tippy('[data-tippy-content]', {
 		allowHTML: true,
 		theme: 'site',
@@ -82,7 +112,7 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 		// hideOnClick: false,
 		// trigger: 'click'
 	});
-
+	
 	const msnryGrids = document.querySelectorAll('.masonry-grid');
 	if (msnryGrids.length > 0) {
 		document.fonts.ready.then(() => {
@@ -92,13 +122,12 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 					gutter: '.gutter-sizer',
 					transitionDuration: 0,
 				});
-
+				
 				// add loaded class after masonry has finished layout
 				msnry.once('layoutComplete', () => {
-					console.log('hello?');
 					grid.classList.add('loaded');
 				});
-
+				
 				msnry.layout();
 			});
 		});

@@ -6,12 +6,13 @@ import { NAVIGATION_QUERY } from '../utils/queries';
 import ColorModeToggle from '../components/ColorModeToggle.astro';
 
 const nav = await getEntries(NAVIGATION_QUERY);
-console.log(pathname);
 ---
 
 <header class="site-header">
   <div class="site-header-content">
-    <a href="/" class="site-title"><Smiley /> matt soria</a>
+    <a href="/" id="site-title" class="site-title"><span id="title-smiley">
+      <Smiley />
+    </span> matt soria</a>
     <div class="site-nav-container">
       <nav class="site-nav">
         <ul role="list">
@@ -25,7 +26,24 @@ console.log(pathname);
       </div>
     </div>
   </div>
+
+  <div class="sfx-container">
+    <audio src="/sfx/wheeeeee.m4a" preload="auto"></audio>
+    <audio src="/sfx/wow.m4a" preload="auto"></audio>
+  </div>
 </header>
+
+<script>
+  const sfxContainer = document.querySelector('.sfx-container');
+  const sfx = sfxContainer.querySelectorAll('audio');
+  const titleSmiley = document.getElementById('title-smiley');
+  if (titleSmiley) {
+    titleSmiley.addEventListener('mouseenter', () => {
+      const randomIndex = Math.floor(Math.random() * sfx.length);
+      sfx[randomIndex].play();
+    });
+  }
+</script>
 
 <style scoped>
   .site-header {
@@ -51,6 +69,7 @@ console.log(pathname);
     color: var(--color-text);
     font-size: var(--step-3);
     font-family: var(--font-display);
+    transition: letter-spacing 0.35s ease-out;
 
     svg {
       height: 1em;
@@ -58,14 +77,31 @@ console.log(pathname);
       display: block;
     }
 
-    &:hover, &:focus-visible {
-      svg {
-        animation: spin 0.35s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+      text-underline-offset: 0.1em;
+      text-decoration-thickness: 0.1rem;
+    }
+
+    @media screen and (prefers-reduced-motion: no-preference) {
+      &:hover,
+      &:focus-visible {
+        text-decoration: none;
+        filter: url("#distortionFilter");
       }
     }
 
     &:active svg {
       transform: scale(0.95);
+    }
+  }
+
+  #title-smiley {
+    &:hover {
+      svg {
+        animation: spin 0.35s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.1s;
+      }
     }
   }
 

@@ -64,7 +64,7 @@
     background-color: var(--color-pill-background);
     transition: background-color 0.2s ease-out, color 0.2s ease-out;
 
-    &:not(div):not(figcaption) {
+    &:is(a, button) {
       &:hover,
       &:focus-visible {
         transform: scale(1.02);
@@ -81,7 +81,7 @@
       --color-pill-background: var(--color-gray);
       color: var(--color-text);
 
-      &:not(div):not(figcaption) {
+      &:is(a, button) {
         &:hover,
         &:focus-visible {
           color: var(--color-background);
@@ -102,6 +102,15 @@
       font-size: var(--step-0);
       padding: var(--spacing-2xs);
       font-weight: var(--font-weight-regular);
+    }
+
+    @media screen and (prefers-reduced-motion: no-preference) {
+      &:hover,
+      &:focus-visible {
+        svg {
+          filter: url('#distortionFilter');
+        }
+      }
     }
   }
 
@@ -164,7 +173,7 @@
     }
 
     > * + * {
-      margin-block-start: var(--spacing-3xs);
+      margin-block-start: var(--spacing-2xs);
     }
 
     h2 {
