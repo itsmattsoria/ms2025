@@ -11,7 +11,7 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 ---
 
 <article class={first ? '-first' : ''}>
-  <h2 class="text-h4"><a href={ post.externalLink } class="basic-link">{post.title}</a></h2>
+  <h3 class="text-h4"><a href={ post.externalLink } class="basic-link">{post.title}</a></h3>
   {post.sourceAuthor && (
     <div class="article-author text-meta">By {post.sourceAuthor}</div>
   )}

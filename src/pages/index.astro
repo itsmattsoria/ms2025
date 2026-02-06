@@ -7,6 +7,7 @@ import LastFMTrack from '../components/LastFMTrack.astro';
 import Image from '../components/CloudImage.astro';
 import PostArticle from '../components/PostArticle.astro';
 import LinkArticle from '../components/LinkArticle.astro';
+import NowReading from '../components/NowReading.astro';
 
 const homeData = await getEntry(HOME_PAGE_QUERY);
 const latestJournalEntries = journalEntries.slice(0, 3);
@@ -36,24 +37,24 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 						</figure>
 					</div>
 				)}
-				<div class="recent-track">
-					<LastFMTrack />
-				</div>
-				{homeData.currentlyReading && (
-					<div class="currently-reading">
-						<h2 class="text-h2">Currently Reading</h2>
-						<div class="currently-reading-content">
-							<div class="currently-reading-image">
-								<Image url={homeData.currentlyReading.image[0].url} width={homeData.currentlyReading.image[0].width} height={homeData.currentlyReading.image[0].height} />
-							</div>
-						</div>
+				<div class="media">
+					<div class="recent-track">
+						<LastFMTrack />
 					</div>
-				)}
+					{homeData.nowReading && (
+						<div class="now-reading">
+							<NowReading book={homeData.nowReading} />
+						</div>
+					)}
+				</div>
 			</div>
 			<div class="latest-entries-container">
 				{ latestJournalEntries && (
 					<div class="latest-entries latest-journal-entries">
-						<h2 class="text-h2">Latest Journal Entries</h2>
+						<header>
+							<h2 class="text-h2">Recent Journal Entries</h2>
+							<a href="/journal" class="pill">View all <span class="visually-hidden">journal entries.</span></a>
+						</header>
 						<div class="latest-journal-entry-content">
 							{ latestJournalEntries.map((post) =>
 								<PostArticle post={post} first={false} />
@@ -63,7 +64,10 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 				)}
 				{ latestJournalLinks && (
 					<div class="latest-entries latest-links">
-						<h2 class="text-h2">Latest Links</h2>
+						<header>
+							<h2 class="text-h2">Recent Links</h2>
+							<a href="/links" class="pill">View all <span class="visually-hidden">links.</span></a>
+						</header>
 						<ol class="links-list" role="list">
 							{ latestJournalLinks.map((post) =>
 								<li>
@@ -102,7 +106,7 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 		grid-template-columns: minmax(0, 1fr) minmax(200px, 1.5fr);
 		grid-template-areas: 
 			"intro intro"
-			"portrait track";
+			"portrait media";
 	}
 
 	.site-intro {
@@ -138,7 +142,10 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 		}
 	}
 
-	.recent-track {
+	.media {
+		display: flex;
+		gap: var(--spacing-l);
+		flex-direction: column;
 	}
 
 	.latest-entries-container {
@@ -151,6 +158,13 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 		display: flex;
 		gap: var(--spacing-s);
 		flex-direction: column;
+
+		header {
+			display: flex;
+			gap: var(--spacing-s);
+			align-items: baseline;
+			justify-content: space-between;
+		}
 
 		li {
 			width: 100%;

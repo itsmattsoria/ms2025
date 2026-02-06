@@ -132,7 +132,7 @@ export const HOME_PAGE_QUERY = `{
           captionSimple
         }
       }
-      currentlyReading {
+      nowReading {
         bookTitle
         author
         image {

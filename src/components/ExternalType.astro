@@ -29,10 +29,19 @@ if (type === 'book') {
 <style scoped>
   a {
     text-decoration: none;
+    
+    &:hover,
+    &:focus-visible {
+      div {
+        transform: scale(1.1);
+      }
+    }
+    
     div {
       font-size: 1em;
       text-box-trim: trim-both;
       margin-block-end: -0.2em;
+      transition: transform 0.2s ease-out;
     }
   } 
 </style>

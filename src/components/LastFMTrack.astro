@@ -1,12 +1,18 @@
 ---
 // LastFM Recent Track Component
 // Fetches and displays the most recent track from LastFM on page load
-import arrowSvg from '../assets/arrow.svg?raw';
 ---
 
-<div class="lastfm-track" id="lastfm-track" data-arrow-svg={arrowSvg}>
+<div class="lastfm-track" id="lastfm-track">
   <div class="lastfm-loading">
-    <span class="loading-text pill">Loading recent track...</span>
+    <div class="loading-placeholder noisy-border">
+      <div class="album-art-loading">
+        <div class="album-art-wrapper"></div>
+      </div>
+    </div>
+    <div class="loading-text">
+      <div class="pill">Loading...</div>
+    </div>
   </div>
 </div>
 
@@ -15,7 +21,6 @@ import arrowSvg from '../assets/arrow.svg?raw';
 
   async function loadLastFMTrack() {
     const container = document.getElementById('lastfm-track');
-    const arrowSvg = container?.getAttribute('data-arrow-svg') || '';
     if (!container) return;
 
     try {
@@ -33,9 +38,9 @@ import arrowSvg from '../assets/arrow.svg?raw';
               <div class="album-art album-art-loading noisy-border">
               </div>
               <div class="track-info">
-                <div class="status-badge pill ${statusClass}">${statusText}</div>
-                <div class="track-name basic-link">${track.name} ${arrowSvg}</div>
-                <div class="artist-name">By: ${track.artist}</div>
+                <h2 class="status-badge pill ${statusClass}">${statusText}</h2>
+                <div class="track-name basic-link">${track.name}</div>
+                <div class="artist-name">By ${track.artist}</div>
               </div>
             </div>
           </a>
@@ -108,8 +113,29 @@ import arrowSvg from '../assets/arrow.svg?raw';
   .lastfm-loading,
   .lastfm-error {
     width: 100%;
+    display: flex;
+    gap: var(--spacing-s);
+    aspect-ratio: 2.25 / 1;
+    align-items: flex-start;
     font-size: var(--step--1);
     color: var(--color-text-secondary);
+  }
+
+  .loading-placeholder {
+    width: 100%;
+    position: relative;
+  }
+  .loading-placeholder .album-art-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 1.5em;
+    corner-shape: squircle;
+  }
+
+  .loading-text {
+    min-width: 180px;
   }
 
   .lastfm-error p {
@@ -142,12 +168,10 @@ import arrowSvg from '../assets/arrow.svg?raw';
 
   .album-art {
     width: 100%;
-    flex-shrink: 10;
     position: relative;
     aspect-ratio: 1 / 1;
     border-radius: 1.5em;
     corner-shape: squircle;
-    background-color: var(--color-background);
 
     .album-art-wrapper {
       overflow: hidden;
@@ -222,6 +246,7 @@ import arrowSvg from '../assets/arrow.svg?raw';
 
   .track-info {
     flex-grow: 1;
+    min-width: 180px;
     max-width: 180px;
     text-wrap: pretty;
   }
@@ -246,7 +271,6 @@ import arrowSvg from '../assets/arrow.svg?raw';
     display: inline;
     line-height: 1.2;
     font-size: var(--step-0);
-    font-weight: var(--font-weight-regular);
   }
 
   .artist-name {

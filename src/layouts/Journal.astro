@@ -4,6 +4,18 @@ import PostArticle from '../components/PostArticle.astro';
 import LinkArticle from '../components/LinkArticle.astro';
 
 const { title, description, posts, type } = Astro.props;
+
+// group posts by year, and sort by year descending
+const postsByYear = posts.reduce((acc, post) => {
+  const dateObject = new Date(post.postDate);
+  const year = dateObject.getFullYear();
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(post);
+  return acc;
+}, {});
+console.log(postsByYear);
 ---
 
 <Layout title={title} bodyClass="">
@@ -14,9 +26,16 @@ const { title, description, posts, type } = Astro.props;
     </header>
 
     <ol class="posts-list" role="list">
-      { posts.map((post, index) =>
-        <li>
-          { type === 'post' ? <PostArticle post={post} first={index === 0} /> : <LinkArticle post={post} first={index === 0} /> }
+      { Object.entries(postsByYear).sort((a, b) => b[0] - a[0]).map(([year, posts]) =>
+        <li key={year}>
+          <h2 class="year text-h2">{year}</h2>
+          <ol role="list">
+            { posts.map((post, index) =>
+              <li key={post.id}>
+                { type === 'post' ? <PostArticle post={post} first={index === 0} /> : <LinkArticle post={post} first={index === 0} /> }
+              </li>
+            )}
+          </ol>
         </li>
       )}
     </ol>
@@ -52,5 +71,13 @@ const { title, description, posts, type } = Astro.props;
     display: grid;
     grid-area: posts;
     list-style-type: none;
+
+    h2 {
+      margin-block-end: var(--spacing-s);
+    }
+
+    > li + li {
+      margin-block-start: var(--spacing-l);
+    }
   }
 </style>

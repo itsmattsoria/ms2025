@@ -77,13 +77,15 @@
       }
     }
 
-    &:not(.contrast-color):not(figcaption) {
+    &:not(.contrast-color) {
       --color-pill-background: var(--color-gray);
       color: var(--color-text);
 
-      &:hover,
-      &:focus-visible {
-        color: var(--color-background);
+      &:not(div):not(figcaption) {
+        &:hover,
+        &:focus-visible {
+          color: var(--color-background);
+        }
       }
     }
 

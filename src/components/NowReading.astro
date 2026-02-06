@@ -1,0 +1,90 @@
+---
+import Image from '../components/CloudImage.astro';
+
+const { book } = Astro.props;
+---
+
+<a href={book.bookLink} target="_blank" class="now-reading">
+  <div class="now-reading-content">
+    <div class="book-cover noisy-border">
+      <div class="book-cover-wrapper">
+        <Image url={book.image[0].url} width={book.image[0].width} height={book.image[0].height} />
+      </div>
+    </div>
+
+    <div class="book-info">
+      <h2 class="label pill">Now Reading</h2>
+      <div class="book-title">
+        <span class="basic-link">{book.bookTitle}</span>
+      </div>
+      <div class="book-author">By {book.author}</div>
+    </div>
+  </div>
+</a>
+
+<style scoped>
+  .now-reading {
+    display: flex;
+    position: relative;
+    text-decoration: none;
+    container: now-reading / inline-size;
+
+    &:hover,
+    &:focus-visible {
+      .book-cover-wrapper {
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  .now-reading-content {
+    display: flex;
+    gap: var(--spacing-s);
+    align-items: flex-start;
+
+    @container now-reading (max-width: 280px) {
+      flex-direction: column;
+    }
+  }
+
+  .book-cover {
+    width: 100%;
+    position: relative;
+    border-radius: 1.5em;
+    corner-shape: squircle;
+    background-color: var(--color-background);
+
+  }
+
+  .book-cover-wrapper {
+    overflow: hidden;
+    position: relative;
+    border-radius: 1.5em;
+    corner-shape: squircle;
+    transition: transform 0.2s ease-out;
+  }
+
+  .book-info {
+    flex-grow: 1;
+    min-width: 180px;
+    max-width: 180px;
+    text-wrap: pretty;
+  }
+
+  .label {
+    color: var(--color-highlight);
+    margin-block-end: var(--spacing-2xs);
+    background-color: oklch(var(--color-parts-highlight) / 20%);
+  }
+
+  .book-title {
+    font-size: var(--step-0);
+  }
+
+  .book-author {
+    font-size: var(--step--1);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-light);
+    margin-block-start: var(--spacing-3xs);
+  }
+</style>

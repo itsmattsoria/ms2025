@@ -33,6 +33,7 @@ function sanitizeTrackName(name: string): string {
     'faggot',
     'dyke',
     'tranny',
+    'retard',
   ];
 
   // Censor curse words
@@ -59,7 +60,6 @@ export async function getRecentTrack(
 ): Promise<LastFMTrack | null> {
   const apiKey = 'c3d5cf45ea0b15fd91993cf6846ab664';
   const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1&extended=1`;
-  console.log(url);
 
   try {
     const response = await fetch(url);
