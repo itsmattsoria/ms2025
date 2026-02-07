@@ -36,7 +36,7 @@ export const JOURNAL_ENTRIES_QUERY = `{
  * Query for fetching journal writing entries with full content (for individual pages)
  */
 export const JOURNAL_ENTRY_FULL_QUERY = `{
-  entries(site: "personal", section: "personalJournal") {
+  entry(site: "personal", section: "personalJournal") {
     id
     title
     slug
@@ -104,6 +104,7 @@ export const JOURNAL_LINKS_QUERY = `{
       sourceAuthor
       note
       externalType
+      rating
       categories(status: ["live"]) {
         title
         status
@@ -142,6 +143,40 @@ export const HOME_PAGE_QUERY = `{
             width
             height
           }
+        }
+      }
+    }
+  }
+}`;
+
+/** Query for fetching pages in the personalPages section */
+export const PERSONAL_PAGES_QUERY = `{
+  entries(site: "personal", section: "personalPages", type: "default") {
+    title
+    slug
+    ... on default_Entry {
+      pageContent {
+        ... on image_Entry {
+          typeHandle
+          image {
+            ... on personal_Asset {
+              alt
+              url
+              title
+              focalPoint
+              width
+              height
+              captionSimple
+            }
+          }
+          blockId
+          sectionClasses
+        }
+        ... on textSection_Entry {
+          typeHandle
+          richText
+          blockId
+          sectionClasses
         }
       }
     }

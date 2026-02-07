@@ -2,15 +2,15 @@
 import Layout from '../../layouts/Layout.astro';
 import Image from '../../components/CloudImage.astro';
 import JournalBlocks from '../../components/JournalBlocks.astro';
-import { getEntries } from '../../utils/craftApi';
+import { getEntry } from '../../utils/craftApi';
 import { JOURNAL_ENTRY_FULL_QUERY } from '../../utils/queries';
 
 export async function getStaticPaths() {
-  const entries = await getEntries(JOURNAL_ENTRY_FULL_QUERY);
-  return entries.map((entry) => ({
+  const entry = await getEntry(JOURNAL_ENTRY_FULL_QUERY);
+  return [{
     params: { slug: entry.slug },
-    props: { entry }, // Pass the full entry data as props
-  }));
+    props: { entry },
+  }];
 }
 
 const { entry } = Astro.props;
@@ -66,7 +66,7 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
     padding-inline: var(--site-gutter);
 
     @media screen and (min-width: 1024px) {
-      grid-template-columns: 1fr 3fr;
+      grid-template-columns: 1fr 2fr;
     }
   }
 

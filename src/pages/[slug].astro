@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Image from '../components/CloudImage.astro';
+import pageBlocks from '../components/PageBlocks.astro';
+import { getEntries } from '../utils/craftApi';
+import { PERSONAL_PAGES_QUERY } from '../utils/queries';
+
+export async function getStaticPaths() {
+  const entries = await getEntries(PERSONAL_PAGES_QUERY);
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<Layout title={'Matt Soria: ' + entry.title}>
+  <section class="section px-site-gutter">
+    <div class="card noisy-border prose-container">
+      <h1 class="text-headline">{entry.title}</h1>
+    </div>
+  </section>
+</Layout>

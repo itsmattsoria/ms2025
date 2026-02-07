@@ -19,15 +19,20 @@ const postsByYear = posts.reduce((acc, post) => {
 
 <Layout title={title} bodyClass="">
   <div class="px-site-gutter layout">
-    <header class="card noisy-border">
+    <header>
       <h1 class="text-h1">{title}</h1>
-      <p>{description}</p>
+      <div class="card noisy-border">
+        <p>{description}</p>
+      </div>
     </header>
 
     <ol class="posts-list" role="list">
       { Object.entries(postsByYear).sort((a, b) => b[0] - a[0]).map(([year, posts]) =>
         <li key={year}>
-          <h2 class="year text-h2">{year}</h2>
+          <div class="year">
+            <h2 class="text-h2">{year}</h2>
+            <div class="text-label">({posts.length})</div>
+          </div>
           <ol role="list">
             { posts.map((post, index) =>
               <li key={post.id}>
@@ -43,9 +48,20 @@ const postsByYear = posts.reduce((acc, post) => {
 
 <style scoped>
 	header {
+    display: flex;
+    gap: var(--spacing-m);
+    flex-direction: column;
+
     @media screen and (min-width: 1024px) {
       position: sticky;
       top: var(--site-gutter);
+      &::before {
+        content: '';
+        z-index: -1;
+        inset: -0.5rem;
+        position: absolute;
+        background-color: var(--color-background);
+      }
     }
   }
 
@@ -71,8 +87,24 @@ const postsByYear = posts.reduce((acc, post) => {
     grid-area: posts;
     list-style-type: none;
 
-    h2 {
-      margin-block-end: var(--spacing-s);
+    .year {
+      z-index: 1;
+      display: flex;
+      align-items: top;
+      position: relative;
+      gap: var(--spacing-3xs);
+      background-color: var(--color-background);
+      border-bottom: var(--color-border) 1px solid;
+      padding-block: calc(var(--spacing-s) + var(--site-gutter)) var(--spacing-s);
+
+      @media screen and (min-width: 1024px) {
+        top: 0;
+        position: sticky;
+      }
+    }
+
+    article.-first {
+      border-top: none;
     }
 
     > li + li {

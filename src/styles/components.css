@@ -173,7 +173,7 @@
     }
 
     > * + * {
-      margin-block-start: var(--spacing-2xs);
+      margin-block-start: var(--spacing-3xs);
     }
 
     h2 {
@@ -182,8 +182,14 @@
   }
   .article-meta {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-2xs);
+
+    .rating,
+    time {
+      flex-basis: 100%;
+    }
 
     * {
       line-height: 1;

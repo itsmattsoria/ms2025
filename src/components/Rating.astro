@@ -1,0 +1,40 @@
+---
+const { rating } = Astro.props;
+
+let stars = '';
+
+for (let i = 0; i < rating; i++) {
+  stars += '⭐';
+}
+---
+
+<div class="rating">
+  <div class="visually-hidden">rated: {rating} out of 5 stars</div>
+  <div class="stars-foreground" set:html={stars} aria-hidden="true"></div>
+  <div class="stars-background" aria-hidden="true">⭐⭐⭐⭐⭐</div>
+</div>
+
+<style scoped>
+  .rating {
+    font-size: 1rem;
+    position: relative;
+
+    > * {
+      line-height: 1.3;
+      letter-spacing: 0.1em;
+    }
+
+    .stars-foreground {
+      position: absolute;
+      color: transparent;
+      background-clip: text;
+      background-color: #D6B300;
+    }
+
+    .stars-background {
+      color: transparent;
+      background-clip: text;
+      background-color: var(--color-highlight);
+    }
+  }
+</style>

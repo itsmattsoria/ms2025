@@ -29,27 +29,23 @@ const nav = await getEntries(NAVIGATION_QUERY);
 
   <div class="sfx-container">
     <audio src="/sfx/wheeeeee.m4a" preload="auto"></audio>
-    <audio src="/sfx/wow.m4a" preload="auto"></audio>
   </div>
 </header>
 
 <script>
   const sfxContainer = document.querySelector('.sfx-container');
-  const sfx = sfxContainer.querySelectorAll('audio');
+  const sfx = sfxContainer.querySelector('audio');
   const titleSmiley = document.getElementById('title-smiley');
-  if (titleSmiley) {
-    titleSmiley.addEventListener('mouseenter', () => {
-      const randomIndex = Math.floor(Math.random() * sfx.length);
-      sfx[randomIndex].play();
-    });
-  }
+  titleSmiley.addEventListener('mouseenter', () => {
+    sfx.play();
+  });
 </script>
 
 <style scoped>
   .site-header {
     view-transition-name: header;
     padding-inline: var(--site-gutter);
-    padding-block: var(--spacing-xs) var(--spacing-3xl);
+    padding-block: var(--spacing-xs) var(--spacing-2xl);
   }
   
   .site-header-content {
