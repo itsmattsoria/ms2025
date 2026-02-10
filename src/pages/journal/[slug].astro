@@ -1,16 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Image from '../../components/CloudImage.astro';
+import ArrowLeft from '../../assets/arrow-left.svg';
 import JournalBlocks from '../../components/JournalBlocks.astro';
-import { getEntry } from '../../utils/craftApi';
+import { getEntries } from '../../utils/craftApi';
 import { JOURNAL_ENTRY_FULL_QUERY } from '../../utils/queries';
 
 export async function getStaticPaths() {
-  const entry = await getEntry(JOURNAL_ENTRY_FULL_QUERY);
-  return [{
+  const entries = await getEntries(JOURNAL_ENTRY_FULL_QUERY);
+  return entries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
-  }];
+  }));
 }
 
 const { entry } = Astro.props;
@@ -25,7 +26,7 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 <Layout title={'Matt Soria: ' + entry.title}>
   <div class="container">
     <header>
-      <div class="breadcrumbs"><a href="/journal" class="pill">&larr;journal</a></div>
+      <div class="breadcrumbs"><a href="/journal" class="pill"><ArrowLeft />journal</a></div>
       <h1 class="text-h1">{entry.title}</h1>
       <div class="article-meta">
         <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
@@ -51,6 +52,12 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
         </div>
       )}
 
+      { entry.note && (
+        <div class="entry-note">
+          <div class="rich-text" set:html={entry.note.rawHtml} />
+        </div>
+      )}
+
       { entry.journalContent.map((block) => (
         <JournalBlocks block={block} />
       ))}
@@ -71,13 +78,26 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
   }
 
   header {
+    position: relative;
+
     > * + * {
-      margin-block-start: var(--spacing-2xs);
+      margin-block-start: var(--spacing-s);
     }
 
     @media screen and (min-width: 1024px) {
       position: sticky;
-      inset-block-start: var(--spacing-l);
+      inset-block-start: var(--spacing-xl);
+
+      h1 {
+        margin-block-start: 0;
+      }
+
+      .breadcrumbs {
+        position: absolute;
+        inset-inline-start: 0;
+        transform: translateY(-100%);
+        inset-block-start: calc(var(--spacing-s) * -1);
+      }
     }
   }
 
@@ -85,5 +105,18 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
     position: relative;
     border-radius: var(--radius);
     margin-block-end: var(--spacing-l);
+  }
+
+  .entry-note {
+    max-width: 65ch;
+    color: var(--color-text);
+    padding: var(--spacing-s);
+    border-radius: var(--radius);
+    margin-block-end: var(--spacing-l);
+    background-color: var(--color-gray);
+
+    * {
+      font-size: var(--step--1);
+    }
   }
 </style>

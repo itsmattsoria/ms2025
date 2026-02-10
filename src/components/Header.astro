@@ -28,16 +28,23 @@ const nav = await getEntries(NAVIGATION_QUERY);
   </div>
 
   <div class="sfx-container">
-    <audio src="/sfx/wheeeeee.m4a" preload="auto"></audio>
+    <audio id="header-smiley-hover-sfx" src="/sfx/wheeeeee.m4a" preload="auto"></audio>
+    <audio id="title-click-sfx" src="/sfx/ooh.m4a" preload="auto"></audio>
+    <audio id="footer-smiley-hover-sfx" src="/sfx/hello.m4a" preload="auto"></audio>
   </div>
 </header>
 
 <script>
   const sfxContainer = document.querySelector('.sfx-container');
-  const sfx = sfxContainer.querySelector('audio');
+  const headerSmileyHoverSfx = sfxContainer.querySelector('#header-smiley-hover-sfx');
+  const titleClickSfx = sfxContainer?.querySelector('#title-click-sfx');
   const titleSmiley = document.getElementById('title-smiley');
-  titleSmiley.addEventListener('mouseenter', () => {
-    sfx.play();
+  const title = document.getElementById('site-title');
+  title?.addEventListener('mousedown', () => {
+    titleClickSfx?.play();
+  });
+  titleSmiley?.addEventListener('mouseenter', () => {
+    headerSmileyHoverSfx?.play();
   });
 </script>
 
@@ -85,6 +92,7 @@ const nav = await getEntries(NAVIGATION_QUERY);
       &:focus-visible {
         text-decoration: none;
         filter: url("#distortionFilter");
+        transform: translate(-0.05%, -0.05%);
       }
     }
 
@@ -119,16 +127,20 @@ const nav = await getEntries(NAVIGATION_QUERY);
     margin-block-end: 0;
 
     a {
-      font-weight: 400;
       text-transform: lowercase;
+      font-weight: var(--font-weight-light);
     }
 
+    a:hover,
+    a:focus-visible,
     a[aria-current="page"] {
       text-decoration: none;
+      font-weight: var(--font-weight-regular);
     }
 
     ul {
       display: flex;
+      flex-wrap: wrap;
       column-gap: var(--spacing-xs);
     }
   }

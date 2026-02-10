@@ -39,9 +39,9 @@
   }
 
   /* Icon Styles */
-  .icon-external {
-    position: relative;
-    transform: translateY(-0.1em);
+  .icon-external-container {
+    display: inline-block;
+    transform: translate(-0.2em, -0.4em);
   }
 
   /* Pill Styles */
@@ -54,6 +54,7 @@
     display: inline-block;
     text-decoration: none;
     corner-shape: squircle;
+    gap: var(--spacing-3xs);
     transform-origin: center;
     text-transform: lowercase;
     font-size: var(--step--1);
@@ -84,7 +85,7 @@
       &:is(a, button) {
         &:hover,
         &:focus-visible {
-          color: var(--color-background);
+          color: var(--color-light);
         }
       }
     }
@@ -109,6 +110,7 @@
       &:focus-visible {
         svg {
           filter: url('#distortionFilter');
+          transform: translateY(-0.05em);
         }
       }
     }

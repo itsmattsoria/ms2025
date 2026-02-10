@@ -104,7 +104,7 @@ End, LQIP-to-Base64
     <img
       class={nscClass}
       src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
-      alt={alt}
+      alt={alt ?? ''}
       width={width}
       height={height}
     />
@@ -113,7 +113,7 @@ End, LQIP-to-Base64
     class={imgClass}
     data-src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
     data-srcset={Srcset}
-    alt={alt}
+    alt={alt ?? ''}
     width={width}
     height={height}
     sizes={dataSzes}

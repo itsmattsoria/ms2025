@@ -31,7 +31,7 @@ const links: FooterLink[] = footer.links ?? [];
               {link.linkField.target === '_blank' && (
                 <>
                   <span class="visually-hidden">.</span>
-                  <span aria-label="Opens in new tab."><Arrow /></span>
+                  <span class="icon-external-container" aria-label="Opens in new tab."><Arrow /></span>
                 </>
               )}
             </a>
@@ -40,7 +40,9 @@ const links: FooterLink[] = footer.links ?? [];
       </ul>
     </div>
     <div class="flex items-center justify-center gap-s mt-l">
-      <Smiley />
+      <div id="footer-smiley">
+        <Smiley />
+      </div>
     </div>
     <div class="fine-print text-meta">
      <p>© {new Date().getFullYear()} Matt Soria</p>
@@ -48,6 +50,14 @@ const links: FooterLink[] = footer.links ?? [];
     </div>
   </div>
 </footer>
+
+<script>
+  const footerSmileySfx = document.querySelector('#footer-smiley-hover-sfx');
+  const footerSmiley = document.getElementById('footer-smiley');
+  footerSmiley?.addEventListener('mouseenter', () => {
+    footerSmileySfx?.play();
+  });
+</script>
 
 <style scoped>
 	.site-footer {
@@ -107,8 +117,11 @@ const links: FooterLink[] = footer.links ?? [];
   }
 
   .smiley {
+    transition: transform 0.2s ease-out, filter 0.2s ease-out;
+
     @media screen and (prefers-reduced-motion: no-preference) {
       &:hover {
+        transform: scale(1.05);
         filter: url("#distortionFilter");
       }
     }

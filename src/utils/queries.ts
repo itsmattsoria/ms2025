@@ -36,12 +36,15 @@ export const JOURNAL_ENTRIES_QUERY = `{
  * Query for fetching journal writing entries with full content (for individual pages)
  */
 export const JOURNAL_ENTRY_FULL_QUERY = `{
-  entry(site: "personal", section: "personalJournal") {
+  entries(site: "personal", section: "personalJournal") {
     id
     title
     slug
     postDate
     ... on journalEntry_Entry {
+      note {
+        rawHtml
+      }
       journalImage {
         ... on personal_Asset {
           alt
