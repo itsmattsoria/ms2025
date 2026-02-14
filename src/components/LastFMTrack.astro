@@ -60,7 +60,7 @@
 
           // Show image or fallback based on check result
           if (shouldBlockArtwork || !track.image) {
-            albumArtEl.innerHTML = `<div class="album-art-fallback"><div><div class="text-label">Album</div>${track.album}</div></div>`;
+            albumArtEl.innerHTML = `<div class="album-art-fallback"><div><div class="text-label">Album:</div>${track.album}</div></div>`;
           } else {
             // Create image with fade-in effect using lazysizes classes
             const imgWrapper = document.createElement('div');
@@ -258,7 +258,7 @@
 
   .status-now-playing {
     color: var(--color-text);
-    background-color: oklch(var(--color-parts-highlight) / 20%);
+    background-color: var(--color-highlight-hover);
   }
 
   .status-recent {

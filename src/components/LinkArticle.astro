@@ -26,7 +26,7 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
     )}
     {post.categories.length > 0 && (
       post.categories.map((category) => (
-        <a href={ '/journal/category/' + category.slug } class="pill">{category.title}</a>
+        <a href={ '/links/category/' + category.slug } class="pill">{category.title}</a>
       ))
     )}
   </div>

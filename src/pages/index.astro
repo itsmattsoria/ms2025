@@ -108,6 +108,18 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 		grid-template-areas: 
 			"intro intro"
 			"portrait media";
+
+		@media screen and (min-width: 1024px) {
+			position: sticky;
+			inset-block-start: var(--spacing-xl);
+			&::before {
+				content: '';
+				z-index: -1;
+				inset: -0.5rem;
+				position: absolute;
+				background-color: var(--color-background);
+			}
+		}
 	}
 
 	.site-intro {

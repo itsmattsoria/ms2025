@@ -190,7 +190,7 @@ export const PERSONAL_PAGES_QUERY = `{
  * Query for fetching journal categories
  */
 export const JOURNAL_CATEGORIES_QUERY = `{
-  entries(site: "personal", section: "personalJournalCategories") {
+  entries(site: "personal", section: "personalCategories") {
     id
     title
     slug
@@ -201,18 +201,18 @@ export const JOURNAL_CATEGORIES_QUERY = `{
  * Query builder for fetching journal entries by category ID
  */
 export const journalEntriesByCategoryQuery = (categoryId: number | string) => `{
-  entries(site: "personal", section: "personalJournal", type: "journal_writing", categories: ["${categoryId}"]) {
+  entries(site: "personal", section: "personalJournal", relatedTo: ["${categoryId}"]) {
     id
     title
     slug
     postDate
-    ... on journal_writing_Entry {
-      category(status: ["live"]) {
+    ... on journalEntry_Entry {
+      categories(status: ["live"]) {
         title
         status
         slug
       }
-      image {
+      journalImage {
         ... on personal_Asset {
           alt
           url
@@ -230,18 +230,18 @@ export const journalEntriesByCategoryQuery = (categoryId: number | string) => `{
 /**
  * Query builder for fetching journal links by category ID
  */
-export const journalLinksByCategoryQuery = (categoryId: number | string) => `{
-  entries(site: "personal", section: "personalJournal", type:"journal_external", categories: ["${categoryId}"]) {
+export const linksEntriesByCategoryQuery = (categoryId: number | string) => `{
+  entries(site: "personal", section: "personalLinks", type:"linkEntry", relatedTo: ["${categoryId}"]) {
     id
     title
     slug
     postDate
-    ... on journal_external_Entry {
+    ... on linkEntry_Entry {
       externalLink
       sourceAuthor
       note
       externalType
-      category(status: ["live"]) {
+      categories(status: ["live"]) {
         title
         status
         slug

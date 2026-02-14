@@ -1,7 +1,7 @@
 ---
 import Journal from '../../../layouts/Journal.astro';
 import { getEntries } from '../../../utils/craftApi';
-import { JOURNAL_CATEGORIES_QUERY, journalEntriesByCategoryQuery } from '../../../utils/queries';
+import { JOURNAL_CATEGORIES_QUERY, linksEntriesByCategoryQuery } from '../../../utils/queries';
 
 export async function getStaticPaths() {
   const entries = await getEntries(JOURNAL_CATEGORIES_QUERY);
@@ -13,8 +13,8 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 
-const posts = await getEntries(journalEntriesByCategoryQuery(entry.id));
+const posts = await getEntries(linksEntriesByCategoryQuery(entry.id));
 
 ---
 
-<Journal title={'Journal: ' + entry.title} description={"Journal entries tagged with '" + entry.title + "'"} posts={posts} />
+<Journal title={'Links: ' + entry.title} description={"Links tagged with '" + entry.title + "'"} posts={posts} />

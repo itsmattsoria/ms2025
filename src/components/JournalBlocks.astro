@@ -4,15 +4,18 @@ import Image from '../components/CloudImage.astro';
 const { block } = Astro.props;
 ---
 
-{ block.typeHandle === 'image' && (
+{ block.typeHandle === 'journalImage' && (
   <figure class="journal-block journal-block--image">
-    { block.image && (
+    { block.journalImage && (
       <Image
-        url={block.image[0].url}
-        width={block.image[0].width}
-        height={block.image[0].height}
-        focalPoint={block.image[0].focalPoint}
+        url={block.journalImage[0].url}
+        width={block.journalImage[0].width}
+        height={block.journalImage[0].height}
+        focalPoint={block.journalImage[0].focalPoint}
       />
+    )}
+    { block.journalImage[0].captionSimple && (
+      <figcaption class="text-label">{block.journalImage[0].captionSimple}</figcaption>
     )}
   </figure>
 )}
@@ -36,5 +39,15 @@ const { block } = Astro.props;
 
   .journal-block--text-section {
     max-width: var(--prose-max-width);
+  }
+
+  .journal-block--image {
+    .image-wrapper {
+      border-radius: var(--radius-sm);
+    }
+
+    figcaption {
+      margin-block-start: var(--spacing-2xs);
+    }
   }
 </style>
