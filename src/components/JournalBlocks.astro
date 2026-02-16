@@ -1,11 +1,12 @@
 ---
 import Image from '../components/CloudImage.astro';
+import { Code } from 'astro:components';
 
 const { block } = Astro.props;
 ---
 
 { block.typeHandle === 'journalImage' && (
-  <figure class="journal-block journal-block--image">
+  <figure class="journal-block journal-block--image" id={block.blockId}>
     { block.journalImage && (
       <Image
         url={block.journalImage[0].url}
@@ -21,18 +22,28 @@ const { block } = Astro.props;
 )}
 
 { block.typeHandle === 'textSection' && (
-  <div class="journal-block journal-block--text-section">
+  <div class="journal-block journal-block--text-section" id={block.blockId}>
     <div set:html={block.richText} class="rich-text"></div>
   </div>
 )}
 
 { block.typeHandle === 'embed' && (
-  <div class="journal-block journal-block--embed">
+  <div class="journal-block journal-block--embed" id={block.blockId}>
     <div set:html={block.embed}></div>
   </div>
 )}
 
+{ block.typeHandle === 'codeBlock' && (
+  <div class="journal-block journal-block--code" id={block.blockId}>
+    <Code code={block.codeBlock} lang={block.codeLanguage ?? 'html'} theme="everforest-dark" />
+  </div>
+)}
+
 <style scoped>
+  .journal-block {
+    max-width: 100%;
+  }
+
   .journal-block + .journal-block {
     margin-block-start: var(--spacing-l);
   }
@@ -48,6 +59,33 @@ const { block } = Astro.props;
 
     figcaption {
       margin-block-start: var(--spacing-2xs);
+    }
+  }
+
+  .journal-block--code {
+    pre {
+      white-space: pre-wrap;
+      corner-shape: squircle;
+      max-width: max-content;
+      padding: var(--spacing-s);
+      border-radius: var(--radius);
+      width: calc(100% + (var(--spacing-xs-s) * 2));
+      margin-inline-start: calc(var(--spacing-xs-s) * -1);
+    }
+
+    code {
+      font-family: var(--font-body);
+    }
+  }
+
+  .journal-block--embed {
+    
+    .cp_embed_wrapper {
+      overflow: hidden;
+      corner-shape: squircle;
+      border-radius: var(--radius);
+      width: calc(100% + (var(--spacing-xs-s)) * 2);
+      margin-inline-start: calc(var(--spacing-xs-s) * -1);
     }
   }
 </style>

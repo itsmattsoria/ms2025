@@ -6,6 +6,7 @@
 @import './typography';
 @import './components.css';
 @import './rich-text.css';
+@import './skip-link.css';
 
 @layer base {
   @view-transition {
@@ -41,7 +42,7 @@
   }
 
   *:focus-visible {
-    outline-offset: 0.35em;
+    outline-offset: 0.15em;
     corner-shape: squircle;
   }
 

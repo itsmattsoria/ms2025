@@ -88,6 +88,13 @@ export const JOURNAL_ENTRY_FULL_QUERY = `{
           blockId
           sectionClasses
         }
+        ... on codeBlock_Entry {
+          typeHandle
+          codeLanguage
+          codeBlock
+          blockId
+          sectionClasses
+        }
       }
     }
   }
