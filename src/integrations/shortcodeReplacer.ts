@@ -16,7 +16,9 @@ function createImageTag(shortcode: string, imagePath: string, alt: string): stri
  */
 export function processHTML(html: string): string {
   // Split HTML into segments to avoid replacing inside sensitive tags
-  const protectedTags = ['script', 'style', 'code', 'pre'];
+  // Order matters: outer tags (pre) must come before inner tags (code)
+  // so nested structures are captured as a single unit
+  const protectedTags = ['pre', 'script', 'style', 'code'];
   
   // Create a map to store protected content
   const protectedContent: Map<string, string> = new Map();
@@ -48,9 +50,10 @@ export function processHTML(html: string): string {
     processedHTML = processedHTML.replaceAll(config.shortcode, imageTag);
   }
   
-  // Restore protected content
+  // Restore protected content (use function replacement to avoid
+  // interpreting $ characters in code as special replacement patterns)
   for (const [placeholder, content] of protectedContent) {
-    processedHTML = processedHTML.replace(placeholder, content);
+    processedHTML = processedHTML.replace(placeholder, () => content);
   }
   
   return processedHTML;
