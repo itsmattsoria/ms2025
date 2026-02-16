@@ -353,6 +353,7 @@
     margin-block-start: 1em;
   }
 
+  .rich-text a,
   a {
     --basic-link-primary: var(--color-light);
     --basic-link-secondary: oklch(var(--color-parts-light) / 20%);

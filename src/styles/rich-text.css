@@ -1,4 +1,7 @@
 .rich-text {
+  --basic-link-primary: var(--color-highlight);
+  --basic-link-secondary: var(--color-highlight-hover);
+
   > * + * {
     margin-block-start: var(--spacing-s);
   }
@@ -28,8 +31,6 @@
   }
 
   a {
-    --basic-link-primary: var(--color-highlight);
-    --basic-link-secondary: var(--color-highlight-hover);
     text-decoration: none;
     background-color: transparent;
     background-image:
