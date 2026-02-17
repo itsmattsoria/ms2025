@@ -8,7 +8,11 @@ import shortcodeReplacer from './src/integrations/shortcodeReplacer.ts';
 export default defineConfig({
   site: 'https://mattsoria.com',
   integrations: [shortcodeReplacer()],
-  vite: {
-    plugins: [tailwindcss()]
-  }
+  redirects: {
+    '/adventure': '/photography',
+    '/nature': '/photography',
+    '/travel': '/photography',
+    '/people': '/photography',
+    about: '/',
+  },
 });
