@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import PostArticle from '../components/PostArticle.astro';
 import LinkArticle from '../components/LinkArticle.astro';
+import RSSIcon from '../assets/rss.svg';
 
 const { title, description, posts, type } = Astro.props;
 
@@ -23,6 +24,7 @@ const postsByYear = posts.reduce((acc, post) => {
       <h1 class="text-h1">{title}</h1>
       <div class="card noisy-border">
         <p>{description}</p>
+        <p><RSSIcon /> <a href={type === 'post' ? '/journal/feed.xml' : '/links/feed.xml'} class="basic-link">RSS Feed</a></p>
       </div>
     </header>
 

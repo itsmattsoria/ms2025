@@ -8,6 +8,7 @@ import shortcodeReplacer from './src/integrations/shortcodeReplacer.ts';
 export default defineConfig({
   site: 'https://mattsoria.com',
   integrations: [shortcodeReplacer()],
+  trailingSlash: 'never',
   redirects: {
     '/adventure': '/photography',
     '/nature': '/photography',

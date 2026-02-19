@@ -36,7 +36,7 @@ export const JOURNAL_ENTRIES_QUERY = `{
  * Query for fetching journal writing entries with full content (for individual pages)
  */
 export const JOURNAL_ENTRY_FULL_QUERY = `{
-  entries(site: "personal", section: "personalJournal") {
+  entries(site: "personal", section: "personalJournal", status: ["live"]) {
     id
     title
     slug
@@ -104,7 +104,7 @@ export const JOURNAL_ENTRY_FULL_QUERY = `{
  * Query for fetching link entries
  */
 export const JOURNAL_LINKS_QUERY = `{
-  entries(site: "personal", section: "personalLinks") {
+  entries(site: "personal", section: "personalLinks", status: ["live"]) {
     id
     title
     slug
