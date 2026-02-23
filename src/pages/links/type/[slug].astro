@@ -1,0 +1,29 @@
+---
+import Journal from '../../../layouts/Journal.astro';
+import { getEntries } from '../../../utils/craftApi';
+import { JOURNAL_LINKS_QUERY, linksEntriesByTypeQuery } from '../../../utils/queries';
+
+
+
+export async function getStaticPaths() {
+  const linkTypes: string[] = [];
+  const entries = await getEntries(JOURNAL_LINKS_QUERY);
+
+  entries.forEach((entry) => {
+    if (!linkTypes.includes(entry.externalType)) {
+      linkTypes.push(entry.externalType);
+    }
+  });
+
+  return linkTypes.map((entry) => ({
+    params: { slug: entry },
+    props: { slug: entry, title: entry.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase()) },
+  }));
+}
+
+const { slug, title } = Astro.props;
+
+const posts = await getEntries(linksEntriesByTypeQuery(slug));
+---
+
+<Journal title={'Links: ' + title } description={"All " + title + " links."} posts={posts} />

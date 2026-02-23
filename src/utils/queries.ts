@@ -258,6 +258,29 @@ export const linksEntriesByCategoryQuery = (categoryId: number | string) => `{
 }`;
 
 /**
+ * Query builder for fetching journal links by type
+ */
+export const linksEntriesByTypeQuery = (type: string) => `{
+  entries(site: "personal", section: "personalLinks", type:"linkEntry", externalType: "${type}") {
+    id
+    title
+    slug
+    postDate
+    ... on linkEntry_Entry {
+      externalLink
+      sourceAuthor
+      note
+      externalType
+      categories(status: ["live"]) {
+        title
+        status
+        slug
+      }
+    }
+  }
+}`;
+
+/**
  * Query for fetching navigation entries
  */
 export const NAVIGATION_QUERY = `{

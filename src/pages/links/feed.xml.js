@@ -3,7 +3,7 @@ import sanitizeHtml from 'sanitize-html';
 import { journalLinks } from '../../utils/data';
 
 const posts = journalLinks;
-console.log(posts);
+
 export function GET(context) {
   return rss({
     title: "Matt Soria's Links",
