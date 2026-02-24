@@ -1,0 +1,14 @@
+@import '../src/styles/theme.css';
+@import '../src/styles/reset.css';
+
+body {
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-regular);
+  background-color: var(--color-background);
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.1em;
+}
