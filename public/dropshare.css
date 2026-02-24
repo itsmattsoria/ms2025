@@ -1,14 +1,57 @@
-@import '../src/styles/theme.css';
-@import '../src/styles/reset.css';
+:root {
+  --color-text: oklch(0.1577 0.0176 81.33);
+  --color-background: oklch(0.9633 0.0176 81.33);
+  --color-parts-highlight: 0.5568 0.0743 143.31;
+  --color-highlight: oklch(var(--color-parts-highlight) / 1); /* #597f57 */
+  --color-highlight-hover: oklch(var(--color-parts-highlight) / 20%);
+  --basic-link-primary: var(--color-highlight);
+  --basic-link-secondary: var(--color-highlight-hover);
+}
 
 body {
+  font-weight: 400;
   color: var(--color-text);
-  font-family: var(--font-body);
-  font-weight: var(--font-weight-regular);
+  font-family: 'VCTR Mono', monospace;
   background-color: var(--color-background);
 }
 
 a {
-  color: inherit;
-  text-underline-offset: 0.1em;
+  text-decoration: none;
+  background-color: transparent;
+  background-image:
+    linear-gradient(
+      to bottom,
+      var(--basic-link-secondary),
+      var(--basic-link-secondary)
+    ),
+    linear-gradient(
+      to bottom,
+      var(--basic-link-primary),
+      var(--basic-link-primary)
+    );
+  background-repeat: no-repeat;
+  background-size:
+    100% 35%,
+    100% 8%;
+  background-position: bottom;
+  transition: background-size 0.05s ease-out;
+
+  &:hover,
+  &:focus-visible,
+  &[aria-current='page'] {
+    background-size:
+      100% 100%,
+      100% 8%;
+    text-decoration-color: var(--basic-link-primary);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: oklch(0.9633 0.0176 81.33);
+    --color-background: oklch(0.2075 0.0086 81.33);
+    --color-parts-highlight: 0.5568 0.0743 143.31;
+    --color-highlight: oklch(var(--color-parts-highlight) / 1);
+    --color-highlight-hover: oklch(var(--color-parts-highlight) / 50%);
+  }
 }
