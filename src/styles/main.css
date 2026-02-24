@@ -20,8 +20,8 @@
     position: relative;
     color: var(--color-text);
     font-family: var(--font-body);
-    font-weight: var(--font-weight-light);
     hanging-punctuation: first allow-end;
+    font-weight: var(--font-weight-light);
     background-color: var(--color-background);
   }
 
