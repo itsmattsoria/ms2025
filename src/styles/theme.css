@@ -25,7 +25,7 @@
     --step-5: clamp(2.7994rem, 2.384rem + 1.8461vw, 3.8147rem);
 
     /* Spacing */
-    /* @link https://utopia.fyi/space/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+    /* @link https://utopia.fyi/space/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6|8,xl-4xl&g=s,l,xl,12 */
     --spacing-3xs: clamp(0.3125rem, 0.3125rem + 0vw, 0.3125rem);
     --spacing-2xs: clamp(0.5625rem, 0.5369rem + 0.1136vw, 0.625rem);
     --spacing-xs: clamp(0.875rem, 0.8494rem + 0.1136vw, 0.9375rem);
@@ -46,9 +46,11 @@
     --spacing-l-xl: clamp(2.25rem, 1.6364rem + 2.7273vw, 3.75rem);
     --spacing-xl-2xl: clamp(3.375rem, 2.7102rem + 2.9545vw, 5rem);
     --spacing-2xl-3xl: clamp(4.5rem, 3.2727rem + 5.4545vw, 7.5rem);
+    --space-3xl-4xl: clamp(6.75rem, 5.4205rem + 5.9091vw, 10rem);
 
     /* Custom pairs */
     --spacing-s-l: clamp(1.125rem, 0.5625rem + 2.5vw, 2.5rem);
+    --spacing-xl-4xl: clamp(3.375rem, 0.6648rem + 12.0455vw, 10rem);
 
     /* Custom spacing */
     --site-gutter: var(--spacing-m-l);
@@ -94,7 +96,8 @@
     --noisy-border-opacity: 1;
     --noisy-border-blend-mode: darken;
     --noisy-border-filter: contrast(500%) brightness(130%) saturate(27%);
-    --noisy-border-background: linear-gradient(
+    --noisy-border-background:
+      linear-gradient(
         0deg,
         oklch(var(--color-parts-background) / 0) 70%,
         oklch(var(--color-parts-background) / 0.7)
@@ -124,7 +127,8 @@
       --noisy-border-opacity: 0.8;
       --noisy-border-blend-mode: screen;
       --noisy-border-filter: contrast(530%) brightness(100%) saturate(50%);
-      --noisy-border-background: linear-gradient(
+      --noisy-border-background:
+        linear-gradient(
           0deg,
           oklch(var(--color-parts-background) / 0) 70%,
           oklch(var(--color-parts-background) / 0.7)
