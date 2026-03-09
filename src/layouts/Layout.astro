@@ -34,18 +34,15 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 	<meta name="description" content="Photographer and Web Developer from Chicago. Adventure, Lifestyle, Travel and Editorial Photography. Specializing in Front-end Development.">
 	<meta property="og:title" content="Matt Soria | photography + web development">
 	<meta property="og:url" content="https://www.mattsoria.com/">
-	
+</head>
+<body class={fullBodyClass}>
 	<script is:inline>
 		if (
-		localStorage.getItem("color-mode") === "dark" ||
-		(window.matchMedia("(prefers-color-scheme: dark)").matches &&
-		!localStorage.getItem("color-mode"))
-		) {
+		localStorage.getItem("color-mode") === "dark") {
 			document.documentElement.setAttribute("data-color-mode", "dark");
 		}
 	</script>
-</head>
-<body class={fullBodyClass}>
+	
 	<Header />
 	
 	<main id="site-content" class="site-content">

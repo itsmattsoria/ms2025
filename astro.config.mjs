@@ -6,7 +6,7 @@ import shortcodeReplacer from './src/integrations/shortcodeReplacer.ts';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mattsoria.com',
+  site: 'https://www.mattsoria.com',
   integrations: [shortcodeReplacer()],
   trailingSlash: 'never',
   redirects: {
@@ -15,5 +15,7 @@ export default defineConfig({
     '/travel': '/photography',
     '/people': '/photography',
     about: '/',
+    '/feed.xml': '/journal/feed.xml',
+    '/rss': '/journal/feed.xml',
   },
 });
