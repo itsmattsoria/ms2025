@@ -14,16 +14,34 @@ import MoonIcon from '../assets/moon.svg';
 </div>
 
 <script is:inline>
-function switchLight() {
-	document.documentElement.dataset.colorMode = "light";
-	localStorage.setItem("color-mode", "light");
-}
+  function switchLight() {
+    // Fallback for unsupported browsers
+    if (!document.startViewTransition) {
+      document.documentElement.dataset.colorMode = "light";
+      localStorage.setItem("color-mode", "light");
+      return;
+    }
 
-function switchDark() {
-	document.documentElement.dataset.colorMode = "dark";
-	localStorage.setItem("color-mode", "dark");
-}
-// Doing the actual check on page load in the head in Layout.astro for fastest reaction time
+    document.startViewTransition(() => {
+      document.documentElement.dataset.colorMode = "light";
+      localStorage.setItem("color-mode", "light");
+    });
+  }
+
+  function switchDark() {
+    // Fallback for unsupported browsers
+    if (!document.startViewTransition) {
+      document.documentElement.dataset.colorMode = "dark";
+      localStorage.setItem("color-mode", "dark");
+      return;
+    }
+
+    document.startViewTransition(() => {
+      document.documentElement.dataset.colorMode = "dark";
+      localStorage.setItem("color-mode", "dark");
+    });
+  }
+  // Doing the actual check on page load in the head in Layout.astro for fastest reaction time
 </script>
 
 <style scoped>

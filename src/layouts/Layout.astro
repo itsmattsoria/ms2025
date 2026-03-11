@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from "astro:transitions";
+
 import "../styles/main.css";
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -23,7 +25,7 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 	<!-- Preloads -->
 	<link rel="preload" href="/fonts/TAYWalkout.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="/fonts/VCTRMonov0.12-Regular.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" href="/fonts/webfonts.css" media="print" onload="this.media='all'; this.onload=null;">
+	<link rel="stylesheet" href="/fonts/webfonts.css" media="all" onload="this.media='all'; this.onload=null;">
 	
 	<link rel="shortcut icon" type="image/ico" href="/favicon.png">
 	
@@ -34,6 +36,13 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 	<meta name="description" content="Photographer and Web Developer from Chicago. Adventure, Lifestyle, Travel and Editorial Photography. Specializing in Front-end Development.">
 	<meta property="og:title" content="Matt Soria | photography + web development">
 	<meta property="og:url" content="https://www.mattsoria.com/">
+
+	<ClientRouter />
+	<style>
+		::view-transition-group(root) {
+			animation-duration: 0.2s;
+		}
+	</style>
 </head>
 <body class={fullBodyClass}>
 	<script is:inline>
@@ -43,13 +52,13 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 		}
 	</script>
 	
-	<Header />
+	<Header transition:persist />
 	
 	<main id="site-content" class="site-content">
 		<slot />
 	</main>
 	
-	<Footer />
+	<Footer transition:persist />
 	
 	<!-- credit: https://kirgroup.net/blog/2025/07/21-SVG-Hand-Drawing-without-js.html -->
 		<svg id="filter-svg" style="position: absolute; width: 0px; height: 0px;" xmlns="http://www.w3.org/2000/svg" version="1.1" width="400" height="400" viewBox="0 0 400 400">
