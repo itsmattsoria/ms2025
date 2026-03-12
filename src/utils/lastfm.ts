@@ -105,7 +105,6 @@ export async function checkNSFWTag(
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
 
     // Check if tags exist and are in an array
     const tags = data.tags?.tag;

@@ -11,14 +11,14 @@ const nav = await getEntries(NAVIGATION_QUERY);
 <header class="site-header">
   <a href="#site-content" class="skip-link">Skip to content</a>
   <div class="site-header-content">
-    <a href="/" id="site-title" class="site-title"><span id="title-smiley">
+    <a href="/" id="site-title" class="site-title" data-astro-prefetch><span id="title-smiley">
       <Smiley />
     </span> matt soria</a>
     <div class="site-nav-container">
       <nav class="site-nav">
         <ul role="list">
           {nav.map((item) => (
-            <li><a href={ '/' + item.entryRef[0].slug} aria-current={pathname.replace('/', '') === item.entryRef[0].slug ? 'page' : null } class="basic-link">{item.entryRef[0].title}</a></li>
+            <li><a href={ '/' + item.entryRef[0].slug} aria-current={pathname.replace('/', '') === item.entryRef[0].slug ? 'page' : null } class="basic-link" data-astro-prefetch>{item.entryRef[0].title}</a></li>
           ))}
         </ul>
       </nav>

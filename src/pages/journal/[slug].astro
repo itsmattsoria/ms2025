@@ -26,13 +26,13 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
 <Layout title={'Matt Soria: ' + entry.title}>
   <div class="container">
     <header>
-      <div class="breadcrumbs"><a href="/journal" class="pill"><ArrowLeft />journal</a></div>
+      <div class="breadcrumbs"><a href="/journal" class="pill" data-astro-prefetch><ArrowLeft />journal</a></div>
       <h1 class="text-h1">{entry.title}</h1>
       <div class="article-meta">
         <time datetime={ formattedDate } class="text-label">{ formattedDate }</time>
         { entry.categories.length > 0 && (
           entry.categories.map((category) => (
-            <a href={ '/journal/category/' + category.slug } class="pill">{category.title}</a>
+            <a href={ '/journal/category/' + category.slug } class="pill" data-astro-prefetch>{category.title}</a>
           ))
         )}
       </div>

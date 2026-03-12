@@ -8,10 +8,6 @@ export default defineConfig({
   site: 'https://www.mattsoria.com',
   integrations: [shortcodeReplacer()],
   trailingSlash: 'never',
-  prefetch: {
-    prefetchAll: true,
-    defaultStrategy: 'hover',
-  },
   redirects: {
     '/adventure': '/photography',
     '/nature': '/photography',
