@@ -14,27 +14,7 @@ export interface LastFMTrack {
  * Sanitize the track name to keep it PG
  */
 function sanitizeTrackName(name: string): string {
-  const curseWords = [
-    'fuck',
-    'shit',
-    'bitch',
-    'cunt',
-    'cock',
-    'dick',
-    'asshole',
-    'ass',
-    'pussy',
-    'bastard',
-    'nigger',
-    'nigga',
-    'cum',
-    'titties',
-    'whore',
-    'faggot',
-    'dyke',
-    'tranny',
-    'retard',
-  ];
+  const curseWords = import.meta.env.PUBLIC_CURSE_WORDS.split(',');
 
   // Censor curse words
   return name.replace(new RegExp(`(${curseWords.join('|')})`, 'gi'), match => {
