@@ -18,17 +18,7 @@ function sanitizeTrackName(name: string): string {
 
   // Censor curse words
   return name.replace(new RegExp(`(${curseWords.join('|')})`, 'gi'), match => {
-    if (match.length <= 3) {
-      // For 3 or fewer characters, replace all but the first letter
-      return match.charAt(0) + '*'.repeat(match.length - 1);
-    } else {
-      // For 4+ characters, keep first and last, replace middle
-      return (
-        match.charAt(0) +
-        '*'.repeat(match.length - 2) +
-        match.charAt(match.length - 1)
-      );
-    }
+    return '*'.repeat(match.length);
   });
 }
 
