@@ -16,8 +16,11 @@ export interface LastFMTrack {
 function sanitizeTrackName(name: string): string {
   const curseWords = import.meta.env.PUBLIC_CURSE_WORDS.split(',');
 
-  // Censor curse words
-  return name.replace(new RegExp(`(${curseWords.join('|')})`, 'gi'), match => {
+  // Create a regex pattern that matches whole words only
+  // \b = word boundary (start/end of word)
+  const pattern = new RegExp(`\\b(${curseWords.join('|')})\\b`, 'gi');
+
+  return name.replace(pattern, match => {
     return '*'.repeat(match.length);
   });
 }
