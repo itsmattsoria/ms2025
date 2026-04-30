@@ -145,6 +145,7 @@ export const HOME_PAGE_QUERY = `{
       }
       nowReading {
         bookTitle
+        bookLink
         author
         image {
           ... on personal_Asset {
