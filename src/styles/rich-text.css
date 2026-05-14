@@ -30,6 +30,10 @@
     font-size: var(--step-0);
   }
 
+  strong {
+    font-weight: var(--font-weight-regular);
+  }
+
   a {
     text-decoration: none;
     background-color: transparent;
