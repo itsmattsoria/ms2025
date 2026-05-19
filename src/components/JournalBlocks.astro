@@ -29,6 +29,7 @@ const { block } = Astro.props;
         url={block.video[0].url}
         width={block.video[0].width}
         height={block.video[0].height}
+        aspectRatio={block.video[0].aspectRatio}
       />
     )}
     { block.video[0].captionSimple && (
@@ -70,8 +71,7 @@ const { block } = Astro.props;
 
   .journal-block--image,
   .journal-block--video {
-    .image-wrapper,
-    .video-wrapper {
+    .image-wrapper {
       overflow: hidden;
       border-radius: var(--radius-sm);
     }

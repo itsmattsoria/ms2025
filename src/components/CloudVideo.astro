@@ -1,17 +1,28 @@
 ---
 import { CldVideoPlayer } from 'astro-cloudinary';
 
-const { url } = Astro.props;
+const { url, aspectRatio } = Astro.props;
 
-const id = url.replace('https://res.cloudinary.com/dblidlnrc/video/upload/', '');
+const width = aspectRatio ? aspectRatio.split('/')[0] : '1200';
+const height = aspectRatio ? aspectRatio.split('/')[1] : '675';
+const aspectRatioValue = aspectRatio ? aspectRatio : '16/9';
 ---
 
 <div class="video-wrapper">
   <CldVideoPlayer
-    src={id}
+    src={url}
     id={'video-' + Math.random().toString(36).substring(2, 15)}
-    width="1200"
-    height="675"
+    width={width}
+    height={height}
     logo={false}
   />
 </div>
+
+<style scoped define:vars={{ aspectRatioValue }}>
+  .video-wrapper {
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    aspect-ratio: var(--aspectRatioValue);
+    background-color: var(--color-highlight);
+  }
+</style>

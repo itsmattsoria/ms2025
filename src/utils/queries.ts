@@ -90,6 +90,7 @@ export const JOURNAL_ENTRY_FULL_QUERY = `{
               title
               width
               height
+              aspectRatio
               captionSimple
             }
           }
