@@ -64,12 +64,30 @@ export const JOURNAL_ENTRY_FULL_QUERY = `{
       journalContent {
         ... on journalImage_Entry {
           typeHandle
+          blockId
+          sectionClasses
           journalImage {
             ... on personal_Asset {
               alt
               url
               title
               focalPoint
+              width
+              height
+              captionSimple
+            }
+          }
+        }
+        ... on video_Entry {
+          typeHandle
+          blockId
+          sectionClasses
+        	video {
+            ... on personal_Asset {
+              url
+              alt
+              id
+              title
               width
               height
               captionSimple

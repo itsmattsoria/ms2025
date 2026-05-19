@@ -1,5 +1,6 @@
 ---
 import Image from '../components/CloudImage.astro';
+import Video from '../components/CloudVideo.astro';
 import { Code } from 'astro:components';
 
 const { block } = Astro.props;
@@ -17,6 +18,21 @@ const { block } = Astro.props;
     )}
     { block.journalImage[0].captionSimple && (
       <figcaption class="text-label">{block.journalImage[0].captionSimple}</figcaption>
+    )}
+  </figure>
+)}
+
+{ block.typeHandle === 'video' && (
+  <figure class="journal-block journal-block--video" id={block.blockId}>
+    { block.video && (
+      <Video
+        url={block.video[0].url}
+        width={block.video[0].width}
+        height={block.video[0].height}
+      />
+    )}
+    { block.video[0].captionSimple && (
+      <figcaption class="text-label">{block.video[0].captionSimple}</figcaption>
     )}
   </figure>
 )}
@@ -52,8 +68,11 @@ const { block } = Astro.props;
     max-width: var(--prose-max-width);
   }
 
-  .journal-block--image {
-    .image-wrapper {
+  .journal-block--image,
+  .journal-block--video {
+    .image-wrapper,
+    .video-wrapper {
+      overflow: hidden;
       border-radius: var(--radius-sm);
     }
 

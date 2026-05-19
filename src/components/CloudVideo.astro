@@ -1,0 +1,17 @@
+---
+import { CldVideoPlayer } from 'astro-cloudinary';
+
+const { url } = Astro.props;
+
+const id = url.replace('https://res.cloudinary.com/dblidlnrc/video/upload/', '');
+---
+
+<div class="video-wrapper">
+  <CldVideoPlayer
+    src={id}
+    id={'video-' + Math.random().toString(36).substring(2, 15)}
+    width="1200"
+    height="675"
+    logo={false}
+  />
+</div>
