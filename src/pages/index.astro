@@ -4,6 +4,7 @@ import { getEntry } from '../utils/craftApi';
 import { HOME_PAGE_QUERY } from '../utils/queries';
 import { journalEntries, journalLinks } from '../utils/data';
 import LastFMTrack from '../components/LastFMTrack.astro';
+import NewLastFMTrack from '../components/NewLastFMTrack.astro';
 import Image from '../components/CloudImage.astro';
 import PostArticle from '../components/PostArticle.astro';
 import LinkArticle from '../components/LinkArticle.astro';
@@ -40,6 +41,7 @@ const latestJournalLinks = journalLinks.slice(0, 3);
 				)}
 				<div class="media">
 					<div class="recent-track">
+						<NewLastFMTrack />
 						<LastFMTrack />
 					</div>
 					{homeData.nowReading && (
