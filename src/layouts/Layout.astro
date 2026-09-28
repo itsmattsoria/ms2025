@@ -7,10 +7,15 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
 	title: string;
+	description: string;
+	slug: string;
 	bodyClass: string;
 }
 
-const { title, bodyClass } = Astro.props;
+const { title, description, path, bodyClass } = Astro.props;
+const defaultTitle = 'Matt Soria | photography + web development';
+const defaultDescription = 'Photographer and Web Developer from Chicago. Adventure, Lifestyle, Travel and Editorial Photography. Specializing in Front-end Development.';
+const defaultUrl = 'https://www.mattsoria.com/';
 const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 ---
 
@@ -21,7 +26,7 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 	<meta name="viewport" content="width=device-width" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<meta name="generator" content={Astro.generator} />
-	<title>{title}</title>
+	<title>{title ?? defaultTitle}</title>
 	<!-- Preloads -->
 	<link rel="preload" href="/fonts/TAYWalkout.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="/fonts/VCTRMonov0.12-Regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -33,9 +38,9 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<meta name="description" content="Photographer and Web Developer from Chicago. Adventure, Lifestyle, Travel and Editorial Photography. Specializing in Front-end Development.">
-	<meta property="og:title" content="Matt Soria | photography + web development">
-	<meta property="og:url" content="https://www.mattsoria.com/">
+	<meta name="description" content={description ?? defaultDescription}>
+	<meta property="og:title" content={title ?? defaultTitle }>
+	<meta property="og:url" content={path ? defaultUrl + path : defaultUrl}>
 
 	<ClientRouter fallback="none" />
 	<style>

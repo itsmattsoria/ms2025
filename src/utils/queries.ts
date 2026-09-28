@@ -42,6 +42,7 @@ export const JOURNAL_ENTRY_FULL_QUERY = `{
     slug
     postDate
     ... on journalEntry_Entry {
+      description
       note {
         rawHtml
       }
