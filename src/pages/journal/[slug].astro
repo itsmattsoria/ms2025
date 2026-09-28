@@ -1,4 +1,5 @@
 ---
+import { getCldOgImageUrl } from 'astro-cloudinary/helpers';
 import Layout from '../../layouts/Layout.astro';
 import Image from '../../components/CloudImage.astro';
 import ArrowLeft from '../../assets/arrow-left.svg';
@@ -22,9 +23,13 @@ const formattedDate = dateObject.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric'
 });
+let shareImage = null
+if (entry.journalShareImage.length) {
+  shareImage = getCldOgImageUrl({ src: entry.journalShareImage[0].url });
+}
 ---
 
-<Layout title={'Matt Soria: ' + entry.title} path={'journal/' + entry.slug} description={entry.description}>
+<Layout title={'Matt Soria: ' + entry.title} path={'journal/' + entry.slug} description={entry.description} shareImage={shareImage}>
   <div class="container">
     <header>
       <div class="breadcrumbs"><a href="/journal" class="pill" data-astro-prefetch><ArrowLeft />journal</a></div>

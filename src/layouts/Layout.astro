@@ -9,10 +9,11 @@ interface Props {
 	title: string;
 	description: string;
 	slug: string;
+	shareImage: URL;
 	bodyClass: string;
 }
 
-const { title, description, path, bodyClass } = Astro.props;
+const { title, description, path, shareImage, bodyClass } = Astro.props;
 const defaultTitle = 'Matt Soria | photography + web development';
 const defaultDescription = 'Photographer and Web Developer from Chicago. Adventure, Lifestyle, Travel and Editorial Photography. Specializing in Front-end Development.';
 const defaultUrl = 'https://www.mattsoria.com/';
@@ -41,6 +42,12 @@ const fullBodyClass = bodyClass ? bodyClass + ' ms2026' : 'ms2026';
 	<meta name="description" content={description ?? defaultDescription}>
 	<meta property="og:title" content={title ?? defaultTitle }>
 	<meta property="og:url" content={path ? defaultUrl + path : defaultUrl}>
+	{ shareImage && (
+		<meta property="og:image" content={shareImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:type" content="image/jpeg" />
+	)}
 
 	<ClientRouter fallback="none" />
 	<style>

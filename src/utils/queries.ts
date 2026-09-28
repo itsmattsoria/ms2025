@@ -46,6 +46,16 @@ export const JOURNAL_ENTRY_FULL_QUERY = `{
       note {
         rawHtml
       }
+      journalShareImage {
+        ... on personal_Asset {
+          alt
+          url
+          title
+          focalPoint
+          width
+          height
+        }
+      }
       journalImage {
         ... on personal_Asset {
           alt
