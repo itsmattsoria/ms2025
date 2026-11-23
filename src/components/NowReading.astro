@@ -13,7 +13,7 @@ const { book } = Astro.props;
     </div>
 
     <div class="book-info">
-      <h2 class="label pill">Now Reading</h2>
+      <h2 class="label pill">{book.label ?? 'Now Reading'}</h2>
       <div class="book-title">
         <span class="basic-link">{book.bookTitle}</span>
       </div>

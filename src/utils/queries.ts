@@ -174,6 +174,7 @@ export const HOME_PAGE_QUERY = `{
         }
       }
       nowReading {
+        label
         bookTitle
         bookLink
         author

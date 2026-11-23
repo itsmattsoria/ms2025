@@ -46,15 +46,22 @@ if (entry.journalShareImage.length) {
 
     <div class="entry-content">
       {entry.journalImage[0] && (
-        <div class="noisy-border">
-          <figure class="entry-image">
-            <Image
-              url={entry.journalImage[0].url}
-              width={entry.journalImage[0].width}
-              height={entry.journalImage[0].height}
-              focalPoint={entry.journalImage[0].focalPoint}
-            />
-          </figure>
+        <div class="entry-image-container">
+          <div class="noisy-border">
+            <figure class="entry-image">
+              <Image
+                url={entry.journalImage[0].url}
+                width={entry.journalImage[0].width}
+                height={entry.journalImage[0].height}
+                focalPoint={entry.journalImage[0].focalPoint}
+              />
+            </figure>
+          </div>
+          <>
+            { entry.journalImage[0].captionSimple && (
+              <figcaption class="text-label">{entry.journalImage[0].captionSimple}</figcaption>
+            )}
+          </>
         </div>
       )}
 
@@ -107,10 +114,17 @@ if (entry.journalShareImage.length) {
     }
   }
 
+  .entry-image-container {
+    margin-block-end: var(--spacing-l);
+
+    figcaption {
+      padding-inline-start: 0.5rem;
+      margin-block-start: var(--spacing-xs);
+    }
+  }
   .entry-image {
     position: relative;
     border-radius: var(--radius);
-    margin-block-end: var(--spacing-l);
   }
 
   .entry-note {
